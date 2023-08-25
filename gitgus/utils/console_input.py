@@ -10,12 +10,13 @@ def choose_one(prompt, search_fn, default=""):
     if not name:
         print("No name provided. Skipping.")
         return None
-    objects = search_fn(name)
+    objects = list(search_fn(name))
     if len(objects) == 0:
         print(
             f"No objects found for {name}. "
             "Skipping. You can manually add it to the config file or run gitgus config init again"
         )
+        return None
     if len(objects) == 1:
         return objects[0]
     return objects[get_choice([o.name for o in objects])]

@@ -22,6 +22,10 @@ deps:
 build: deps
 	poetry build
 
+.PHONY: build/gui
+build/gui:
+	pyinstaller --windowed --onefile --noconfirm --name gitgus gitgus/gui.py
+
 install: build
 	pipx uninstall gitgus
 	pipx install dist/gitgus-0.1.0-py3-none-any.whl

@@ -39,7 +39,13 @@ class GusWorkflow:
 
     def query(self, query_name: str = "default") -> list[Work]:
         """List PRs."""
-        query = Template(self.config.get(f"GUS.queries.{query_name}")).safe_substitute(me=self.work_items.user_id())
+        scrum_team = self.config.get("GUS.default_team")
+        scrum_team = scrum_team[1] if scrum_team else None
+        product_tag = self.config.get("GUS.default_product_tag")
+        product_tag = product_tag[1] if product_tag else None
+        query = Template(self.config.get(f"GUS.queries.{query_name}")).safe_substitute(
+            me=self.work_items.user_id(), team=scrum_team, product_tag=product_tag
+        )
         return list(Work.soql_query(query))
 
     def _find_status(self, status: str) -> Status:

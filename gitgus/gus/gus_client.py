@@ -5,7 +5,7 @@ from typing import Self
 from requests import Session
 from simple_salesforce import Salesforce
 
-from .sfdx import get_session_id
+from .sf_conn import get_session_token
 
 
 class GUSClient:
@@ -75,4 +75,4 @@ class GUSClient:
         """
         if "pytest" in sys.modules:
             raise RuntimeError("Someone forgot to mock out the connection to GUS.")
-        return GUSClient(get_session_id(instance), instance=instance)
+        return GUSClient(get_session_token(instance), instance=instance)

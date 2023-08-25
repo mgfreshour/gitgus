@@ -8,10 +8,6 @@ from .command_config import config_app
 from .command_flaky import flaky_app
 from .command_dev import dev_app
 
-from gitgus.workflows.gus_wf import GusWorkflow
-
-from gitgus.utils.console_writer import print_work_item
-
 app = typer.Typer(no_args_is_help=True, pretty_exceptions_show_locals=False)
 
 app.add_typer(dev_app, name="dev", help="Commands for developing gitgus.", no_args_is_help=True)
@@ -69,6 +65,13 @@ def version():
 
     my_version = importlib.metadata.version("gitgus")
     print(my_version)
+
+
+@app.command()
+def gui():
+    from .gui import app as gui_app
+
+    gui_app()
 
 
 if __name__ == "__main__":

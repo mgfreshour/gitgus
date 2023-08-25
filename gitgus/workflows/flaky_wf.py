@@ -96,6 +96,10 @@ class FlakyWorkflow:
             test=test, build=build, stack_trace=stack_trace
         )
         tickets = []
+        product_tag = self.config.get("GUS.default_product_tag")
+        product_tag = product_tag[1] if product_tag else None
+        scrum_team = self.config.get("GUS.default_team")
+        scrum_team = scrum_team[1] if scrum_team else None
         if TICKET_TYPE_DISABLE in ticket_types:
             tickets.append(
                 Work.create(
@@ -105,8 +109,8 @@ class FlakyWorkflow:
                     record_type_id=RECORD_TYPES["Bug"],
                     found_in_build="a06T0000001VeY4IAK",
                     priority="P2",
-                    scrum_team=self.config.get("GUS.default_team"),
-                    product_tag=self.config.get("GUS.default_product_tag"),
+                    scrum_team=scrum_team,
+                    product_tag=product_tag,
                 )
             )
 
@@ -119,8 +123,8 @@ class FlakyWorkflow:
                     record_type_id=RECORD_TYPES["Bug"],
                     found_in_build="a06T0000001VeY4IAK",
                     priority="P2",
-                    scrum_team=self.config.get("GUS.default_team"),
-                    product_tag=self.config.get("GUS.default_product_tag"),
+                    scrum_team=scrum_team,
+                    product_tag=product_tag,
                 )
             )
         return tickets

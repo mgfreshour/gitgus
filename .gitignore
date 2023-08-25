@@ -139,3 +139,5 @@ poetry.lock
 .flakeheaven_cache
 gitgus.iml
 demos/
+mgftest.sh
+.gitgus.toml

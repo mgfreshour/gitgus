@@ -1,6 +1,6 @@
 import builtins
 import os
-from unittest.mock import mock_open
+from unittest.mock import mock_open, MagicMock
 
 import toml
 
@@ -13,12 +13,16 @@ team_prefix = "not_myteam"
 """
 
 
-def test_set_secret():
-    config = Config()
-    config.load_defaults()
-    config.set_secret("jenkins.password", "secret")
-    assert config.get("jenkins.password") == "secret"
-    assert config.all()["jenkins"]["password"] == IS_SECRET_TOKEN
+def test_set_secret(monkeypatch):
+    mock_secret = MagicMock()
+    monkeypatch.setattr("gitgus.config.set_secret", mock_secret)
+    testee = Config()
+    testee.load_defaults()
+    testee.set_secret("jenkins.password", "mysecret")
+    assert testee.all()["jenkins"]["password"] == IS_SECRET_TOKEN
+    assert mock_secret.call_count == 1
+    assert mock_secret.call_args[0][1] == "jenkins.password"
+    assert mock_secret.call_args[0][2] == "mysecret"
 
 
 def test_loads_local_config(fs):

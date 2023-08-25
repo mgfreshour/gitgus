@@ -7,8 +7,11 @@ from rich import print
 from rich.prompt import Prompt
 
 from gitgus.config import DEFAULT_CONFIG_PATH, Config
-from gitgus.deps import config, teams, products
+from gitgus.deps import config, products
 from gitgus.utils.console_input import choose_one
+from gitgus.gus.sobjects.team import Team
+from gitgus.gus.sobjects.product_tag import ProductTag
+from gitgus.oauth.device import get_auth_token as get_auth_token_device
 
 config_app = typer.Typer(no_args_is_help=True)
 
@@ -16,6 +19,17 @@ config_app = typer.Typer(no_args_is_help=True)
 class ConfigLocation(str, Enum):
     glob = "global"
     local = "local"
+
+
+def get_github_token() -> str:
+    base_url = "https://github.com"
+    device_uri = base_url + "/login/device/code"
+    token_url = base_url + "/login/oauth/access_token"
+
+    def get_code(code, url):
+        print(f"Go to {url} and enter code {code}")
+
+    return get_auth_token_device(device_uri, token_url, "0df336fe16abeebc0aa7", ["repo", "project", "user"], get_code)
 
 
 @config_app.command()
@@ -32,17 +46,19 @@ def init(location: ConfigLocation = typer.Argument(..., help="Initialize a local
         # GUS config
         team = choose_one(
             "What is your GUS Team Name? (partial okay)",
-            search_fn=lambda n: teams.get_team(n),
+            search_fn=lambda n: Team.find_by_name_like(n),
+            default=config.get("GUS.default_team"),
         )
         if team:
-            init_config.set("GUS.default_team", team.id_)
+            init_config.set("GUS.default_team", (team.name, team.id_))
 
         product_tag = choose_one(
             "What is your GUS Product Tag ID?",
-            search_fn=lambda n: products.get_product_tag(n),
+            search_fn=lambda n: ProductTag.find_by_name_like(n),
+            default=config.get("GUS.default_product_tag"),
         )
         if product_tag:
-            init_config.set("GUS.default_product_tag", product_tag.id_)
+            init_config.set("GUS.default_product_tag", (product_tag.name, product_tag.id_))
 
         # Github config
         team_prefix = Prompt.ask(
@@ -51,13 +67,30 @@ def init(location: ConfigLocation = typer.Argument(..., help="Initialize a local
         if team_prefix:
             init_config.set("PRs.team_prefix", team_prefix)
 
-    github_token = Prompt.ask(
-        "What is your GitHub token? see: https://tinyurl.com/3u93asa4 Remember to config SSO and permissions."
-        "Leave blank to skip.",
-        default="",
+    gh_yn = Prompt.ask(
+        f"Do you wish to setup a GitHub token? ({config.get('github.token')})", choices=["Y", "N"], default="Y"
     )
-    if github_token:
-        init_config.set_secret("github.token", github_token)
+    if gh_yn == "Y":
+        gh_token = get_github_token()
+        init_config.set_secret("github.token", gh_token)
+
+    current_jenkins_url = config.get("jenkins.url")
+    current_jenkins_user = config.get("jenkins.username")
+    jenkins_yn = Prompt.ask(
+        f"Do you wish to setup a Jenkins token? ({current_jenkins_user}@{current_jenkins_url}",
+        choices=["Y", "N"],
+        default="Y",
+    )
+    if jenkins_yn == "Y":
+        jenkins_url = Prompt.ask("What is your Jenkins URL?", default=current_jenkins_url)
+        jenkins_user = Prompt.ask("What is your Jenkins username?", default=current_jenkins_user)
+        jenkins_password = Prompt.ask(
+            "What is your Jenkins API Token? (go to Jenkins -> Your Name -> Configure -> Configure -> API Token",
+            default=config.get("jenkins.password"),
+        )
+        init_config.set("jenkins.url", jenkins_url)
+        init_config.set("jenkins.username", jenkins_user)
+        init_config.set_secret("jenkins.password", jenkins_password)
 
     if local:
         path = os.path.join(os.getcwd(), ".gitgus.toml")

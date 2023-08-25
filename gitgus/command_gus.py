@@ -103,7 +103,7 @@ def _checkout(mark_ip):
 @gus_app.command()
 def get(work_id: str):
     """Get a ticket."""
-    wi = list(gus_wf.get(work_id))[0]
+    wi = gus_wf.get(work_id)
     print_work_item(wi)
 
 
