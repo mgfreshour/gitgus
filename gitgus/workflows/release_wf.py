@@ -89,7 +89,7 @@ class ReleaseWorkflow:
         else:
             work_item.scheduled_build = build.id_
             try:
-                work_item.update()
+                Work.update(work_item)
             except Exception as e:
                 print(f"Error updating {work_item.name} with build to {build.name}: {e}")
 
