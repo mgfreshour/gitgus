@@ -1,0 +1,23 @@
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-latest']
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - run: pip install poetry
+      - run: make build/gui
+      # Optionally verify that it works (provided that it does not need user interaction)
+      - uses: actions/upload-artifact@v2
+        with:
+          path: dist/*.app

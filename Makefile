@@ -22,9 +22,13 @@ deps:
 build: deps
 	poetry build
 
+.PHONY: clean
+clean:
+	rm -rf build dist .pytest_cache .coverage .mypy_cache .flakeheaven .tox .eggs .venv
+
 .PHONY: build/gui
-build/gui:
-	pyinstaller --windowed --onefile --noconfirm --name gitgus gitgus/gui.py
+build/gui: build
+	poetry run pyinstaller --log-level INFO -p "$(shell poetry env info -p)/lib/python3.11/site-packages" --windowed --onefile --noconfirm --name gitgus-$(shell uname -m) gitgus/gui.py
 
 install: build
 	pipx uninstall gitgus
