@@ -1,3 +1,6 @@
+import os
+import sys
+
 import PySimpleGUI as gui
 from gitgus.deps import config, work_items, external_editor, git_repo
 from gitgus.workflows.gus_wf import GusWorkflow
@@ -95,4 +98,11 @@ def app():
 
 
 if __name__ == "__main__":
+    # print version
+    if len(sys.argv) >= 2 and sys.argv[1] == "--version":
+        import importlib.metadata
+
+        my_version = importlib.metadata.version("gitgus")
+        print("gitgus version: " + my_version)
+        sys.exit(0)
     app()
