@@ -28,7 +28,7 @@ clean: ## Cleans the project
 
 .PHONY: build/gui
 build/gui: build ## Builds the GUI
-	poetry run pyinstaller --log-level INFO -p "$(shell poetry env info -p)/lib/python3.11/site-packages" --windowed --noconfirm --name gitgus gitgus/gui.py
+	poetry run pyinstaller --log-level INFO -p "$(shell poetry env info -p)/lib/python3.11/site-packages" --windowed --onefile --noconfirm --name gitgus gitgus/gui.py
 
 install: build ## Installs the CLI app with pipx
 	pipx uninstall gitgus
