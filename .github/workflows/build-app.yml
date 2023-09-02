@@ -24,11 +24,11 @@ jobs:
       - run: dist/gitgus.app/Contents/MacOS/gitgus --version
 
       - name: 'Tar files'
-        run: tar -cvf my_files.tar dist/gitgus.app
+        run: tar -cvf gitgus.tar dist/gitgus.app
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
           name: gitgus
-          path: dist/gitgus.app.tar
+          path: dist/gitgus.tar
 
