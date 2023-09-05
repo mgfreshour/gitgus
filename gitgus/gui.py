@@ -61,19 +61,16 @@ def app():
             gui.Frame(
                 "What do you want to do?",
                 layout=[
-                    [
-                        # TODO - figure out columns to align buttons
-                        gui.Text("Sort the team's tickets priorities to (hopefully) match our desired priorities"),
-                        gui.Button("Sort Tickets"),
-                    ],
-                    [
-                        gui.Text("Get a report on how all the recent builds have gone, noting failures and successes"),
-                        gui.Button("Report on Builds"),
-                    ],
-                    [
-                        gui.Text("Get a report on flakies from the recent past."),
-                        gui.Button("Report on Flakies"),
-                    ],
+                    [gui.Column(layout=[
+                        [gui.Text("Sort the team's tickets priorities to (hopefully) match our desired priorities")],
+                        [gui.Text("Get a report on how all the recent builds have gone, noting failures and successes")],
+                        [gui.Text("Get a report on flakies from the recent past.")],
+                    ]),
+                    gui.Column(layout=[
+                        [gui.Button("Sort Tickets")],
+                        [gui.Button("Report on Builds")],
+                        [gui.Button("Report on Flakies")],
+                    ])]
                 ],
             )
         ],

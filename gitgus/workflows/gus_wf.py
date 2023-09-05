@@ -2,7 +2,6 @@ import enum
 import re
 
 from string import Template
-from typing import Generator
 
 from gitgus.gus.sobjects.work import Work
 
