@@ -159,8 +159,6 @@ class GusWorkflow:
             print(f"epic {epic.name} has {len(wis)} tickets")
             wis = [wi for wi in wis if "New" in wi.status or "Triaged" in wi.status]
             print(f"epic {epic.name} has {len(wis)} tickets after filtering")
-            for wi in wis:
-                wi.epic = epic.name
             epic_tickets.extend(wis)
 
         tickets: list[Work] = []
@@ -179,6 +177,9 @@ class GusWorkflow:
 
         if not dry_run:
             for i, t in enumerate(tickets):
-                self.work_items.update(t, {"priority_rank": i + 1})
+                try:
+                    self.work_items.update(t, {"priority_rank": i + 1})
+                except Exception as e:
+                    print(f"Failed to update {t.name}: {e}")
 
         return ret

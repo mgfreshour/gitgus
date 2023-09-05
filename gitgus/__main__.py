@@ -1,4 +1,4 @@
 """gitgus.main-entry point."""
-from .gui import app
+from .main import app
 
 app()
