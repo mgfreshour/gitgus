@@ -90,8 +90,14 @@ def test_init_local(monkeypatch, capsys):
     monkeypatch.setattr(builtins, "open", m)
     monkeypatch.setattr(Config, "set_secret", MagicMock())
     monkeypatch.setattr(Team, "soql_query", MagicMock(side_effect=fake_soql_query))
-    monkeypatch.setattr(ProductTag, "soql_query", MagicMock(side_effect=fake_soql_query))
-    monkeypatch.setattr(SObjectBase, "_query_soql", MagicMock(side_effect=RuntimeError("should not be called")))
+    monkeypatch.setattr(
+        ProductTag, "soql_query", MagicMock(side_effect=fake_soql_query)
+    )
+    monkeypatch.setattr(
+        SObjectBase,
+        "_query_soql",
+        MagicMock(side_effect=RuntimeError("should not be called")),
+    )
 
     runner = CliRunner()
     input = ["myteam", "myproduct", "myprefix", "", ""]  # github token

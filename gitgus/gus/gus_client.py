@@ -34,7 +34,9 @@ class GUSClient:
             version="51.0",
             session=session,
         )
-        self.user_id: str = self.sf.restful("", method="GET")["identity"].rsplit("/", 1)[1]
+        self.user_id: str = self.sf.restful("", method="GET")["identity"].rsplit(
+            "/", 1
+        )[1]
         GUSClient._instance = self
 
     def create(self, sobject_name: str, fields: dict[str, str]):

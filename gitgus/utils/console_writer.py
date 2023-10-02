@@ -10,16 +10,31 @@ from gitgus.utils.HTMLStripper import strip_tags
 
 
 def print_work_item(wi):
-    print(f"Work Item: [{config.get('GUS.style.work_id')}]{wi.name}[/{config.get('GUS.style.work_id')}]")
-    print(f"Subject:   [{config.get('GUS.style.subject')}]{wi.subject}[/{config.get('GUS.style.subject')}]")
-    print(f"Assignee:  [{config.get('GUS.style.assignee')}]{wi.assignee_name}[/{config.get('GUS.style.assignee')}]")
-    print(f"Status:    [{config.get('GUS.style.status')}]{wi.status}[/{config.get('GUS.style.status')}]")
-    print(f"URL:       [{config.get('GUS.style.url')}]{wi.web_url}[/{config.get('GUS.style.url')}]")
+    print(
+        f"Work Item: [{config.get('GUS.style.work_id')}]{wi.name}[/{config.get('GUS.style.work_id')}]"
+    )
+    print(
+        f"Subject:   [{config.get('GUS.style.subject')}]{wi.subject}[/{config.get('GUS.style.subject')}]"
+    )
+    print(
+        f"Assignee:  [{config.get('GUS.style.assignee')}]{wi.assignee_name}[/{config.get('GUS.style.assignee')}]"
+    )
+    print(
+        f"Status:    [{config.get('GUS.style.status')}]{wi.status}[/{config.get('GUS.style.status')}]"
+    )
+    print(
+        f"URL:       [{config.get('GUS.style.url')}]{wi.web_url}[/{config.get('GUS.style.url')}]"
+    )
     print(
         f"Build:     [{config.get('GUS.style.build')}]{wi.scheduled_build_name}({wi.scheduled_build})[/{config.get('GUS.style.build')}]"
     )
 
-    print(Panel(strip_tags(wi.details or wi.details_and_steps_to_reproduce), title="Details:"))
+    print(
+        Panel(
+            strip_tags(wi.details or wi.details_and_steps_to_reproduce),
+            title="Details:",
+        )
+    )
 
 
 def print_prs(res):
@@ -42,7 +57,10 @@ def print_wi_table(res, fields=None):
         table.add_column(header_name, max_width=50)
     table.add_column("URL", width=54)
     for wi in res:
-        url = "https://gus.my.salesforce.com/apex/ADM_WorkLocator?bugorworknumber=" + wi.name
+        url = (
+            "https://gus.my.salesforce.com/apex/ADM_WorkLocator?bugorworknumber="
+            + wi.name
+        )
         vals = [getattr(wi, field) for field in fields]
         vals.append(url)
         table.add_row(*vals)

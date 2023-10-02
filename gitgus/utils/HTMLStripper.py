@@ -30,7 +30,10 @@ class HTMLStripper(HTMLParser):
                 self.text.write("*")
             elif self._HTMLParser__starttag_text[:4] == "<em>":
                 self.text.write("_")
-            elif self._HTMLParser__starttag_text == "<li>" or self._HTMLParser__starttag_text == "<p>":
+            elif (
+                self._HTMLParser__starttag_text == "<li>"
+                or self._HTMLParser__starttag_text == "<p>"
+            ):
                 self.text.write("\n")
 
     def get_data(self):

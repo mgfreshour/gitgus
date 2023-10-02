@@ -13,9 +13,13 @@ release_app = typer.Typer(no_args_is_help=True)
 @release_app.command(name="update-tickets")
 def update_tickets(
     gus_build: str = typer.Option(..., prompt=True, help="GUS build, ex: MCIS_240.12"),
-    start_tag: str = typer.Option(..., prompt=True, help="Previous Release tag, ex: v242.1"),
+    start_tag: str = typer.Option(
+        ..., prompt=True, help="Previous Release tag, ex: v242.1"
+    ),
     end_tag: str = typer.Option(..., prompt=True, help="Fresh Release tag, ex: v242.2"),
-    dry_run: bool = typer.Option(False, help="Do not actually update tickets and PRs, only print"),
+    dry_run: bool = typer.Option(
+        False, help="Do not actually update tickets and PRs, only print"
+    ),
 ):
     """Update the tickets in GUS."""
     release_wf.dry_run = dry_run

@@ -586,60 +586,112 @@ class User(SObjectBase, metaclass=SObjectType):
     country: Optional[str] = Field(..., alias="Country", title="Country")
     latitude: Optional[float] = Field(..., alias="Latitude", title="Latitude")
     longitude: Optional[float] = Field(..., alias="Longitude", title="Longitude")
-    geocode_accuracy: Optional[GeocodeAccuracyEnum] = Field(..., alias="GeocodeAccuracy", title="Geocode Accuracy")
+    geocode_accuracy: Optional[GeocodeAccuracyEnum] = Field(
+        ..., alias="GeocodeAccuracy", title="Geocode Accuracy"
+    )
     email: str = Field(..., alias="Email", title="Email")
-    email_preferences_auto_bcc: bool = Field(..., alias="EmailPreferencesAutoBcc", title="AutoBcc")
+    email_preferences_auto_bcc: bool = Field(
+        ..., alias="EmailPreferencesAutoBcc", title="AutoBcc"
+    )
     email_preferences_auto_bcc_stay_in_touch: bool = Field(
         ..., alias="EmailPreferencesAutoBccStayInTouch", title="AutoBccStayInTouch"
     )
     email_preferences_stay_in_touch_reminder: bool = Field(
         ..., alias="EmailPreferencesStayInTouchReminder", title="StayInTouchReminder"
     )
-    sender_email: Optional[str] = Field(..., alias="SenderEmail", title="Email Sender Address")
-    sender_name: Optional[str] = Field(..., alias="SenderName", title="Email Sender Name")
+    sender_email: Optional[str] = Field(
+        ..., alias="SenderEmail", title="Email Sender Address"
+    )
+    sender_name: Optional[str] = Field(
+        ..., alias="SenderName", title="Email Sender Name"
+    )
     signature: Optional[str] = Field(..., alias="Signature", title="Email Signature")
-    stay_in_touch_subject: Optional[str] = Field(..., alias="StayInTouchSubject", title="Stay-in-Touch Email Subject")
+    stay_in_touch_subject: Optional[str] = Field(
+        ..., alias="StayInTouchSubject", title="Stay-in-Touch Email Subject"
+    )
     stay_in_touch_signature: Optional[str] = Field(
         ..., alias="StayInTouchSignature", title="Stay-in-Touch Email Signature"
     )
-    stay_in_touch_note: Optional[str] = Field(..., alias="StayInTouchNote", title="Stay-in-Touch Email Note")
+    stay_in_touch_note: Optional[str] = Field(
+        ..., alias="StayInTouchNote", title="Stay-in-Touch Email Note"
+    )
     phone: Optional[str] = Field(..., alias="Phone", title="Phone")
     fax: Optional[str] = Field(..., alias="Fax", title="Fax")
     mobile_phone: Optional[str] = Field(..., alias="MobilePhone", title="Mobile")
     alias: str = Field(..., alias="Alias", title="Alias")
     community_nickname: str = Field(..., alias="CommunityNickname", title="Nickname")
     badge_text: Optional[str] = Field(
-        ..., alias="BadgeText", title="User Photo badge text overlay", frozen=True, exclude=True
+        ...,
+        alias="BadgeText",
+        title="User Photo badge text overlay",
+        frozen=True,
+        exclude=True,
     )
     is_active: bool = Field(..., alias="IsActive", title="Active")
-    time_zone_sid_key: TimeZoneSidKeyEnum = Field(..., alias="TimeZoneSidKey", title="Time Zone")
+    time_zone_sid_key: TimeZoneSidKeyEnum = Field(
+        ..., alias="TimeZoneSidKey", title="Time Zone"
+    )
     user_role_id: Optional[str] = Field(..., alias="UserRoleId", title="Role ID")
     locale_sid_key: LocaleSidKeyEnum = Field(..., alias="LocaleSidKey", title="Locale")
-    receives_info_emails: bool = Field(..., alias="ReceivesInfoEmails", title="Info Emails")
-    receives_admin_info_emails: bool = Field(..., alias="ReceivesAdminInfoEmails", title="Admin Info Emails")
-    email_encoding_key: EmailEncodingKeyEnum = Field(..., alias="EmailEncodingKey", title="Email Encoding")
+    receives_info_emails: bool = Field(
+        ..., alias="ReceivesInfoEmails", title="Info Emails"
+    )
+    receives_admin_info_emails: bool = Field(
+        ..., alias="ReceivesAdminInfoEmails", title="Admin Info Emails"
+    )
+    email_encoding_key: EmailEncodingKeyEnum = Field(
+        ..., alias="EmailEncodingKey", title="Email Encoding"
+    )
     default_currency_iso_code: Optional[DefaultCurrencyIsoCodeEnum] = Field(
         ..., alias="DefaultCurrencyIsoCode", title="Default Currency ISO Code"
     )
-    currency_iso_code: CurrencyIsoCodeEnum = Field(..., alias="CurrencyIsoCode", title="Currency ISO Code")
-    profile_id: str = Field(..., alias="ProfileId", title="Profile ID", frozen=True, exclude=True)
-    user_type: Optional[UserTypeEnum] = Field(..., alias="UserType", title="User Type", frozen=True, exclude=True)
-    language_locale_key: LanguageLocaleKeyEnum = Field(..., alias="LanguageLocaleKey", title="Language")
-    employee_number: Optional[str] = Field(..., alias="EmployeeNumber", title="Employee Number")
-    delegated_approver_id: Optional[str] = Field(..., alias="DelegatedApproverId", title="Delegated Approver ID")
-    manager_id: Optional[str] = Field(..., alias="ManagerId", title="Manager ID", frozen=True, exclude=True)
+    currency_iso_code: CurrencyIsoCodeEnum = Field(
+        ..., alias="CurrencyIsoCode", title="Currency ISO Code"
+    )
+    profile_id: str = Field(
+        ..., alias="ProfileId", title="Profile ID", frozen=True, exclude=True
+    )
+    user_type: Optional[UserTypeEnum] = Field(
+        ..., alias="UserType", title="User Type", frozen=True, exclude=True
+    )
+    language_locale_key: LanguageLocaleKeyEnum = Field(
+        ..., alias="LanguageLocaleKey", title="Language"
+    )
+    employee_number: Optional[str] = Field(
+        ..., alias="EmployeeNumber", title="Employee Number"
+    )
+    delegated_approver_id: Optional[str] = Field(
+        ..., alias="DelegatedApproverId", title="Delegated Approver ID"
+    )
+    manager_id: Optional[str] = Field(
+        ..., alias="ManagerId", title="Manager ID", frozen=True, exclude=True
+    )
     last_login_date: Optional[datetime] = Field(
         ..., alias="LastLoginDate", title="Last Login", frozen=True, exclude=True
     )
-    created_date: datetime = Field(..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True)
-    created_by_id: str = Field(..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True)
+    created_date: datetime = Field(
+        ..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True
+    )
+    created_by_id: str = Field(
+        ..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True
+    )
     last_modified_date: datetime = Field(
-        ..., alias="LastModifiedDate", title="Last Modified Date", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedDate",
+        title="Last Modified Date",
+        frozen=True,
+        exclude=True,
     )
     last_modified_by_id: str = Field(
-        ..., alias="LastModifiedById", title="Last Modified By ID", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedById",
+        title="Last Modified By ID",
+        frozen=True,
+        exclude=True,
     )
-    system_modstamp: datetime = Field(..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True)
+    system_modstamp: datetime = Field(
+        ..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True
+    )
     offline_trial_expiration_date: Optional[datetime] = Field(
         ...,
         alias="OfflineTrialExpirationDate",
@@ -655,41 +707,83 @@ class User(SObjectBase, metaclass=SObjectType):
         exclude=True,
     )
     user_permissions_marketing_user: bool = Field(
-        ..., alias="UserPermissionsMarketingUser", title="Marketing User", frozen=True, exclude=True
+        ...,
+        alias="UserPermissionsMarketingUser",
+        title="Marketing User",
+        frozen=True,
+        exclude=True,
     )
     user_permissions_offline_user: bool = Field(
-        ..., alias="UserPermissionsOfflineUser", title="Offline User", frozen=True, exclude=True
+        ...,
+        alias="UserPermissionsOfflineUser",
+        title="Offline User",
+        frozen=True,
+        exclude=True,
     )
     user_permissions_call_center_auto_login: bool = Field(
-        ..., alias="UserPermissionsCallCenterAutoLogin", title="Auto-login To Call Center"
+        ...,
+        alias="UserPermissionsCallCenterAutoLogin",
+        title="Auto-login To Call Center",
     )
     user_permissions_sf_content_user: bool = Field(
-        ..., alias="UserPermissionsSFContentUser", title="Salesforce CRM Content User", frozen=True, exclude=True
+        ...,
+        alias="UserPermissionsSFContentUser",
+        title="Salesforce CRM Content User",
+        frozen=True,
+        exclude=True,
     )
     user_permissions_knowledge_user: bool = Field(
-        ..., alias="UserPermissionsKnowledgeUser", title="Knowledge User", frozen=True, exclude=True
+        ...,
+        alias="UserPermissionsKnowledgeUser",
+        title="Knowledge User",
+        frozen=True,
+        exclude=True,
     )
     user_permissions_interaction_user: bool = Field(
-        ..., alias="UserPermissionsInteractionUser", title="Flow User", frozen=True, exclude=True
+        ...,
+        alias="UserPermissionsInteractionUser",
+        title="Flow User",
+        frozen=True,
+        exclude=True,
     )
     user_permissions_support_user: bool = Field(
-        ..., alias="UserPermissionsSupportUser", title="Service Cloud User", frozen=True, exclude=True
+        ...,
+        alias="UserPermissionsSupportUser",
+        title="Service Cloud User",
+        frozen=True,
+        exclude=True,
     )
     user_permissions_chatter_answers_user: bool = Field(
-        ..., alias="UserPermissionsChatterAnswersUser", title="Chatter Answers User", frozen=True, exclude=True
+        ...,
+        alias="UserPermissionsChatterAnswersUser",
+        title="Chatter Answers User",
+        frozen=True,
+        exclude=True,
     )
     user_permissions_work_dot_com_user_feature: bool = Field(
-        ..., alias="UserPermissionsWorkDotComUserFeature", title="WDC User", frozen=True, exclude=True
+        ...,
+        alias="UserPermissionsWorkDotComUserFeature",
+        title="WDC User",
+        frozen=True,
+        exclude=True,
     )
-    forecast_enabled: bool = Field(..., alias="ForecastEnabled", title="Allow Forecasting")
+    forecast_enabled: bool = Field(
+        ..., alias="ForecastEnabled", title="Allow Forecasting"
+    )
     user_preferences_activity_reminders_popup: bool = Field(
-        ..., alias="UserPreferencesActivityRemindersPopup", title="ActivityRemindersPopup"
+        ...,
+        alias="UserPreferencesActivityRemindersPopup",
+        title="ActivityRemindersPopup",
     )
     user_preferences_event_reminders_checkbox_default: bool = Field(
-        ..., alias="UserPreferencesEventRemindersCheckboxDefault", title="EventRemindersCheckboxDefault"
+        ...,
+        alias="UserPreferencesEventRemindersCheckboxDefault",
+        title="EventRemindersCheckboxDefault",
     )
     user_preferences_task_reminders_checkbox_default: bool = Field(
-        ..., alias="UserPreferencesTaskRemindersCheckboxDefault", title="TaskRemindersCheckboxDefault"
+        ...,
+        alias="UserPreferencesTaskRemindersCheckboxDefault",
+        title="TaskRemindersCheckboxDefault",
     )
     user_preferences_reminder_sound_off: bool = Field(
         ..., alias="UserPreferencesReminderSoundOff", title="ReminderSoundOff"
@@ -701,26 +795,40 @@ class User(SObjectBase, metaclass=SObjectType):
         ..., alias="UserPreferencesDisableFollowersEmail", title="DisableFollowersEmail"
     )
     user_preferences_disable_profile_post_email: bool = Field(
-        ..., alias="UserPreferencesDisableProfilePostEmail", title="DisableProfilePostEmail"
+        ...,
+        alias="UserPreferencesDisableProfilePostEmail",
+        title="DisableProfilePostEmail",
     )
     user_preferences_disable_change_comment_email: bool = Field(
-        ..., alias="UserPreferencesDisableChangeCommentEmail", title="DisableChangeCommentEmail"
+        ...,
+        alias="UserPreferencesDisableChangeCommentEmail",
+        title="DisableChangeCommentEmail",
     )
     user_preferences_disable_later_comment_email: bool = Field(
-        ..., alias="UserPreferencesDisableLaterCommentEmail", title="DisableLaterCommentEmail"
+        ...,
+        alias="UserPreferencesDisableLaterCommentEmail",
+        title="DisableLaterCommentEmail",
     )
     user_preferences_dis_prof_post_comment_email: bool = Field(
-        ..., alias="UserPreferencesDisProfPostCommentEmail", title="DisProfPostCommentEmail"
+        ...,
+        alias="UserPreferencesDisProfPostCommentEmail",
+        title="DisProfPostCommentEmail",
     )
-    user_preferences_content_no_email: bool = Field(..., alias="UserPreferencesContentNoEmail", title="ContentNoEmail")
+    user_preferences_content_no_email: bool = Field(
+        ..., alias="UserPreferencesContentNoEmail", title="ContentNoEmail"
+    )
     user_preferences_content_email_as_and_when: bool = Field(
         ..., alias="UserPreferencesContentEmailAsAndWhen", title="ContentEmailAsAndWhen"
     )
     user_preferences_apex_pages_developer_mode: bool = Field(
-        ..., alias="UserPreferencesApexPagesDeveloperMode", title="ApexPagesDeveloperMode"
+        ...,
+        alias="UserPreferencesApexPagesDeveloperMode",
+        title="ApexPagesDeveloperMode",
     )
     user_preferences_receive_no_notifications_as_approver: bool = Field(
-        ..., alias="UserPreferencesReceiveNoNotificationsAsApprover", title="ReceiveNoNotificationsAsApprover"
+        ...,
+        alias="UserPreferencesReceiveNoNotificationsAsApprover",
+        title="ReceiveNoNotificationsAsApprover",
     )
     user_preferences_receive_notifications_as_delegated_approver: bool = Field(
         ...,
@@ -728,25 +836,37 @@ class User(SObjectBase, metaclass=SObjectType):
         title="ReceiveNotificationsAsDelegatedApprover",
     )
     user_preferences_hide_csn_get_chatter_mobile_task: bool = Field(
-        ..., alias="UserPreferencesHideCSNGetChatterMobileTask", title="HideCSNGetChatterMobileTask"
+        ...,
+        alias="UserPreferencesHideCSNGetChatterMobileTask",
+        title="HideCSNGetChatterMobileTask",
     )
     user_preferences_disable_mentions_post_email: bool = Field(
-        ..., alias="UserPreferencesDisableMentionsPostEmail", title="DisableMentionsPostEmail"
+        ...,
+        alias="UserPreferencesDisableMentionsPostEmail",
+        title="DisableMentionsPostEmail",
     )
     user_preferences_dis_mentions_comment_email: bool = Field(
-        ..., alias="UserPreferencesDisMentionsCommentEmail", title="DisMentionsCommentEmail"
+        ...,
+        alias="UserPreferencesDisMentionsCommentEmail",
+        title="DisMentionsCommentEmail",
     )
     user_preferences_hide_csn_desktop_task: bool = Field(
         ..., alias="UserPreferencesHideCSNDesktopTask", title="HideCSNDesktopTask"
     )
     user_preferences_hide_chatter_onboarding_splash: bool = Field(
-        ..., alias="UserPreferencesHideChatterOnboardingSplash", title="HideChatterOnboardingSplash"
+        ...,
+        alias="UserPreferencesHideChatterOnboardingSplash",
+        title="HideChatterOnboardingSplash",
     )
     user_preferences_hide_second_chatter_onboarding_splash: bool = Field(
-        ..., alias="UserPreferencesHideSecondChatterOnboardingSplash", title="HideSecondChatterOnboardingSplash"
+        ...,
+        alias="UserPreferencesHideSecondChatterOnboardingSplash",
+        title="HideSecondChatterOnboardingSplash",
     )
     user_preferences_dis_comment_after_like_email: bool = Field(
-        ..., alias="UserPreferencesDisCommentAfterLikeEmail", title="DisCommentAfterLikeEmail"
+        ...,
+        alias="UserPreferencesDisCommentAfterLikeEmail",
+        title="DisCommentAfterLikeEmail",
     )
     user_preferences_disable_like_email: bool = Field(
         ..., alias="UserPreferencesDisableLikeEmail", title="DisableLikeEmail"
@@ -767,43 +887,69 @@ class User(SObjectBase, metaclass=SObjectType):
         ..., alias="UserPreferencesEnableAutoSubForFeeds", title="EnableAutoSubForFeeds"
     )
     user_preferences_disable_file_share_notifications_for_api: bool = Field(
-        ..., alias="UserPreferencesDisableFileShareNotificationsForApi", title="DisableFileShareNotificationsForApi"
+        ...,
+        alias="UserPreferencesDisableFileShareNotificationsForApi",
+        title="DisableFileShareNotificationsForApi",
     )
     user_preferences_show_title_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowTitleToExternalUsers", title="ShowTitleToExternalUsers"
+        ...,
+        alias="UserPreferencesShowTitleToExternalUsers",
+        title="ShowTitleToExternalUsers",
     )
     user_preferences_show_manager_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowManagerToExternalUsers", title="ShowManagerToExternalUsers"
+        ...,
+        alias="UserPreferencesShowManagerToExternalUsers",
+        title="ShowManagerToExternalUsers",
     )
     user_preferences_show_email_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowEmailToExternalUsers", title="ShowEmailToExternalUsers"
+        ...,
+        alias="UserPreferencesShowEmailToExternalUsers",
+        title="ShowEmailToExternalUsers",
     )
     user_preferences_show_work_phone_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowWorkPhoneToExternalUsers", title="ShowWorkPhoneToExternalUsers"
+        ...,
+        alias="UserPreferencesShowWorkPhoneToExternalUsers",
+        title="ShowWorkPhoneToExternalUsers",
     )
     user_preferences_show_mobile_phone_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowMobilePhoneToExternalUsers", title="ShowMobilePhoneToExternalUsers"
+        ...,
+        alias="UserPreferencesShowMobilePhoneToExternalUsers",
+        title="ShowMobilePhoneToExternalUsers",
     )
     user_preferences_show_fax_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowFaxToExternalUsers", title="ShowFaxToExternalUsers"
+        ...,
+        alias="UserPreferencesShowFaxToExternalUsers",
+        title="ShowFaxToExternalUsers",
     )
     user_preferences_show_street_address_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowStreetAddressToExternalUsers", title="ShowStreetAddressToExternalUsers"
+        ...,
+        alias="UserPreferencesShowStreetAddressToExternalUsers",
+        title="ShowStreetAddressToExternalUsers",
     )
     user_preferences_show_city_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowCityToExternalUsers", title="ShowCityToExternalUsers"
+        ...,
+        alias="UserPreferencesShowCityToExternalUsers",
+        title="ShowCityToExternalUsers",
     )
     user_preferences_show_state_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowStateToExternalUsers", title="ShowStateToExternalUsers"
+        ...,
+        alias="UserPreferencesShowStateToExternalUsers",
+        title="ShowStateToExternalUsers",
     )
     user_preferences_show_postal_code_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowPostalCodeToExternalUsers", title="ShowPostalCodeToExternalUsers"
+        ...,
+        alias="UserPreferencesShowPostalCodeToExternalUsers",
+        title="ShowPostalCodeToExternalUsers",
     )
     user_preferences_show_country_to_external_users: bool = Field(
-        ..., alias="UserPreferencesShowCountryToExternalUsers", title="ShowCountryToExternalUsers"
+        ...,
+        alias="UserPreferencesShowCountryToExternalUsers",
+        title="ShowCountryToExternalUsers",
     )
     user_preferences_show_profile_pic_to_guest_users: bool = Field(
-        ..., alias="UserPreferencesShowProfilePicToGuestUsers", title="ShowProfilePicToGuestUsers"
+        ...,
+        alias="UserPreferencesShowProfilePicToGuestUsers",
+        title="ShowProfilePicToGuestUsers",
     )
     user_preferences_show_title_to_guest_users: bool = Field(
         ..., alias="UserPreferencesShowTitleToGuestUsers", title="ShowTitleToGuestUsers"
@@ -815,25 +961,37 @@ class User(SObjectBase, metaclass=SObjectType):
         ..., alias="UserPreferencesShowStateToGuestUsers", title="ShowStateToGuestUsers"
     )
     user_preferences_show_postal_code_to_guest_users: bool = Field(
-        ..., alias="UserPreferencesShowPostalCodeToGuestUsers", title="ShowPostalCodeToGuestUsers"
+        ...,
+        alias="UserPreferencesShowPostalCodeToGuestUsers",
+        title="ShowPostalCodeToGuestUsers",
     )
     user_preferences_show_country_to_guest_users: bool = Field(
-        ..., alias="UserPreferencesShowCountryToGuestUsers", title="ShowCountryToGuestUsers"
+        ...,
+        alias="UserPreferencesShowCountryToGuestUsers",
+        title="ShowCountryToGuestUsers",
     )
     user_preferences_hide_invoices_redirect_confirmation: bool = Field(
-        ..., alias="UserPreferencesHideInvoicesRedirectConfirmation", title="HideInvoicesRedirectConfirmation"
+        ...,
+        alias="UserPreferencesHideInvoicesRedirectConfirmation",
+        title="HideInvoicesRedirectConfirmation",
     )
     user_preferences_hide_statements_redirect_confirmation: bool = Field(
-        ..., alias="UserPreferencesHideStatementsRedirectConfirmation", title="HideStatementsRedirectConfirmation"
+        ...,
+        alias="UserPreferencesHideStatementsRedirectConfirmation",
+        title="HideStatementsRedirectConfirmation",
     )
     user_preferences_hide_s1_browser_ui: bool = Field(
         ..., alias="UserPreferencesHideS1BrowserUI", title="HideS1BrowserUI"
     )
     user_preferences_disable_endorsement_email: bool = Field(
-        ..., alias="UserPreferencesDisableEndorsementEmail", title="DisableEndorsementEmail"
+        ...,
+        alias="UserPreferencesDisableEndorsementEmail",
+        title="DisableEndorsementEmail",
     )
     user_preferences_path_assistant_collapsed: bool = Field(
-        ..., alias="UserPreferencesPathAssistantCollapsed", title="PathAssistantCollapsed"
+        ...,
+        alias="UserPreferencesPathAssistantCollapsed",
+        title="PathAssistantCollapsed",
     )
     user_preferences_cache_diagnostics: bool = Field(
         ..., alias="UserPreferencesCacheDiagnostics", title="CacheDiagnostics"
@@ -842,40 +1000,58 @@ class User(SObjectBase, metaclass=SObjectType):
         ..., alias="UserPreferencesShowEmailToGuestUsers", title="ShowEmailToGuestUsers"
     )
     user_preferences_show_manager_to_guest_users: bool = Field(
-        ..., alias="UserPreferencesShowManagerToGuestUsers", title="ShowManagerToGuestUsers"
+        ...,
+        alias="UserPreferencesShowManagerToGuestUsers",
+        title="ShowManagerToGuestUsers",
     )
     user_preferences_show_work_phone_to_guest_users: bool = Field(
-        ..., alias="UserPreferencesShowWorkPhoneToGuestUsers", title="ShowWorkPhoneToGuestUsers"
+        ...,
+        alias="UserPreferencesShowWorkPhoneToGuestUsers",
+        title="ShowWorkPhoneToGuestUsers",
     )
     user_preferences_show_mobile_phone_to_guest_users: bool = Field(
-        ..., alias="UserPreferencesShowMobilePhoneToGuestUsers", title="ShowMobilePhoneToGuestUsers"
+        ...,
+        alias="UserPreferencesShowMobilePhoneToGuestUsers",
+        title="ShowMobilePhoneToGuestUsers",
     )
     user_preferences_show_fax_to_guest_users: bool = Field(
         ..., alias="UserPreferencesShowFaxToGuestUsers", title="ShowFaxToGuestUsers"
     )
     user_preferences_show_street_address_to_guest_users: bool = Field(
-        ..., alias="UserPreferencesShowStreetAddressToGuestUsers", title="ShowStreetAddressToGuestUsers"
+        ...,
+        alias="UserPreferencesShowStreetAddressToGuestUsers",
+        title="ShowStreetAddressToGuestUsers",
     )
     user_preferences_lightning_experience_preferred: bool = Field(
-        ..., alias="UserPreferencesLightningExperiencePreferred", title="LightningExperiencePreferred"
+        ...,
+        alias="UserPreferencesLightningExperiencePreferred",
+        title="LightningExperiencePreferred",
     )
     user_preferences_hide_end_user_onboarding_assistant_modal: bool = Field(
-        ..., alias="UserPreferencesHideEndUserOnboardingAssistantModal", title="HideEndUserOnboardingAssistantModal"
+        ...,
+        alias="UserPreferencesHideEndUserOnboardingAssistantModal",
+        title="HideEndUserOnboardingAssistantModal",
     )
     user_preferences_hide_lightning_migration_modal: bool = Field(
-        ..., alias="UserPreferencesHideLightningMigrationModal", title="HideLightningMigrationModal"
+        ...,
+        alias="UserPreferencesHideLightningMigrationModal",
+        title="HideLightningMigrationModal",
     )
     user_preferences_hide_sfx_welcome_mat: bool = Field(
         ..., alias="UserPreferencesHideSfxWelcomeMat", title="HideSfxWelcomeMat"
     )
     user_preferences_hide_bigger_photo_callout: bool = Field(
-        ..., alias="UserPreferencesHideBiggerPhotoCallout", title="HideBiggerPhotoCallout"
+        ...,
+        alias="UserPreferencesHideBiggerPhotoCallout",
+        title="HideBiggerPhotoCallout",
     )
     user_preferences_global_nav_bar_wt_shown: bool = Field(
         ..., alias="UserPreferencesGlobalNavBarWTShown", title="GlobalNavBarWTShown"
     )
     user_preferences_global_nav_grid_menu_wt_shown: bool = Field(
-        ..., alias="UserPreferencesGlobalNavGridMenuWTShown", title="GlobalNavGridMenuWTShown"
+        ...,
+        alias="UserPreferencesGlobalNavGridMenuWTShown",
+        title="GlobalNavGridMenuWTShown",
     )
     user_preferences_create_lex_apps_wt_shown: bool = Field(
         ..., alias="UserPreferencesCreateLEXAppsWTShown", title="CreateLEXAppsWTShown"
@@ -884,22 +1060,34 @@ class User(SObjectBase, metaclass=SObjectType):
         ..., alias="UserPreferencesFavoritesWTShown", title="FavoritesWTShown"
     )
     user_preferences_record_home_section_collapse_wt_shown: bool = Field(
-        ..., alias="UserPreferencesRecordHomeSectionCollapseWTShown", title="RecordHomeSectionCollapseWTShown"
+        ...,
+        alias="UserPreferencesRecordHomeSectionCollapseWTShown",
+        title="RecordHomeSectionCollapseWTShown",
     )
     user_preferences_record_home_reserved_wt_shown: bool = Field(
-        ..., alias="UserPreferencesRecordHomeReservedWTShown", title="RecordHomeReservedWTShown"
+        ...,
+        alias="UserPreferencesRecordHomeReservedWTShown",
+        title="RecordHomeReservedWTShown",
     )
     user_preferences_favorites_show_top_favorites: bool = Field(
-        ..., alias="UserPreferencesFavoritesShowTopFavorites", title="FavoritesShowTopFavorites"
+        ...,
+        alias="UserPreferencesFavoritesShowTopFavorites",
+        title="FavoritesShowTopFavorites",
     )
     user_preferences_exclude_mail_app_attachments: bool = Field(
-        ..., alias="UserPreferencesExcludeMailAppAttachments", title="ExcludeMailAppAttachments"
+        ...,
+        alias="UserPreferencesExcludeMailAppAttachments",
+        title="ExcludeMailAppAttachments",
     )
     user_preferences_suppress_task_sfx_reminders: bool = Field(
-        ..., alias="UserPreferencesSuppressTaskSFXReminders", title="SuppressTaskSFXReminders"
+        ...,
+        alias="UserPreferencesSuppressTaskSFXReminders",
+        title="SuppressTaskSFXReminders",
     )
     user_preferences_suppress_event_sfx_reminders: bool = Field(
-        ..., alias="UserPreferencesSuppressEventSFXReminders", title="SuppressEventSFXReminders"
+        ...,
+        alias="UserPreferencesSuppressEventSFXReminders",
+        title="SuppressEventSFXReminders",
     )
     user_preferences_preview_custom_theme: bool = Field(
         ..., alias="UserPreferencesPreviewCustomTheme", title="PreviewCustomTheme"
@@ -914,69 +1102,131 @@ class User(SObjectBase, metaclass=SObjectType):
         ..., alias="UserPreferencesSRHOverrideActivities", title="SRHOverrideActivities"
     )
     user_preferences_new_lightning_report_run_page_enabled: bool = Field(
-        ..., alias="UserPreferencesNewLightningReportRunPageEnabled", title="NewLightningReportRunPageEnabled"
+        ...,
+        alias="UserPreferencesNewLightningReportRunPageEnabled",
+        title="NewLightningReportRunPageEnabled",
     )
     user_preferences_native_email_client: bool = Field(
         ..., alias="UserPreferencesNativeEmailClient", title="NativeEmailClient"
     )
     user_preferences_hide_browse_product_redirect_confirmation: bool = Field(
-        ..., alias="UserPreferencesHideBrowseProductRedirectConfirmation", title="HideBrowseProductRedirectConfirmation"
+        ...,
+        alias="UserPreferencesHideBrowseProductRedirectConfirmation",
+        title="HideBrowseProductRedirectConfirmation",
     )
     contact_id: Optional[str] = Field(..., alias="ContactId", title="Contact ID")
-    account_id: Optional[str] = Field(..., alias="AccountId", title="Account ID", frozen=True, exclude=True)
-    call_center_id: Optional[str] = Field(..., alias="CallCenterId", title="Call Center ID")
+    account_id: Optional[str] = Field(
+        ..., alias="AccountId", title="Account ID", frozen=True, exclude=True
+    )
+    call_center_id: Optional[str] = Field(
+        ..., alias="CallCenterId", title="Call Center ID"
+    )
     extension: Optional[str] = Field(..., alias="Extension", title="Extension")
     federation_identifier: Optional[str] = Field(
-        ..., alias="FederationIdentifier", title="SAML Federation ID", frozen=True, exclude=True
+        ...,
+        alias="FederationIdentifier",
+        title="SAML Federation ID",
+        frozen=True,
+        exclude=True,
     )
     about_me: Optional[str] = Field(..., alias="AboutMe", title="About Me")
     full_photo_url: Optional[str] = Field(
-        ..., alias="FullPhotoUrl", title="Url for full-sized Photo", frozen=True, exclude=True
+        ...,
+        alias="FullPhotoUrl",
+        title="Url for full-sized Photo",
+        frozen=True,
+        exclude=True,
     )
-    small_photo_url: Optional[str] = Field(..., alias="SmallPhotoUrl", title="Photo", frozen=True, exclude=True)
+    small_photo_url: Optional[str] = Field(
+        ..., alias="SmallPhotoUrl", title="Photo", frozen=True, exclude=True
+    )
     is_ext_indicator_visible: bool = Field(
-        ..., alias="IsExtIndicatorVisible", title="Show external indicator", frozen=True, exclude=True
+        ...,
+        alias="IsExtIndicatorVisible",
+        title="Show external indicator",
+        frozen=True,
+        exclude=True,
     )
     out_of_office_message: Optional[str] = Field(
-        ..., alias="OutOfOfficeMessage", title="Out of office message", frozen=True, exclude=True
+        ...,
+        alias="OutOfOfficeMessage",
+        title="Out of office message",
+        frozen=True,
+        exclude=True,
     )
     medium_photo_url: Optional[str] = Field(
-        ..., alias="MediumPhotoUrl", title="Url for medium profile photo", frozen=True, exclude=True
+        ...,
+        alias="MediumPhotoUrl",
+        title="Url for medium profile photo",
+        frozen=True,
+        exclude=True,
     )
     digest_frequency: DigestFrequencyEnum = Field(
         ..., alias="DigestFrequency", title="Chatter Email Highlights Frequency"
     )
     default_group_notification_frequency: DefaultGroupNotificationFrequencyEnum = Field(
-        ..., alias="DefaultGroupNotificationFrequency", title="Default Notification Frequency when Joining Groups"
+        ...,
+        alias="DefaultGroupNotificationFrequency",
+        title="Default Notification Frequency when Joining Groups",
     )
     last_viewed_date: Optional[datetime] = Field(
         ..., alias="LastViewedDate", title="Last Viewed Date", frozen=True, exclude=True
     )
     last_referenced_date: Optional[datetime] = Field(
-        ..., alias="LastReferencedDate", title="Last Referenced Date", frozen=True, exclude=True
+        ...,
+        alias="LastReferencedDate",
+        title="Last Referenced Date",
+        frozen=True,
+        exclude=True,
     )
     banner_photo_url: Optional[str] = Field(
-        ..., alias="BannerPhotoUrl", title="Url for banner photo", frozen=True, exclude=True
+        ...,
+        alias="BannerPhotoUrl",
+        title="Url for banner photo",
+        frozen=True,
+        exclude=True,
     )
     small_banner_photo_url: Optional[str] = Field(
-        ..., alias="SmallBannerPhotoUrl", title="Url for IOS banner photo", frozen=True, exclude=True
+        ...,
+        alias="SmallBannerPhotoUrl",
+        title="Url for IOS banner photo",
+        frozen=True,
+        exclude=True,
     )
     medium_banner_photo_url: Optional[str] = Field(
-        ..., alias="MediumBannerPhotoUrl", title="Url for Android banner photo", frozen=True, exclude=True
+        ...,
+        alias="MediumBannerPhotoUrl",
+        title="Url for Android banner photo",
+        frozen=True,
+        exclude=True,
     )
     is_profile_photo_active: bool = Field(
-        ..., alias="IsProfilePhotoActive", title="Has Profile Photo", frozen=True, exclude=True
+        ...,
+        alias="IsProfilePhotoActive",
+        title="Has Profile Photo",
+        frozen=True,
+        exclude=True,
     )
-    bugforce_email: Optional[str] = Field(..., alias="Bugforce_Email__c", title="Bugforce Email")
+    bugforce_email: Optional[str] = Field(
+        ..., alias="Bugforce_Email__c", title="Bugforce Email"
+    )
     external_id: Optional[str] = Field(..., alias="External_ID__c", title="External ID")
     show_all_work_comments: Optional[bool] = Field(
         ..., alias="Show_All_Work_Comments__c", title="Show All Work Comments"
     )
     team_member_allocation: Optional[str] = Field(
-        ..., alias="Team_Member_Allocation__c", title="Team Member Allocation", frozen=True, exclude=True
+        ...,
+        alias="Team_Member_Allocation__c",
+        title="Team Member Allocation",
+        frozen=True,
+        exclude=True,
     )
-    perforce_username: Optional[str] = Field(..., alias="Perforce_Username__c", title="Perforce Username")
-    linked_in_email: Optional[str] = Field(..., alias="LinkedIn_Email__c", title="LinkedIn Email")
+    perforce_username: Optional[str] = Field(
+        ..., alias="Perforce_Username__c", title="Perforce Username"
+    )
+    linked_in_email: Optional[str] = Field(
+        ..., alias="LinkedIn_Email__c", title="LinkedIn Email"
+    )
     my_future: Optional[str] = Field(..., alias="My_Future__c", title="My Future")
     summary: Optional[str] = Field(..., alias="Summary__c", title="Summary")
     sync_time_from_linkedin: Optional[datetime] = Field(
@@ -985,31 +1235,53 @@ class User(SObjectBase, metaclass=SObjectType):
     awarded_points: Optional[float] = Field(
         ..., alias="AwardedPoints__c", title="Awarded Points", frozen=True, exclude=True
     )
-    points: Optional[float] = Field(..., alias="Points__c", title="Points", frozen=True, exclude=True)
-    awarded_recognitions_this_week: Optional[float] = Field(
-        ..., alias="AwardedRecognitionsThisWeek__c", title="Awarded Recognitions This Week"
+    points: Optional[float] = Field(
+        ..., alias="Points__c", title="Points", frozen=True, exclude=True
     )
-    business_unit: Optional[str] = Field(..., alias="Business_Unit__c", title="Business Unit")
+    awarded_recognitions_this_week: Optional[float] = Field(
+        ...,
+        alias="AwardedRecognitionsThisWeek__c",
+        title="Awarded Recognitions This Week",
+    )
+    business_unit: Optional[str] = Field(
+        ..., alias="Business_Unit__c", title="Business Unit"
+    )
     cost_center: Optional[str] = Field(..., alias="Cost_Center__c", title="Cost Center")
-    notification_level: Optional[str] = Field(..., alias="Notification_Level__c", title="Work Notification Level")
+    notification_level: Optional[str] = Field(
+        ..., alias="Notification_Level__c", title="Work Notification Level"
+    )
     primary_coverage_country_pcc: Optional[str] = Field(
         ..., alias="Primary_Coverage_Country_PCC__c", title="Primary Coverage Country"
     )
-    work_user_interface: Optional[str] = Field(..., alias="Work_User_Interface__c", title="Work User Interface")
+    work_user_interface: Optional[str] = Field(
+        ..., alias="Work_User_Interface__c", title="Work User Interface"
+    )
     home_phone: Optional[str] = Field(..., alias="Home_Phone__c", title="Home Phone")
-    personal_mobile_phone: Optional[str] = Field(..., alias="Personal_Mobile_Phone__c", title="Personal Mobile Phone")
-    gus_user_type: Optional[str] = Field(..., alias="GUS_User_Type__c", title="GUS User Type")
-    wall_preference: Optional[str] = Field(..., alias="Wall_Preference__c", title="Wall Preference")
+    personal_mobile_phone: Optional[str] = Field(
+        ..., alias="Personal_Mobile_Phone__c", title="Personal Mobile Phone"
+    )
+    gus_user_type: Optional[str] = Field(
+        ..., alias="GUS_User_Type__c", title="GUS User Type"
+    )
+    wall_preference: Optional[str] = Field(
+        ..., alias="Wall_Preference__c", title="Wall Preference"
+    )
     desk_location: Optional[str] = Field(
         ..., alias="Desk_Location__c", title="Desk Location", frozen=True, exclude=True
     )
-    user_preference: Optional[str] = Field(..., alias="User_Preference__c", title="User Preference")
+    user_preference: Optional[str] = Field(
+        ..., alias="User_Preference__c", title="User Preference"
+    )
     certified_product_owner: Optional[bool] = Field(
         ..., alias="Certified_Product_Owner__c", title="Certified Product Owner"
     )
-    certified_scrum_master: Optional[bool] = Field(..., alias="Certified_Scrum_Master__c", title="Certified Scrum Lead")
+    certified_scrum_master: Optional[bool] = Field(
+        ..., alias="Certified_Scrum_Master__c", title="Certified Scrum Lead"
+    )
     product_owner_certified_date: Optional[date] = Field(
-        ..., alias="Product_Owner_Certified_Date__c", title="Product Owner Certified Date"
+        ...,
+        alias="Product_Owner_Certified_Date__c",
+        title="Product Owner Certified Date",
     )
     scrum_master_certified_date: Optional[date] = Field(
         ..., alias="Scrum_Master_Certified_Date__c", title="Scrum Lead Certified Date"
@@ -1018,225 +1290,441 @@ class User(SObjectBase, metaclass=SObjectType):
         ..., alias="oss_dashboard__GitHub_Username__c", title="GitHub Username"
     )
     sla_warning_notification_level: Optional[SlaWarningNotificationLevelEnum] = Field(
-        ..., alias="SLA_Warning_Notification_Level__c", title="SLA Warning Notification Level"
+        ...,
+        alias="SLA_Warning_Notification_Level__c",
+        title="SLA Warning Notification Level",
     )
-    public_key: Optional[str] = Field(..., alias="Public_Key__c", title="Public GPG/PGP Key")
-    profile_name: Optional[str] = Field(..., alias="Profile_Name__c", title="Profile Name", frozen=True, exclude=True)
-    roster_id: Optional[str] = Field(..., alias="RosterId__c", title="Roster Id (H-ID) (Deprecated)")
+    public_key: Optional[str] = Field(
+        ..., alias="Public_Key__c", title="Public GPG/PGP Key"
+    )
+    profile_name: Optional[str] = Field(
+        ..., alias="Profile_Name__c", title="Profile Name", frozen=True, exclude=True
+    )
+    roster_id: Optional[str] = Field(
+        ..., alias="RosterId__c", title="Roster Id (H-ID) (Deprecated)"
+    )
     kaiju_synthetic__kaiju_access_token_dev: Optional[str] = Field(
-        ..., alias="kaiju_synthetic__Kaiju_Access_Token_Dev__c", title="Kaiju_Access_Token_Dev"
+        ...,
+        alias="kaiju_synthetic__Kaiju_Access_Token_Dev__c",
+        title="Kaiju_Access_Token_Dev",
     )
     kaiju_synthetic__kaiju_access_token_sandbox: Optional[str] = Field(
-        ..., alias="kaiju_synthetic__Kaiju_Access_Token_Sandbox__c", title="Kaiju_Access_Token_Sandbox"
+        ...,
+        alias="kaiju_synthetic__Kaiju_Access_Token_Sandbox__c",
+        title="Kaiju_Access_Token_Sandbox",
     )
     kaiju_synthetic__kaiju_access_token: Optional[str] = Field(
         ..., alias="kaiju_synthetic__Kaiju_Access_Token__c", title="Kaiju_Access_Token"
     )
     kaiju_synthetic__kaiju_refresh_token_dev: Optional[str] = Field(
-        ..., alias="kaiju_synthetic__Kaiju_Refresh_Token_Dev__c", title="Kaiju_Refresh_Token_Dev"
+        ...,
+        alias="kaiju_synthetic__Kaiju_Refresh_Token_Dev__c",
+        title="Kaiju_Refresh_Token_Dev",
     )
     kaiju_synthetic__kaiju_refresh_token_sandbox: Optional[str] = Field(
-        ..., alias="kaiju_synthetic__Kaiju_Refresh_Token_Sandbox__c", title="Kaiju_Refresh_Token_Sandbox"
+        ...,
+        alias="kaiju_synthetic__Kaiju_Refresh_Token_Sandbox__c",
+        title="Kaiju_Refresh_Token_Sandbox",
     )
     kaiju_synthetic__kaiju_refresh_token: Optional[str] = Field(
-        ..., alias="kaiju_synthetic__Kaiju_Refresh_Token__c", title="Kaiju_Refresh_Token"
+        ...,
+        alias="kaiju_synthetic__Kaiju_Refresh_Token__c",
+        title="Kaiju_Refresh_Token",
     )
     kaiju_synthetic__kaiju_working_environment: Optional[str] = Field(
-        ..., alias="kaiju_synthetic__Kaiju_Working_Environment__c", title="Kaiju_Working_Environment"
+        ...,
+        alias="kaiju_synthetic__Kaiju_Working_Environment__c",
+        title="Kaiju_Working_Environment",
     )
-    working_hours: Optional[str] = Field(..., alias="Working_Hours__c", title="Working Hours")
+    working_hours: Optional[str] = Field(
+        ..., alias="Working_Hours__c", title="Working Hours"
+    )
     employee_type: Optional[str] = Field(
         ..., alias="Employee_Type__c", title="Employee Type", frozen=True, exclude=True
     )
     slack_id: Optional[str] = Field(..., alias="Slack_Id__c", title="Slack Id")
     do_not_send_email_work_notification: Optional[bool] = Field(
-        ..., alias="Do_Not_Send_Email_Work_Notification__c", title="Opt out of work notifications emails"
+        ...,
+        alias="Do_Not_Send_Email_Work_Notification__c",
+        title="Opt out of work notifications emails",
     )
     slack_work_notification: Optional[bool] = Field(
         ..., alias="Slack_Work_Notification__c", title="Send notifications to Slack"
     )
-    phonetic_pronunciation: Optional[str] = Field(..., alias="Phonetic_Pronunciation__c", title="Phonetic Spelling")
-    pronouns: Optional[str] = Field(..., alias="Pronouns__c", title="Pronouns")
-    cloud_id: Optional[str] = Field(..., alias="Cloud_ID__c", title="Cloud ID", frozen=True, exclude=True)
-    cloud: Optional[str] = Field(..., alias="Cloud__c", title="Cloud", frozen=True, exclude=True)
-    parent_cloud_id: Optional[str] = Field(
-        ..., alias="Parent_Cloud_ID__c", title="Parent Cloud ID", frozen=True, exclude=True
+    phonetic_pronunciation: Optional[str] = Field(
+        ..., alias="Phonetic_Pronunciation__c", title="Phonetic Spelling"
     )
-    parent_cloud: Optional[str] = Field(..., alias="Parent_Cloud__c", title="Parent Cloud", frozen=True, exclude=True)
+    pronouns: Optional[str] = Field(..., alias="Pronouns__c", title="Pronouns")
+    cloud_id: Optional[str] = Field(
+        ..., alias="Cloud_ID__c", title="Cloud ID", frozen=True, exclude=True
+    )
+    cloud: Optional[str] = Field(
+        ..., alias="Cloud__c", title="Cloud", frozen=True, exclude=True
+    )
+    parent_cloud_id: Optional[str] = Field(
+        ...,
+        alias="Parent_Cloud_ID__c",
+        title="Parent Cloud ID",
+        frozen=True,
+        exclude=True,
+    )
+    parent_cloud: Optional[str] = Field(
+        ..., alias="Parent_Cloud__c", title="Parent Cloud", frozen=True, exclude=True
+    )
     workday_last_name: Optional[str] = Field(
-        ..., alias="Workday_Last_Name__c", title="Workday Last Name", frozen=True, exclude=True
+        ...,
+        alias="Workday_Last_Name__c",
+        title="Workday Last Name",
+        frozen=True,
+        exclude=True,
     )
     workday_jobcode: Optional[str] = Field(
-        ..., alias="Workday_Jobcode__c", title="Workday Jobcode", frozen=True, exclude=True
+        ...,
+        alias="Workday_Jobcode__c",
+        title="Workday Jobcode",
+        frozen=True,
+        exclude=True,
     )
     workday_title: Optional[str] = Field(
         ..., alias="Workday_Title__c", title="Workday Title", frozen=True, exclude=True
     )
     workday_first_name: Optional[str] = Field(
-        ..., alias="Workday_First_Name__c", title="Workday First Name", frozen=True, exclude=True
+        ...,
+        alias="Workday_First_Name__c",
+        title="Workday First Name",
+        frozen=True,
+        exclude=True,
     )
-    workday_name: Optional[str] = Field(..., alias="Workday_Name__c", title="Workday Name", frozen=True, exclude=True)
-    initials: Optional[str] = Field(..., alias="Initials__c", title="Initials", frozen=True, exclude=True)
+    workday_name: Optional[str] = Field(
+        ..., alias="Workday_Name__c", title="Workday Name", frozen=True, exclude=True
+    )
+    initials: Optional[str] = Field(
+        ..., alias="Initials__c", title="Initials", frozen=True, exclude=True
+    )
     workday_worker_type: Optional[str] = Field(
-        ..., alias="Workday_Worker_Type__c", title="Workday Worker Type", frozen=True, exclude=True
+        ...,
+        alias="Workday_Worker_Type__c",
+        title="Workday Worker Type",
+        frozen=True,
+        exclude=True,
     )
     workday_time_type: Optional[str] = Field(
-        ..., alias="Workday_Time_Type__c", title="Workday Time Type", frozen=True, exclude=True
+        ...,
+        alias="Workday_Time_Type__c",
+        title="Workday Time Type",
+        frozen=True,
+        exclude=True,
     )
-    workday_jobcode_old: Optional[str] = Field(..., alias="Workday_Jobcode_old__c", title="Workday Jobcode Old")
-    is_manager: Optional[bool] = Field(..., alias="Is_Manager__c", title="Is Manager", frozen=True, exclude=True)
+    workday_jobcode_old: Optional[str] = Field(
+        ..., alias="Workday_Jobcode_old__c", title="Workday Jobcode Old"
+    )
+    is_manager: Optional[bool] = Field(
+        ..., alias="Is_Manager__c", title="Is Manager", frozen=True, exclude=True
+    )
     management_level: Optional[ManagementLevelEnum] = Field(
-        ..., alias="Management_Level__c", title="Management Level", frozen=True, exclude=True
+        ...,
+        alias="Management_Level__c",
+        title="Management Level",
+        frozen=True,
+        exclude=True,
     )
     kaiju_synthetic__kaiju_team: Optional[float] = Field(
         ..., alias="kaiju_synthetic__Kaiju_Team__c", title="Kaiju_Team"
     )
     resolve_perforce_username: Optional[str] = Field(
-        ..., alias="Resolve_Perforce_Username__c", title="Resolve Perforce Username", frozen=True, exclude=True
+        ...,
+        alias="Resolve_Perforce_Username__c",
+        title="Resolve Perforce Username",
+        frozen=True,
+        exclude=True,
     )
     management_chain_01_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_01_Employee__c", title="Management Chain 01 Employee"
+        ...,
+        alias="Management_Chain_01_Employee__c",
+        title="Management Chain 01 Employee",
     )
     management_chain_02_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_02_Employee__c", title="Management Chain 02 Employee"
+        ...,
+        alias="Management_Chain_02_Employee__c",
+        title="Management Chain 02 Employee",
     )
     management_chain_03_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_03_Employee__c", title="Management Chain 03 Employee"
+        ...,
+        alias="Management_Chain_03_Employee__c",
+        title="Management Chain 03 Employee",
     )
     management_chain_04_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_04_Employee__c", title="Management Chain 04 Employee"
+        ...,
+        alias="Management_Chain_04_Employee__c",
+        title="Management Chain 04 Employee",
     )
     management_chain_05_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_05_Employee__c", title="Management Chain 05 Employee"
+        ...,
+        alias="Management_Chain_05_Employee__c",
+        title="Management Chain 05 Employee",
     )
     management_chain_06_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_06_Employee__c", title="Management Chain 06 Employee"
+        ...,
+        alias="Management_Chain_06_Employee__c",
+        title="Management Chain 06 Employee",
     )
     management_chain_07_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_07_Employee__c", title="Management Chain 07 Employee"
+        ...,
+        alias="Management_Chain_07_Employee__c",
+        title="Management Chain 07 Employee",
     )
     management_chain_08_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_08_Employee__c", title="Management Chain 08 Employee"
+        ...,
+        alias="Management_Chain_08_Employee__c",
+        title="Management Chain 08 Employee",
     )
     management_chain_09_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_09_Employee__c", title="Management Chain 09 Employee"
+        ...,
+        alias="Management_Chain_09_Employee__c",
+        title="Management Chain 09 Employee",
     )
     management_chain_10_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_10_Employee__c", title="Management Chain 10 Employee"
+        ...,
+        alias="Management_Chain_10_Employee__c",
+        title="Management Chain 10 Employee",
     )
     management_chain_11_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_11_Employee__c", title="Management Chain 11 Employee"
+        ...,
+        alias="Management_Chain_11_Employee__c",
+        title="Management Chain 11 Employee",
     )
     management_chain_12_employee: Optional[str] = Field(
-        ..., alias="Management_Chain_12_Employee__c", title="Management Chain 12 Employee"
+        ...,
+        alias="Management_Chain_12_Employee__c",
+        title="Management Chain 12 Employee",
     )
     management_chain_level01_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level01_Employee_Number__c", title="Management Chain Level01 Employee Number"
+        ...,
+        alias="Management_Chain_Level01_Employee_Number__c",
+        title="Management Chain Level01 Employee Number",
     )
     management_chain_level02_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level02_Employee_Number__c", title="Management Chain Level02 Employee Number"
+        ...,
+        alias="Management_Chain_Level02_Employee_Number__c",
+        title="Management Chain Level02 Employee Number",
     )
     management_chain_level03_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level03_Employee_Number__c", title="Management Chain Level03 Employee Number"
+        ...,
+        alias="Management_Chain_Level03_Employee_Number__c",
+        title="Management Chain Level03 Employee Number",
     )
     management_chain_level04_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level04_Employee_Number__c", title="Management Chain Level04 Employee Number"
+        ...,
+        alias="Management_Chain_Level04_Employee_Number__c",
+        title="Management Chain Level04 Employee Number",
     )
     management_chain_level05_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level05_Employee_Number__c", title="Management Chain Level05 Employee Number"
+        ...,
+        alias="Management_Chain_Level05_Employee_Number__c",
+        title="Management Chain Level05 Employee Number",
     )
     management_chain_level06_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level06_Employee_Number__c", title="Management Chain Level06 Employee Number"
+        ...,
+        alias="Management_Chain_Level06_Employee_Number__c",
+        title="Management Chain Level06 Employee Number",
     )
     management_chain_level07_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level07_Employee_Number__c", title="Management Chain Level07 Employee Number"
+        ...,
+        alias="Management_Chain_Level07_Employee_Number__c",
+        title="Management Chain Level07 Employee Number",
     )
     management_chain_level08_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level08_Employee_Number__c", title="Management Chain Level08 Employee Number"
+        ...,
+        alias="Management_Chain_Level08_Employee_Number__c",
+        title="Management Chain Level08 Employee Number",
     )
     management_chain_level09_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level09_Employee_Number__c", title="Management Chain Level09 Employee Number"
+        ...,
+        alias="Management_Chain_Level09_Employee_Number__c",
+        title="Management Chain Level09 Employee Number",
     )
     management_chain_level10_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level10_Employee_Number__c", title="Management Chain Level10 Employee Number"
+        ...,
+        alias="Management_Chain_Level10_Employee_Number__c",
+        title="Management Chain Level10 Employee Number",
     )
     management_chain_level11_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level11_Employee_Number__c", title="Management Chain Level11 Employee Number"
+        ...,
+        alias="Management_Chain_Level11_Employee_Number__c",
+        title="Management Chain Level11 Employee Number",
     )
     management_chain_level12_employee_number: Optional[str] = Field(
-        ..., alias="Management_Chain_Level12_Employee_Number__c", title="Management Chain Level12 Employee Number"
+        ...,
+        alias="Management_Chain_Level12_Employee_Number__c",
+        title="Management Chain Level12 Employee Number",
     )
     management_level_10_email: Optional[str] = Field(
-        ..., alias="Management_Level_10_Email__c", title="Management Level 10 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_10_Email__c",
+        title="Management Level 10 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_10_name: Optional[str] = Field(
-        ..., alias="Management_Level_10_Name__c", title="Management Level 10 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_10_Name__c",
+        title="Management Level 10 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_11_email: Optional[str] = Field(
-        ..., alias="Management_Level_11_Email__c", title="Management Level 11 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_11_Email__c",
+        title="Management Level 11 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_11_name: Optional[str] = Field(
-        ..., alias="Management_Level_11_Name__c", title="Management Level 11 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_11_Name__c",
+        title="Management Level 11 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_12_email: Optional[str] = Field(
-        ..., alias="Management_Level_12_Email__c", title="Management Level 12 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_12_Email__c",
+        title="Management Level 12 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_12_name: Optional[str] = Field(
-        ..., alias="Management_Level_12_Name__c", title="Management Level 12 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_12_Name__c",
+        title="Management Level 12 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_1_email: Optional[str] = Field(
-        ..., alias="Management_Level_1_Email__c", title="Management Level 1 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_1_Email__c",
+        title="Management Level 1 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_1_name: Optional[str] = Field(
-        ..., alias="Management_Level_1_Name__c", title="Management Level 1 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_1_Name__c",
+        title="Management Level 1 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_2_email: Optional[str] = Field(
-        ..., alias="Management_Level_2_Email__c", title="Management Level 2 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_2_Email__c",
+        title="Management Level 2 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_2_name: Optional[str] = Field(
-        ..., alias="Management_Level_2_Name__c", title="Management Level 2 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_2_Name__c",
+        title="Management Level 2 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_3_email: Optional[str] = Field(
-        ..., alias="Management_Level_3_Email__c", title="Management Level 3 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_3_Email__c",
+        title="Management Level 3 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_3_name: Optional[str] = Field(
-        ..., alias="Management_Level_3_Name__c", title="Management Level 3 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_3_Name__c",
+        title="Management Level 3 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_4_email: Optional[str] = Field(
-        ..., alias="Management_Level_4_Email__c", title="Management Level 4 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_4_Email__c",
+        title="Management Level 4 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_4_name: Optional[str] = Field(
-        ..., alias="Management_Level_4_Name__c", title="Management Level 4 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_4_Name__c",
+        title="Management Level 4 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_5_email: Optional[str] = Field(
-        ..., alias="Management_Level_5_Email__c", title="Management Level 5 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_5_Email__c",
+        title="Management Level 5 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_5_name: Optional[str] = Field(
-        ..., alias="Management_Level_5_Name__c", title="Management Level 5 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_5_Name__c",
+        title="Management Level 5 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_6_email: Optional[str] = Field(
-        ..., alias="Management_Level_6_Email__c", title="Management Level 6 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_6_Email__c",
+        title="Management Level 6 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_6_name: Optional[str] = Field(
-        ..., alias="Management_Level_6_Name__c", title="Management Level 6 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_6_Name__c",
+        title="Management Level 6 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_7_email: Optional[str] = Field(
-        ..., alias="Management_Level_7_Email__c", title="Management Level 7 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_7_Email__c",
+        title="Management Level 7 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_7_name: Optional[str] = Field(
-        ..., alias="Management_Level_7_Name__c", title="Management Level 7 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_7_Name__c",
+        title="Management Level 7 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_8_email: Optional[str] = Field(
-        ..., alias="Management_Level_8_Email__c", title="Management Level 8 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_8_Email__c",
+        title="Management Level 8 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_8_name: Optional[str] = Field(
-        ..., alias="Management_Level_8_Name__c", title="Management Level 8 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_8_Name__c",
+        title="Management Level 8 Name",
+        frozen=True,
+        exclude=True,
     )
     management_level_9_email: Optional[str] = Field(
-        ..., alias="Management_Level_9_Email__c", title="Management Level 09 Email", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_9_Email__c",
+        title="Management Level 09 Email",
+        frozen=True,
+        exclude=True,
     )
     management_level_9_name: Optional[str] = Field(
-        ..., alias="Management_Level_9_Name__c", title="Management Level 09 Name", frozen=True, exclude=True
+        ...,
+        alias="Management_Level_9_Name__c",
+        title="Management Level 09 Name",
+        frozen=True,
+        exclude=True,
     )
 
     @property
@@ -1249,7 +1737,9 @@ class User(SObjectBase, metaclass=SObjectType):
 
     @property
     def delegated_approver_name(self):
-        return self._get_connected_object_name(["Group", "User"], self.delegated_approver_id)
+        return self._get_connected_object_name(
+            ["Group", "User"], self.delegated_approver_id
+        )
 
     @property
     def manager_name(self):
@@ -1277,51 +1767,75 @@ class User(SObjectBase, metaclass=SObjectType):
 
     @property
     def management_chain_01_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_01_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_01_employee
+        )
 
     @property
     def management_chain_02_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_02_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_02_employee
+        )
 
     @property
     def management_chain_03_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_03_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_03_employee
+        )
 
     @property
     def management_chain_04_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_04_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_04_employee
+        )
 
     @property
     def management_chain_05_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_05_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_05_employee
+        )
 
     @property
     def management_chain_06_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_06_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_06_employee
+        )
 
     @property
     def management_chain_07_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_07_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_07_employee
+        )
 
     @property
     def management_chain_08_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_08_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_08_employee
+        )
 
     @property
     def management_chain_09_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_09_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_09_employee
+        )
 
     @property
     def management_chain_10_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_10_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_10_employee
+        )
 
     @property
     def management_chain_11_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_11_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_11_employee
+        )
 
     @property
     def management_chain_12_employee_name(self):
-        return self._get_connected_object_name(["User"], self.management_chain_12_employee)
+        return self._get_connected_object_name(
+            ["User"], self.management_chain_12_employee
+        )
 
     def __init__(self, **kwargs: Any):
         """
@@ -1372,12 +1886,16 @@ class User(SObjectBase, metaclass=SObjectType):
             https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/headers.htm
         """
 
-        updates = model.model_dump_json(by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True)
+        updates = model.model_dump_json(
+            by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True
+        )
         import json
 
         updates = json.loads(updates)  # TODO - better way to do this?
         if updates:
-            GUSClient.instance().sf.__getattr__("User").update(model.id_, updates, headers=headers)
+            GUSClient.instance().sf.__getattr__("User").update(
+                model.id_, updates, headers=headers
+            )
 
     @classmethod
     def soql_query(cls, where_clause: str) -> Generator[Self, None, None]:

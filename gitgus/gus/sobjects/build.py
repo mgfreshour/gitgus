@@ -47,44 +47,94 @@ class Build(SObjectBase, metaclass=SObjectType):
     )
 
     id_: str = Field(..., alias="Id", title="Record ID", frozen=True, exclude=True)
-    owner_id: str = Field(..., alias="OwnerId", title="Owner ID", frozen=True, exclude=True)
-    is_deleted: bool = Field(..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True)
-    name: Optional[str] = Field(..., alias="Name", title="Name", frozen=True, exclude=True)
-    currency_iso_code: CurrencyIsoCodeEnum = Field(
-        ..., alias="CurrencyIsoCode", title="Currency ISO Code", frozen=True, exclude=True
+    owner_id: str = Field(
+        ..., alias="OwnerId", title="Owner ID", frozen=True, exclude=True
     )
-    created_date: datetime = Field(..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True)
-    created_by_id: str = Field(..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True)
+    is_deleted: bool = Field(
+        ..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True
+    )
+    name: Optional[str] = Field(
+        ..., alias="Name", title="Name", frozen=True, exclude=True
+    )
+    currency_iso_code: CurrencyIsoCodeEnum = Field(
+        ...,
+        alias="CurrencyIsoCode",
+        title="Currency ISO Code",
+        frozen=True,
+        exclude=True,
+    )
+    created_date: datetime = Field(
+        ..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True
+    )
+    created_by_id: str = Field(
+        ..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True
+    )
     last_modified_date: datetime = Field(
-        ..., alias="LastModifiedDate", title="Last Modified Date", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedDate",
+        title="Last Modified Date",
+        frozen=True,
+        exclude=True,
     )
     last_modified_by_id: str = Field(
-        ..., alias="LastModifiedById", title="Last Modified By ID", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedById",
+        title="Last Modified By ID",
+        frozen=True,
+        exclude=True,
     )
-    system_modstamp: datetime = Field(..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True)
-    may_edit: bool = Field(..., alias="MayEdit", title="May Edit", frozen=True, exclude=True)
-    is_locked: bool = Field(..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True)
+    system_modstamp: datetime = Field(
+        ..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True
+    )
+    may_edit: bool = Field(
+        ..., alias="MayEdit", title="May Edit", frozen=True, exclude=True
+    )
+    is_locked: bool = Field(
+        ..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True
+    )
     last_viewed_date: Optional[datetime] = Field(
         ..., alias="LastViewedDate", title="Last Viewed Date", frozen=True, exclude=True
     )
     last_referenced_date: Optional[datetime] = Field(
-        ..., alias="LastReferencedDate", title="Last Referenced Date", frozen=True, exclude=True
+        ...,
+        alias="LastReferencedDate",
+        title="Last Referenced Date",
+        frozen=True,
+        exclude=True,
     )
-    external_id: Optional[str] = Field(..., alias="External_ID__c", title="External ID", frozen=True, exclude=True)
+    external_id: Optional[str] = Field(
+        ..., alias="External_ID__c", title="External ID", frozen=True, exclude=True
+    )
     scrumforce_id: Optional[str] = Field(
         ..., alias="Scrumforce_ID__c", title="Scrumforce ID", frozen=True, exclude=True
     )
     release_freeze: Optional[date] = Field(
-        ..., alias="Release_Freeze__c", title="Release Freeze (legacy)", frozen=True, exclude=True
+        ...,
+        alias="Release_Freeze__c",
+        title="Release Freeze (legacy)",
+        frozen=True,
+        exclude=True,
     )
     weeks_prior_to_release: Optional[float] = Field(
-        ..., alias="Weeks_prior_to_release__c", title="Weeks Prior to Release", frozen=True, exclude=True
+        ...,
+        alias="Weeks_prior_to_release__c",
+        title="Weeks Prior to Release",
+        frozen=True,
+        exclude=True,
     )
     release_freeze_datetime: Optional[datetime] = Field(
-        ..., alias="Release_Freeze_Datetime__c", title="Release Freeze", frozen=True, exclude=True
+        ...,
+        alias="Release_Freeze_Datetime__c",
+        title="Release Freeze",
+        frozen=True,
+        exclude=True,
     )
     duplicate_validator: Optional[str] = Field(
-        ..., alias="Duplicate_Validator__c", title="Duplicate Validator", frozen=True, exclude=True
+        ...,
+        alias="Duplicate_Validator__c",
+        title="Duplicate Validator",
+        frozen=True,
+        exclude=True,
     )
     require_checkin_to_create_freeze_records: Optional[bool] = Field(
         ...,
@@ -94,16 +144,32 @@ class Build(SObjectBase, metaclass=SObjectType):
         exclude=True,
     )
     weeks_after_sandbox: Optional[float] = Field(
-        ..., alias="Weeks_After_Sandbox__c", title="Weeks After Sandbox", frozen=True, exclude=True
+        ...,
+        alias="Weeks_After_Sandbox__c",
+        title="Weeks After Sandbox",
+        frozen=True,
+        exclude=True,
     )
     weeks_prior_to_feature_freeze: Optional[float] = Field(
-        ..., alias="Weeks_Prior_to_Feature_Freeze__c", title="Weeks Prior to Feature Freeze", frozen=True, exclude=True
+        ...,
+        alias="Weeks_Prior_to_Feature_Freeze__c",
+        title="Weeks Prior to Feature Freeze",
+        frozen=True,
+        exclude=True,
     )
     code_line_open: Optional[date] = Field(
-        ..., alias="Code_Line_Open__c", title="Code Line Open", frozen=True, exclude=True
+        ...,
+        alias="Code_Line_Open__c",
+        title="Code Line Open",
+        frozen=True,
+        exclude=True,
     )
     feature_freeze: Optional[date] = Field(
-        ..., alias="Feature_Freeze__c", title="Feature Freeze", frozen=True, exclude=True
+        ...,
+        alias="Feature_Freeze__c",
+        title="Feature Freeze",
+        frozen=True,
+        exclude=True,
     )
     lightning_platform_and_s1_hybrid_ff: Optional[date] = Field(
         ...,
@@ -115,15 +181,29 @@ class Build(SObjectBase, metaclass=SObjectType):
     schema_freeze: Optional[date] = Field(
         ..., alias="Schema_Freeze__c", title="Schema Freeze", frozen=True, exclude=True
     )
-    application: Optional[str] = Field(..., alias="Application__c", title="Application", frozen=True, exclude=True)
+    application: Optional[str] = Field(
+        ..., alias="Application__c", title="Application", frozen=True, exclude=True
+    )
     notification_type: Optional[str] = Field(
-        ..., alias="Notification_Type__c", title="Notification Type", frozen=True, exclude=True
+        ...,
+        alias="Notification_Type__c",
+        title="Notification Type",
+        frozen=True,
+        exclude=True,
     )
     send_open_work_notifications: Optional[bool] = Field(
-        ..., alias="Send_Open_Work_Notifications__c", title="Send Open Work Notifications", frozen=True, exclude=True
+        ...,
+        alias="Send_Open_Work_Notifications__c",
+        title="Send Open Work Notifications",
+        frozen=True,
+        exclude=True,
     )
     freeze_signoffs: Optional[str] = Field(
-        ..., alias="Freeze_Signoffs__c", title="Freeze Signoffs", frozen=True, exclude=True
+        ...,
+        alias="Freeze_Signoffs__c",
+        title="Freeze Signoffs",
+        frozen=True,
+        exclude=True,
     )
 
     @property

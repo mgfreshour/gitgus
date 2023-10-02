@@ -55,7 +55,9 @@ def test_list(monkeypatch):
 
     assert len(res) == 1
     assert res[0].name == "W-1234"
-    Work.soql_query.assert_called_with("SELECT Id, Name, Description FROM Work WHERE Name = 'W-1234'")
+    Work.soql_query.assert_called_with(
+        "SELECT Id, Name, Description FROM Work WHERE Name = 'W-1234'"
+    )
 
 
 def test_user_id(monkeypatch):

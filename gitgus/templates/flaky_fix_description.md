@@ -2,7 +2,7 @@
 
 *Link to broken build*: https://jenkins.devergage.com/job/evergage-product/job/master/${build}/
 
-*Stack Trace*: 
+*Stack Trace*:
 <pre>
 ${stack_trace}
 </pre>

@@ -44,9 +44,13 @@ class GH:
         prs = list(self.gh.search_issues(query))
         return [pr.as_pull_request() for pr in prs]
 
-    def create_pr(self, repo_name: str, title: str, body: str, head: str, draft: bool = False) -> PullRequest:
+    def create_pr(
+        self, repo_name: str, title: str, body: str, head: str, draft: bool = False
+    ) -> PullRequest:
         repo = self.gh.get_repo(repo_name)
-        pr = repo.create_pull(title=title, body=body, head=head, base="master", draft=draft)
+        pr = repo.create_pull(
+            title=title, body=body, head=head, base="master", draft=draft
+        )
         return pr
 
     def get_username(self):

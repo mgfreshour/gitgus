@@ -150,5 +150,3 @@ class {{ sobject.label_capwords }}(SObjectBase, metaclass=SObjectType):
         """
         for x in cls._query_soql("{{ sobject.name }}", where_clause):
             yield {{ sobject.label_capwords }}(**x)
-
-

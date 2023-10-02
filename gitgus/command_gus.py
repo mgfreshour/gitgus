@@ -17,24 +17,46 @@ gus_wf = GusWorkflow(config, work_items, external_editor, git_repo)
 
 @gus_app.command()
 def sort_tickets(
-    team_name: str = typer.Option("", help="The name of the team to report on (can be partial)"),
-    release_name: str = typer.Option("", help="The name of the release to report on (can be partial)"),
-    dry_run: bool = typer.Option(False, help="Don't actually update the tickets, just print what would happen"),
+    team_name: str = typer.Option(
+        "", help="The name of the team to report on (can be partial)"
+    ),
+    release_name: str = typer.Option(
+        "", help="The name of the release to report on (can be partial)"
+    ),
+    dry_run: bool = typer.Option(
+        False, help="Don't actually update the tickets, just print what would happen"
+    ),
     file_name: str = typer.Option(
-        os.path.expanduser("~") + "/Desktop/tickets.csv", help="The name of the file to write to"
+        os.path.expanduser("~") + "/Desktop/tickets.csv",
+        help="The name of the file to write to",
     ),
 ):
     if team_name == "":
         team_name = typer.prompt("What team do you want to report on? (can be partial)")
         # team_name = choose_gus_team().name
     if release_name == "":
-        release_name = typer.prompt("What release do you want to report on? (can be partial)")
+        release_name = typer.prompt(
+            "What release do you want to report on? (can be partial)"
+        )
     tickets = gus_wf.sort_tickets(team_name, release_name, dry_run)
     for ticket in tickets:
-        ticket["url"] = "https://gus.my.salesforce.com/apex/ADM_WorkLocator?bugorworknumber=" + ticket["name"]
+        ticket["url"] = (
+            "https://gus.my.salesforce.com/apex/ADM_WorkLocator?bugorworknumber="
+            + ticket["name"]
+        )
     print(f"Writing {len(tickets)} tickets to {file_name}")
     print_wi_csv(
-        file_name, tickets, ["work_id_and_subject", "status", "priority", "epic", "priority_rank", "old_rank", "url"]
+        file_name,
+        tickets,
+        [
+            "work_id_and_subject",
+            "status",
+            "priority",
+            "epic",
+            "priority_rank",
+            "old_rank",
+            "url",
+        ],
     )
 
 
@@ -80,14 +102,22 @@ def sort_tickets(
 
 
 @gus_app.command(name="list")
-def list_work(query_name: str = typer.Argument(default="default", help="The name of the query to run")):
+def list_work(
+    query_name: str = typer.Argument(
+        default="default", help="The name of the query to run"
+    )
+):
     """Use configured query for PRs."""
     res = gus_wf.query(query_name)
     print_wi_table(res)
 
 
 @gus_app.command()
-def checkout(mark_ip: bool = typer.Option(True, "--ip/--no-ip", "-m/-M", help="Mark ticket as in progress")):
+def checkout(
+    mark_ip: bool = typer.Option(
+        True, "--ip/--no-ip", "-m/-M", help="Mark ticket as in progress"
+    )
+):
     """Checkout a branch for a ticket."""
     _checkout(mark_ip)
 

@@ -48,48 +48,90 @@ class PlannedRelease(SObjectBase, metaclass=SObjectType):
 
     id_: str = Field(..., alias="Id", title="Record ID", frozen=True, exclude=True)
     owner_id: str = Field(..., alias="OwnerId", title="Owner ID")
-    is_deleted: bool = Field(..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True)
+    is_deleted: bool = Field(
+        ..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True
+    )
     name: Optional[str] = Field(..., alias="Name", title="Planned Release Name")
-    currency_iso_code: Optional[CurrencyIsoCodeEnum] = Field(..., alias="CurrencyIsoCode", title="Currency ISO Code")
-    created_date: datetime = Field(..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True)
-    created_by_id: str = Field(..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True)
+    currency_iso_code: Optional[CurrencyIsoCodeEnum] = Field(
+        ..., alias="CurrencyIsoCode", title="Currency ISO Code"
+    )
+    created_date: datetime = Field(
+        ..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True
+    )
+    created_by_id: str = Field(
+        ..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True
+    )
     last_modified_date: datetime = Field(
-        ..., alias="LastModifiedDate", title="Last Modified Date", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedDate",
+        title="Last Modified Date",
+        frozen=True,
+        exclude=True,
     )
     last_modified_by_id: str = Field(
-        ..., alias="LastModifiedById", title="Last Modified By ID", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedById",
+        title="Last Modified By ID",
+        frozen=True,
+        exclude=True,
     )
-    system_modstamp: datetime = Field(..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True)
+    system_modstamp: datetime = Field(
+        ..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True
+    )
     last_activity_date: Optional[date] = Field(
-        ..., alias="LastActivityDate", title="Last Activity Date", frozen=True, exclude=True
+        ...,
+        alias="LastActivityDate",
+        title="Last Activity Date",
+        frozen=True,
+        exclude=True,
     )
-    may_edit: bool = Field(..., alias="MayEdit", title="May Edit", frozen=True, exclude=True)
-    is_locked: bool = Field(..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True)
+    may_edit: bool = Field(
+        ..., alias="MayEdit", title="May Edit", frozen=True, exclude=True
+    )
+    is_locked: bool = Field(
+        ..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True
+    )
     last_viewed_date: Optional[datetime] = Field(
         ..., alias="LastViewedDate", title="Last Viewed Date", frozen=True, exclude=True
     )
     last_referenced_date: Optional[datetime] = Field(
-        ..., alias="LastReferencedDate", title="Last Referenced Date", frozen=True, exclude=True
+        ...,
+        alias="LastReferencedDate",
+        title="Last Referenced Date",
+        frozen=True,
+        exclude=True,
     )
     end_date: Optional[date] = Field(..., alias="End_Date__c", title="End Date")
-    goals_objectives: Optional[str] = Field(..., alias="Goals_Objectives__c", title="Goals, Objectives, and Risks")
+    goals_objectives: Optional[str] = Field(
+        ..., alias="Goals_Objectives__c", title="Goals, Objectives, and Risks"
+    )
     start_date: Optional[date] = Field(..., alias="Start_Date__c", title="Start Date")
     team: Optional[str] = Field(..., alias="Team__c", title="Team")
     forecast_items_completed: Optional[float] = Field(
         ..., alias="Forecast_Items_Completed__c", title="# Forecast Epics Completed"
     )
-    forecast_items: Optional[float] = Field(..., alias="Forecast_Items__c", title="# Forecast Epics")
-    quip_document: Optional[str] = Field(..., alias="Quip_Document__c", title="Quip Document")
+    forecast_items: Optional[float] = Field(
+        ..., alias="Forecast_Items__c", title="# Forecast Epics"
+    )
+    quip_document: Optional[str] = Field(
+        ..., alias="Quip_Document__c", title="Quip Document"
+    )
     release: Optional[str] = Field(..., alias="Release__c", title="Release")
-    number_epics_added: Optional[float] = Field(..., alias="Number_Epics_Added__c", title="# Epics Added")
+    number_epics_added: Optional[float] = Field(
+        ..., alias="Number_Epics_Added__c", title="# Epics Added"
+    )
     number_forecast_epics_removed: Optional[float] = Field(
         ..., alias="Number_Forecast_Epics_Removed__c", title="# Forecast Epics Removed"
     )
     number_forecast_work_items_completed: Optional[float] = Field(
-        ..., alias="Number_Forecast_Work_Items_Completed__c", title="# Forecast Work Items Completed"
+        ...,
+        alias="Number_Forecast_Work_Items_Completed__c",
+        title="# Forecast Work Items Completed",
     )
     number_forecast_work_items_removed: Optional[float] = Field(
-        ..., alias="Number_Forecast_Work_Items_Removed__c", title="# Forecast Work Items Removed"
+        ...,
+        alias="Number_Forecast_Work_Items_Removed__c",
+        title="# Forecast Work Items Removed",
     )
     number_forecast_work_items: Optional[float] = Field(
         ..., alias="Number_Forecast_Work_Items__c", title="# Forecast Work Items"
@@ -170,12 +212,16 @@ class PlannedRelease(SObjectBase, metaclass=SObjectType):
             https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/headers.htm
         """
 
-        updates = model.model_dump_json(by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True)
+        updates = model.model_dump_json(
+            by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True
+        )
         import json
 
         updates = json.loads(updates)  # TODO - better way to do this?
         if updates:
-            GUSClient.instance().sf.__getattr__("ADM_Planned_Release__c").update(model.id_, updates, headers=headers)
+            GUSClient.instance().sf.__getattr__("ADM_Planned_Release__c").update(
+                model.id_, updates, headers=headers
+            )
 
     @classmethod
     def soql_query(cls, where_clause: str) -> Generator[Self, None, None]:

@@ -6,7 +6,9 @@ import toml
 from gitgus.utils.secret_store import get_secret, set_secret
 
 _config = None
-DEFAULT_CONFIG_PATH = os.path.join(os.path.expanduser("~"), ".config", "gitgus", "config.toml")
+DEFAULT_CONFIG_PATH = os.path.join(
+    os.path.expanduser("~"), ".config", "gitgus", "config.toml"
+)
 LOCAL_CONFIG_NAME = ".gitgus.toml"
 IS_SECRET_TOKEN = "***secret***"
 

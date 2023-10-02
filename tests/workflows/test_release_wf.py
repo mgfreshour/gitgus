@@ -33,7 +33,10 @@ def _setup(monkeypatch):
 
     mock_gh = MagicMock()
     mock_gh.compare_tags.return_value = mock_comparison([1234, 4567, 8901])
-    mock_gh.get_tags.return_value = [_create_tag("v1.0.0", "0x1234FFFFF"), _create_tag("v1.0.1", "0x4567FFFFF")]
+    mock_gh.get_tags.return_value = [
+        _create_tag("v1.0.0", "0x1234FFFFF"),
+        _create_tag("v1.0.1", "0x4567FFFFF"),
+    ]
     mock_gh.query_prs.return_value = [mock_pr(1234), mock_pr(4567), mock_pr(8901)]
 
     mock_git_repo = MagicMock()
@@ -52,7 +55,9 @@ def _setup(monkeypatch):
     mock_workitems = MagicMock()
     mock_workitems.add_feed_post.return_value = MagicMock()
 
-    testee = ReleaseWorkflow(mock_config, mock_gh, mock_git_repo, mock_workitems, MagicMock())
+    testee = ReleaseWorkflow(
+        mock_config, mock_gh, mock_git_repo, mock_workitems, MagicMock()
+    )
 
 
 def mock_pr(num: int):

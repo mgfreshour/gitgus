@@ -22,7 +22,9 @@ def test_get_repo(monkeypatch):
     monkeypatch.setattr(gh, "Github", mock_github)
     mock_github.return_value = mock_github
     mock_github.get_user.return_value = mock_github
-    mock_github.get_repo.return_value = Repository.Repository(MagicMock(), MagicMock(), MagicMock(), MagicMock())
+    mock_github.get_repo.return_value = Repository.Repository(
+        MagicMock(), MagicMock(), MagicMock(), MagicMock()
+    )
     testee = gh.GH("token")
     repo = testee.get_repo("repo")
     assert repo is not None
@@ -48,7 +50,9 @@ def test_create_pr(monkeypatch):
     monkeypatch.setattr(gh, "Github", mock_github)
     mock_github.return_value = mock_github
     mock_github.get_user.return_value = mock_github
-    mock_github.get_repo.return_value = Repository.Repository(MagicMock(), MagicMock(), MagicMock(), MagicMock())
+    mock_github.get_repo.return_value = Repository.Repository(
+        MagicMock(), MagicMock(), MagicMock(), MagicMock()
+    )
     monkeypatch.setattr(Repository.Repository, "create_pull", MagicMock())
     testee = gh.GH("token")
     pr = testee.create_pr("repo", "title", "body", "head")

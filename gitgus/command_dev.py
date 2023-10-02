@@ -11,7 +11,12 @@ from gitgus.gus.gus_client import GUSClient
 
 dev_app = typer.Typer(no_args_is_help=True)
 
-env = Environment(loader=PackageLoader("gitgus"), autoescape=select_autoescape(), trim_blocks=True, lstrip_blocks=True)
+env = Environment(
+    loader=PackageLoader("gitgus"),
+    autoescape=select_autoescape(),
+    trim_blocks=True,
+    lstrip_blocks=True,
+)
 
 
 def validate_python_code(code: str):
@@ -37,12 +42,17 @@ def write_sobject(sobject: SObjectDescription, out_dir: str):
         sobject=sobject,
         field_names=[x.name_snakecase for x in sobject.fields_all],
         enumerate=enumerate,
-        fields_config={x.name_snakecase: {"alias": x.name, "title": x.label} for x in sobject.fields_all},
+        fields_config={
+            x.name_snakecase: {"alias": x.name, "title": x.label}
+            for x in sobject.fields_all
+        },
         fields_queryable_config={
-            x.name_snakecase: {"alias": x.name, "title": x.label} for x in sobject.fields_queryable
+            x.name_snakecase: {"alias": x.name, "title": x.label}
+            for x in sobject.fields_queryable
         },
         fields_creatable_config={
-            x.name_snakecase: {"alias": x.name, "title": x.label} for x in sobject.fields_creatable
+            x.name_snakecase: {"alias": x.name, "title": x.label}
+            for x in sobject.fields_creatable
         },
         import_date=("xsd:date" in (x.soap_type for x in sobject.fields_all)),
         import_enum=any(bool(x.enum_values) for x in sobject.fields_all),

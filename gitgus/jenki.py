@@ -16,7 +16,10 @@ class Jenki:
             or not self.config.get("jenkins.username")
             or not self.config.get("jenkins.password")
         ):
-            raise Exception("Jenkins config is not set.  Please update in your config file. " + DEFAULT_CONFIG_PATH)
+            raise Exception(
+                "Jenkins config is not set.  Please update in your config file. "
+                + DEFAULT_CONFIG_PATH
+            )
 
         if self._jenkins is None:
             self._jenkins = jenkins.Jenkins(
@@ -35,7 +38,9 @@ class Jenki:
         job = self._conn().get_job_info(name)
         return job
 
-    def get_failed_tests_stacktraces(self, job_name: str, build_number: int) -> dict[str, str]:
+    def get_failed_tests_stacktraces(
+        self, job_name: str, build_number: int
+    ) -> dict[str, str]:
         test_report = self.get_build_test_report(job_name, build_number)
         failed_tests = {}
         for suite in test_report["suites"]:
@@ -54,18 +59,24 @@ class Jenki:
                 full_jobs.append(full_job)
         return full_jobs
 
-    def get_all_flaky_tests(self, job_name_like: str, start_date: datetime = None, end_date: datetime = None):
+    def get_all_flaky_tests(
+        self, job_name_like: str, start_date: datetime = None, end_date: datetime = None
+    ):
         total_builds = 0
         all_testcases = []
         full_jobs = self.get_all_jobs_like(job_name_like)
         for job in full_jobs:
-            testcases, builds_scanned = self.get_flaky_tests_in_job(job, start_date, end_date)
+            testcases, builds_scanned = self.get_flaky_tests_in_job(
+                job, start_date, end_date
+            )
             total_builds += builds_scanned
             all_testcases.extend(testcases)
 
         return all_testcases, total_builds
 
-    def get_all_builds(self, job_name_like: str, start_date: datetime = None, end_date: datetime = None):
+    def get_all_builds(
+        self, job_name_like: str, start_date: datetime = None, end_date: datetime = None
+    ):
         full_jobs = self.get_all_jobs_like(job_name_like)
         results = []
         for job in full_jobs:
@@ -73,7 +84,9 @@ class Jenki:
             if "builds" not in job:
                 continue
             for build in job["builds"]:
-                full_build = self._conn().get_build_info(job["fullName"], build["number"])
+                full_build = self._conn().get_build_info(
+                    job["fullName"], build["number"]
+                )
                 ts = datetime.fromtimestamp(full_build["timestamp"] / 1000)
                 if start_date and ts < start_date:
                     continue
@@ -84,7 +97,9 @@ class Jenki:
                 results.append({"job": job, "builds": builds})
         return results
 
-    def get_flaky_tests_in_job(self, job, start_date: datetime = None, end_date: datetime = None):
+    def get_flaky_tests_in_job(
+        self, job, start_date: datetime = None, end_date: datetime = None
+    ):
         testcases = []
         if not job or "builds" not in job:
             return testcases, 0
@@ -106,7 +121,10 @@ class Jenki:
                 if end_date and ts > end_date:
                     continue
                 for case in suite["cases"]:
-                    if case["errorDetails"] and "This test is flaky" in case["errorDetails"]:
+                    if (
+                        case["errorDetails"]
+                        and "This test is flaky" in case["errorDetails"]
+                    ):
                         case["timestamp"] = suite["timestamp"]
                         testcases.append(case)
         return testcases, total_builds

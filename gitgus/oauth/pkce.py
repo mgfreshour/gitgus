@@ -26,7 +26,11 @@ class OAuthHttpHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-Type", "text/html")
         self.end_headers()
-        self.wfile.write('<script type="application/javascript">window.close();</script>'.encode("UTF-8"))
+        self.wfile.write(
+            '<script type="application/javascript">window.close();</script>'.encode(
+                "UTF-8"
+            )
+        )
 
         parsed = parse.urlparse(self.path)
         qs = parse.parse_qs(parsed.query)
@@ -40,7 +44,9 @@ def get_auth_token(auth_uri, token_uri, client_id, scopes: list[str]):
     auth_url = create_auth_url(code_challenge, auth_uri, client_id, scopes)
     open_auth_url(auth_url)
     authorization_code = start_web_server()
-    access_token = get_access_token(authorization_code, code_verifier, client_id, token_uri)
+    access_token = get_access_token(
+        authorization_code, code_verifier, client_id, token_uri
+    )
     return access_token
 
 
@@ -102,7 +108,9 @@ def get_access_token(authorization_code, code_verifier, client_id, token_uri):
     response = requests.post(token_uri, data=data)
 
     if response.status_code != 200:
-        raise RuntimeError(f"Error: no authorization code returned from browser: {response.text}")
+        raise RuntimeError(
+            f"Error: no authorization code returned from browser: {response.text}"
+        )
     try:
         access_token = response.json()["access_token"]
     except Exception as e:

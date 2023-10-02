@@ -14,7 +14,12 @@ def get_macos(service, name):
     name = name.replace("\\", "\\\\").replace('"', '\\"')
 
     cmd = " ".join(
-        ["/usr/bin/security", " find-generic-password", '-g -s "%s" -a "%s"' % (service, name), "2>&1 >/dev/null"]
+        [
+            "/usr/bin/security",
+            " find-generic-password",
+            '-g -s "%s" -a "%s"' % (service, name),
+            "2>&1 >/dev/null",
+        ]
     )
     p = os.popen(cmd)
     s = p.read()
@@ -33,7 +38,11 @@ def set_macos(service, name, value):
     service = service.replace("\\", "\\\\").replace('"', '\\"')
     name = name.replace("\\", "\\\\").replace('"', '\\"')
 
-    cmd = 'security add-generic-password -U -a "%s" -s "%s" -p "%s"' % (name, service, value)
+    cmd = 'security add-generic-password -U -a "%s" -s "%s" -p "%s"' % (
+        name,
+        service,
+        value,
+    )
     p = os.popen(cmd)
     p.read()
     p.close()

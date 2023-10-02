@@ -16,7 +16,7 @@
 
 ## Reviewers
 
-_**The reviewer is as responsible as the author for making sure code ships free of defects and is maintainable in the future.**_ 
+_**The reviewer is as responsible as the author for making sure code ships free of defects and is maintainable in the future.**_
 
 _**An approval on a PR is a full approval to merge and release into production.**_
 

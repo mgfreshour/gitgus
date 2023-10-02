@@ -57,7 +57,9 @@ def test_get_dots():
     config.load_defaults()
     config.load_global_init_values()
     assert config.get("PRs.body_template") == ".github/PULL_REQUEST_TEMPLATE.md"
-    assert config.get("PRs.queries.default") == "is:open repo:${repo} head:${team_prefix}"
+    assert (
+        config.get("PRs.queries.default") == "is:open repo:${repo} head:${team_prefix}"
+    )
 
 
 def test_set_dots(monkeypatch):

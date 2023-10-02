@@ -10,7 +10,9 @@ from gitgus.config import instance
 from gitgus.jenki import Jenki
 
 config = instance()
-external_editor = ExternalEditor(os.environ["EDITOR"] if "EDITOR" in os.environ else "vim")
+external_editor = ExternalEditor(
+    os.environ["EDITOR"] if "EDITOR" in os.environ else "vim"
+)
 git_repo = GitRepo()
 work_items = WorkItems()
 gh = GH(config.get("github.token"))

@@ -119,141 +119,301 @@ class Epic(SObjectBase, metaclass=SObjectType):
 
     id_: str = Field(..., alias="Id", title="Record ID", frozen=True, exclude=True)
     owner_id: str = Field(..., alias="OwnerId", title="Owner ID")
-    is_deleted: bool = Field(..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True)
+    is_deleted: bool = Field(
+        ..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True
+    )
     name: Optional[str] = Field(..., alias="Name", title="Epic Name")
-    currency_iso_code: Optional[CurrencyIsoCodeEnum] = Field(..., alias="CurrencyIsoCode", title="Currency ISO Code")
-    created_date: datetime = Field(..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True)
-    created_by_id: str = Field(..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True)
+    currency_iso_code: Optional[CurrencyIsoCodeEnum] = Field(
+        ..., alias="CurrencyIsoCode", title="Currency ISO Code"
+    )
+    created_date: datetime = Field(
+        ..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True
+    )
+    created_by_id: str = Field(
+        ..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True
+    )
     last_modified_date: datetime = Field(
-        ..., alias="LastModifiedDate", title="Last Modified Date", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedDate",
+        title="Last Modified Date",
+        frozen=True,
+        exclude=True,
     )
     last_modified_by_id: str = Field(
-        ..., alias="LastModifiedById", title="Last Modified By ID", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedById",
+        title="Last Modified By ID",
+        frozen=True,
+        exclude=True,
     )
-    system_modstamp: datetime = Field(..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True)
+    system_modstamp: datetime = Field(
+        ..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True
+    )
     last_activity_date: Optional[date] = Field(
-        ..., alias="LastActivityDate", title="Last Activity Date", frozen=True, exclude=True
+        ...,
+        alias="LastActivityDate",
+        title="Last Activity Date",
+        frozen=True,
+        exclude=True,
     )
-    may_edit: bool = Field(..., alias="MayEdit", title="May Edit", frozen=True, exclude=True)
-    is_locked: bool = Field(..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True)
+    may_edit: bool = Field(
+        ..., alias="MayEdit", title="May Edit", frozen=True, exclude=True
+    )
+    is_locked: bool = Field(
+        ..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True
+    )
     last_viewed_date: Optional[datetime] = Field(
         ..., alias="LastViewedDate", title="Last Viewed Date", frozen=True, exclude=True
     )
     last_referenced_date: Optional[datetime] = Field(
-        ..., alias="LastReferencedDate", title="Last Referenced Date", frozen=True, exclude=True
+        ...,
+        alias="LastReferencedDate",
+        title="Last Referenced Date",
+        frozen=True,
+        exclude=True,
     )
     category: Optional[str] = Field(..., alias="Category__c", title="Category")
-    committed_by_team: Optional[bool] = Field(..., alias="Committed_By_Team__c", title="Forecasted by Team")
+    committed_by_team: Optional[bool] = Field(
+        ..., alias="Committed_By_Team__c", title="Forecasted by Team"
+    )
     description: Optional[str] = Field(..., alias="Description__c", title="Description")
-    design_complete: Optional[str] = Field(..., alias="Design_Complete__c", title="Design Complete")
+    design_complete: Optional[str] = Field(
+        ..., alias="Design_Complete__c", title="Design Complete"
+    )
     design_lead: Optional[str] = Field(..., alias="Design_Lead__c", title="Design Lead")
-    development_lead: Optional[str] = Field(..., alias="Development_Lead__c", title="Development Lead")
+    development_lead: Optional[str] = Field(
+        ..., alias="Development_Lead__c", title="Development Lead"
+    )
     health: Optional[str] = Field(..., alias="Health__c", title="Health")
     priority: Optional[float] = Field(..., alias="Priority__c", title="Priority")
     project: Optional[str] = Field(..., alias="Project__c", title="Project")
-    quality_lead: Optional[str] = Field(..., alias="Quality_Lead__c", title="Quality Lead")
-    t_shirt_size: Optional[str] = Field(..., alias="T_Shirt_Size__c", title="Eng T-Shirt Size")
+    quality_lead: Optional[str] = Field(
+        ..., alias="Quality_Lead__c", title="Quality Lead"
+    )
+    t_shirt_size: Optional[str] = Field(
+        ..., alias="T_Shirt_Size__c", title="Eng T-Shirt Size"
+    )
     team: Optional[str] = Field(..., alias="Team__c", title="Team")
-    tech_design_complete: Optional[str] = Field(..., alias="Tech_Design_Complete__c", title="Tech Design Complete")
-    test_design_complete: Optional[str] = Field(..., alias="Test_Design_Complete__c", title="Test Design Complete")
-    scheduled_build: Optional[str] = Field(..., alias="Scheduled_Build__c", title="Scheduled Build")
-    performance_lead: Optional[str] = Field(..., alias="Performance_Lead__c", title="Performance Lead")
+    tech_design_complete: Optional[str] = Field(
+        ..., alias="Tech_Design_Complete__c", title="Tech Design Complete"
+    )
+    test_design_complete: Optional[str] = Field(
+        ..., alias="Test_Design_Complete__c", title="Test Design Complete"
+    )
+    scheduled_build: Optional[str] = Field(
+        ..., alias="Scheduled_Build__c", title="Scheduled Build"
+    )
+    performance_lead: Optional[str] = Field(
+        ..., alias="Performance_Lead__c", title="Performance Lead"
+    )
     end_date: Optional[date] = Field(..., alias="End_Date__c", title="End Date")
     start_date: Optional[date] = Field(..., alias="Start_Date__c", title="Start Date")
-    security_assessment: Optional[str] = Field(..., alias="Security_Assessment__c", title="Security Assessment")
-    planned_end_date: Optional[date] = Field(..., alias="Planned_End_Date__c", title="Planned End Date")
-    planned_start_date: Optional[date] = Field(..., alias="Planned_Start_Date__c", title="Planned Start Date")
-    actual_end_date: Optional[date] = Field(..., alias="Actual_End_Date__c", title="Actual End Date")
-    actual_start_date: Optional[date] = Field(..., alias="Actual_Start_Date__c", title="Actual Start Date")
+    security_assessment: Optional[str] = Field(
+        ..., alias="Security_Assessment__c", title="Security Assessment"
+    )
+    planned_end_date: Optional[date] = Field(
+        ..., alias="Planned_End_Date__c", title="Planned End Date"
+    )
+    planned_start_date: Optional[date] = Field(
+        ..., alias="Planned_Start_Date__c", title="Planned Start Date"
+    )
+    actual_end_date: Optional[date] = Field(
+        ..., alias="Actual_End_Date__c", title="Actual End Date"
+    )
+    actual_start_date: Optional[date] = Field(
+        ..., alias="Actual_Start_Date__c", title="Actual Start Date"
+    )
     committed_story_points_on_epic: Optional[float] = Field(
-        ..., alias="Committed_Story_Points_on_Epic__c", title="Committed Story Points on Epic"
+        ...,
+        alias="Committed_Story_Points_on_Epic__c",
+        title="Committed Story Points on Epic",
     )
     committed_work_items_on_epic: Optional[float] = Field(
-        ..., alias="Committed_Work_Items_on_Epic__c", title="Committed Work Items on Epic"
+        ...,
+        alias="Committed_Work_Items_on_Epic__c",
+        title="Committed Work Items on Epic",
     )
     actual_story_points_on_epic: Optional[float] = Field(
-        ..., alias="Actual_Story_Points_on_Epic__c", title="Actual Story Points on Epic", frozen=True, exclude=True
+        ...,
+        alias="Actual_Story_Points_on_Epic__c",
+        title="Actual Story Points on Epic",
+        frozen=True,
+        exclude=True,
     )
     actual_work_items_on_epic: Optional[float] = Field(
-        ..., alias="Actual_Work_Items_on_Epic__c", title="Actual Work Items on Epic", frozen=True, exclude=True
+        ...,
+        alias="Actual_Work_Items_on_Epic__c",
+        title="Actual Work Items on Epic",
+        frozen=True,
+        exclude=True,
     )
     additional_work_items: Optional[float] = Field(
-        ..., alias="Additional_Work_Items__c", title="Additional Work Items", frozen=True, exclude=True
+        ...,
+        alias="Additional_Work_Items__c",
+        title="Additional Work Items",
+        frozen=True,
+        exclude=True,
     )
     subtracted_work_items: Optional[float] = Field(
-        ..., alias="Subtracted_Work_Items__c", title="Subtracted Work Items", frozen=True, exclude=True
+        ...,
+        alias="Subtracted_Work_Items__c",
+        title="Subtracted Work Items",
+        frozen=True,
+        exclude=True,
     )
     additional_story_points: Optional[float] = Field(
-        ..., alias="Additional_Story_Points__c", title="Additional Story Points", frozen=True, exclude=True
+        ...,
+        alias="Additional_Story_Points__c",
+        title="Additional Story Points",
+        frozen=True,
+        exclude=True,
     )
-    epic_phase: Optional[EpicPhaseEnum] = Field(..., alias="Epic_Phase__c", title="Epic Phase")
+    epic_phase: Optional[EpicPhaseEnum] = Field(
+        ..., alias="Epic_Phase__c", title="Epic Phase"
+    )
     subtracted_story_points: Optional[float] = Field(
-        ..., alias="Subtracted_Story_Points__c", title="Subtracted Story Points", frozen=True, exclude=True
+        ...,
+        alias="Subtracted_Story_Points__c",
+        title="Subtracted Story Points",
+        frozen=True,
+        exclude=True,
     )
     storypoints_closed: Optional[float] = Field(
-        ..., alias="Storypoints_Closed__c", title="#Storypoints Closed", frozen=True, exclude=True
+        ...,
+        alias="Storypoints_Closed__c",
+        title="#Storypoints Closed",
+        frozen=True,
+        exclude=True,
     )
     storypoints_in_progress: Optional[float] = Field(
-        ..., alias="Storypoints_In_Progress__c", title="#Storypoints In Progress", frozen=True, exclude=True
+        ...,
+        alias="Storypoints_In_Progress__c",
+        title="#Storypoints In Progress",
+        frozen=True,
+        exclude=True,
     )
     storypoints_in_waiting: Optional[float] = Field(
-        ..., alias="Storypoints_In_Waiting__c", title="#Storypoints In Waiting", frozen=True, exclude=True
+        ...,
+        alias="Storypoints_In_Waiting__c",
+        title="#Storypoints In Waiting",
+        frozen=True,
+        exclude=True,
     )
     storypoints_initiate: Optional[float] = Field(
-        ..., alias="Storypoints_Initiate__c", title="#Storypoints Initiate", frozen=True, exclude=True
+        ...,
+        alias="Storypoints_Initiate__c",
+        title="#Storypoints Initiate",
+        frozen=True,
+        exclude=True,
     )
     storypoints_new: Optional[float] = Field(
-        ..., alias="Storypoints_New__c", title="#Storypoints New", frozen=True, exclude=True
+        ...,
+        alias="Storypoints_New__c",
+        title="#Storypoints New",
+        frozen=True,
+        exclude=True,
     )
     work_items_in_progress: Optional[float] = Field(
-        ..., alias="WorkItems_In_Progress__c", title="#WorkItems In Progress", frozen=True, exclude=True
+        ...,
+        alias="WorkItems_In_Progress__c",
+        title="#WorkItems In Progress",
+        frozen=True,
+        exclude=True,
     )
     workitems_closed: Optional[float] = Field(
-        ..., alias="Workitems_Closed__c", title="#Workitems Closed", frozen=True, exclude=True
+        ...,
+        alias="Workitems_Closed__c",
+        title="#Workitems Closed",
+        frozen=True,
+        exclude=True,
     )
     workitems_initiate: Optional[float] = Field(
-        ..., alias="Workitems_Initiate__c", title="#Workitems Initiate", frozen=True, exclude=True
+        ...,
+        alias="Workitems_Initiate__c",
+        title="#Workitems Initiate",
+        frozen=True,
+        exclude=True,
     )
     workitems_new: Optional[float] = Field(
         ..., alias="Workitems_New__c", title="#Workitems New", frozen=True, exclude=True
     )
     workitems_in_waiting: Optional[float] = Field(
-        ..., alias="Workitems_in_Waiting__c", title="#Workitems in Waiting", frozen=True, exclude=True
+        ...,
+        alias="Workitems_in_Waiting__c",
+        title="#Workitems in Waiting",
+        frozen=True,
+        exclude=True,
     )
     end_to_end_test_complete: Optional[EndToEndTestCompleteEnum] = Field(
         ..., alias="End_to_End_Test_Complete__c", title="End to End Test Complete"
     )
     feature_cycle_time: Optional[float] = Field(
-        ..., alias="Feature_Cycle_Time__c", title="Feature Cycle Time", frozen=True, exclude=True
+        ...,
+        alias="Feature_Cycle_Time__c",
+        title="Feature Cycle Time",
+        frozen=True,
+        exclude=True,
     )
     feature_initiate_time: Optional[float] = Field(
-        ..., alias="Feature_Initiate_Time__c", title="Feature Initiate Time", frozen=True, exclude=True
+        ...,
+        alias="Feature_Initiate_Time__c",
+        title="Feature Initiate Time",
+        frozen=True,
+        exclude=True,
     )
     feature_lead_time: Optional[float] = Field(
-        ..., alias="Feature_Lead_Time__c", title="Feature Lead Time", frozen=True, exclude=True
+        ...,
+        alias="Feature_Lead_Time__c",
+        title="Feature Lead Time",
+        frozen=True,
+        exclude=True,
     )
     feature_wait_time: Optional[float] = Field(
-        ..., alias="Feature_Wait_Time__c", title="Feature Wait Time", frozen=True, exclude=True
+        ...,
+        alias="Feature_Wait_Time__c",
+        title="Feature Wait Time",
+        frozen=True,
+        exclude=True,
     )
     performance_tests_complete: Optional[PerformanceTestsCompleteEnum] = Field(
         ..., alias="Performance_Tests_Complete__c", title="Performance Tests Complete"
     )
     remaining_story_points: Optional[float] = Field(
-        ..., alias="Remaining_Story_Points__c", title="Remaining Story Points", frozen=True, exclude=True
+        ...,
+        alias="Remaining_Story_Points__c",
+        title="Remaining Story Points",
+        frozen=True,
+        exclude=True,
     )
     remaining_work_items: Optional[float] = Field(
-        ..., alias="Remaining_Work_Items__c", title="Remaining Work Items", frozen=True, exclude=True
+        ...,
+        alias="Remaining_Work_Items__c",
+        title="Remaining Work Items",
+        frozen=True,
+        exclude=True,
     )
     stress_tests_complete: Optional[StressTestsCompleteEnum] = Field(
         ..., alias="Stress_Tests_Complete__c", title="Stress Tests Complete"
     )
-    success_criteria: Optional[str] = Field(..., alias="Success_Criteria__c", title="Success Criteria")
-    epic_health_color: Optional[str] = Field(
-        ..., alias="Epic_Health_Color__c", title="Epic Health Color", frozen=True, exclude=True
+    success_criteria: Optional[str] = Field(
+        ..., alias="Success_Criteria__c", title="Success Criteria"
     )
-    epic_health_comments: Optional[str] = Field(..., alias="Epic_Health_Comments__c", title="Epic Health Comments")
-    path_to_green: Optional[str] = Field(..., alias="Path_to_Green__c", title="Path to Green")
-    slippage_comments: Optional[str] = Field(..., alias="Slippage_Comments__c", title="Slippage Comments")
+    epic_health_color: Optional[str] = Field(
+        ...,
+        alias="Epic_Health_Color__c",
+        title="Epic Health Color",
+        frozen=True,
+        exclude=True,
+    )
+    epic_health_comments: Optional[str] = Field(
+        ..., alias="Epic_Health_Comments__c", title="Epic Health Comments"
+    )
+    path_to_green: Optional[str] = Field(
+        ..., alias="Path_to_Green__c", title="Path to Green"
+    )
+    slippage_comments: Optional[str] = Field(
+        ..., alias="Slippage_Comments__c", title="Slippage Comments"
+    )
     remaining_time_for_epic_closure: Optional[float] = Field(
         ...,
         alias="Remaining_Time_for_Epic_Closure__c",
@@ -261,24 +421,42 @@ class Epic(SObjectBase, metaclass=SObjectType):
         frozen=True,
         exclude=True,
     )
-    product_legal_request: Optional[str] = Field(..., alias="Product_Legal_Request__c", title="Product Legal Request")
+    product_legal_request: Optional[str] = Field(
+        ..., alias="Product_Legal_Request__c", title="Product Legal Request"
+    )
     quip_url: Optional[str] = Field(..., alias="Quip_URL__c", title="Quip_URL")
-    planned_release: Optional[str] = Field(..., alias="Planned_Release__c", title="Planned Release")
-    planned_release_rank: Optional[float] = Field(..., alias="Planned_Release_Rank__c", title="Planned Release Rank")
-    external_needs: Optional[str] = Field(..., alias="External_Needs__c", title="External Needs")
-    parties_involved: Optional[str] = Field(..., alias="Parties_Involved__c", title="Parties Involved")
+    planned_release: Optional[str] = Field(
+        ..., alias="Planned_Release__c", title="Planned Release"
+    )
+    planned_release_rank: Optional[float] = Field(
+        ..., alias="Planned_Release_Rank__c", title="Planned Release Rank"
+    )
+    external_needs: Optional[str] = Field(
+        ..., alias="External_Needs__c", title="External Needs"
+    )
+    parties_involved: Optional[str] = Field(
+        ..., alias="Parties_Involved__c", title="Parties Involved"
+    )
     external_id: Optional[str] = Field(..., alias="External_Id__c", title="External Id")
-    planned_story_points: Optional[float] = Field(..., alias="Planned_Story_Points__c", title="Planned Story Points")
+    planned_story_points: Optional[float] = Field(
+        ..., alias="Planned_Story_Points__c", title="Planned Story Points"
+    )
     accessibility_status: Optional[AccessibilityStatusEnum] = Field(
         ..., alias="Accessibility_Status__c", title="Accessibility Status"
     )
-    idea_exchange_url: Optional[str] = Field(..., alias="IdeaExchange_URL__c", title="IdeaExchange URL")
-    design_status: Optional[DesignStatusEnum] = Field(..., alias="Design_Status__c", title="Design Status")
+    idea_exchange_url: Optional[str] = Field(
+        ..., alias="IdeaExchange_URL__c", title="IdeaExchange URL"
+    )
+    design_status: Optional[DesignStatusEnum] = Field(
+        ..., alias="Design_Status__c", title="Design Status"
+    )
     design_t_shirt_size: Optional[DesignTShirtSizeEnum] = Field(
         ..., alias="Design_T_Shirt_Size__c", title="Design T-Shirt Size"
     )
     ccx_lead: Optional[str] = Field(..., alias="CCX_Lead__c", title="CCX Lead")
-    calculate_metrics: Optional[bool] = Field(..., alias="Calculate_Metrics__c", title="Calculate Metrics")
+    calculate_metrics: Optional[bool] = Field(
+        ..., alias="Calculate_Metrics__c", title="Calculate Metrics"
+    )
     stage_metrics_last_updated: Optional[datetime] = Field(
         ..., alias="Stage_Metrics_Last_Updated__c", title="Stage Metrics Last Updated"
     )
@@ -331,15 +509,21 @@ class Epic(SObjectBase, metaclass=SObjectType):
 
     @property
     def security_assessment_name(self):
-        return self._get_connected_object_name(["ADM_Security_Assessment__c"], self.security_assessment)
+        return self._get_connected_object_name(
+            ["ADM_Security_Assessment__c"], self.security_assessment
+        )
 
     @property
     def product_legal_request_name(self):
-        return self._get_connected_object_name(["PLR_Product_Legal_Request__c"], self.product_legal_request)
+        return self._get_connected_object_name(
+            ["PLR_Product_Legal_Request__c"], self.product_legal_request
+        )
 
     @property
     def planned_release_name(self):
-        return self._get_connected_object_name(["ADM_Planned_Release__c"], self.planned_release)
+        return self._get_connected_object_name(
+            ["ADM_Planned_Release__c"], self.planned_release
+        )
 
     @property
     def ccx_lead_name(self):
@@ -347,7 +531,9 @@ class Epic(SObjectBase, metaclass=SObjectType):
 
     @property
     def security_engagement_group_name(self):
-        return self._get_connected_object_name(["SAA_Engagement_Group_c__x"], self.security_engagement_group)
+        return self._get_connected_object_name(
+            ["SAA_Engagement_Group_c__x"], self.security_engagement_group
+        )
 
     def __init__(self, **kwargs: Any):
         """
@@ -398,12 +584,16 @@ class Epic(SObjectBase, metaclass=SObjectType):
             https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/headers.htm
         """
 
-        updates = model.model_dump_json(by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True)
+        updates = model.model_dump_json(
+            by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True
+        )
         import json
 
         updates = json.loads(updates)  # TODO - better way to do this?
         if updates:
-            GUSClient.instance().sf.__getattr__("ADM_Epic__c").update(model.id_, updates, headers=headers)
+            GUSClient.instance().sf.__getattr__("ADM_Epic__c").update(
+                model.id_, updates, headers=headers
+            )
 
     @classmethod
     def soql_query(cls, where_clause: str) -> Generator[Self, None, None]:

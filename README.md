@@ -1,8 +1,8 @@
 
 ## Install for use
-Highly recommend using pipx over pip: https://pypa.github.io/pipx/ 
-If you don't want to hack on it and just want to use it, you can install it with pipx.  
-This will install it in a virtual environment and add it to your path.  
+Highly recommend using pipx over pip: https://pypa.github.io/pipx/
+If you don't want to hack on it and just want to use it, you can install it with pipx.
+This will install it in a virtual environment and add it to your path.
 You can then run `gitgus` from anywhere.
 
 ```shell
@@ -13,7 +13,7 @@ cd "$EVERGAGE_SOURCE_ROOT"
 gitgus config init local
 ```
 
-## Install for development 
+## Install for development
 ```shell
 git clone git@github.com:mgfreshour/gitgus.git
 cd gitgus

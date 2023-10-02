@@ -87,48 +87,94 @@ class FeedItem(SObjectBase, metaclass=SObjectType):
     )
 
     id_: str = Field(..., alias="Id", title="Feed Item ID", frozen=True, exclude=True)
-    parent_id: str = Field(..., alias="ParentId", title="Parent ID", frozen=True, exclude=True)
-    type_: Optional[TypeEnum] = Field(..., alias="Type", title="Feed Item Type", frozen=True, exclude=True)
-    created_by_id: str = Field(..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True)
-    created_date: datetime = Field(..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True)
-    is_deleted: bool = Field(..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True)
-    last_modified_date: datetime = Field(
-        ..., alias="LastModifiedDate", title="Last Modified Date", frozen=True, exclude=True
+    parent_id: str = Field(
+        ..., alias="ParentId", title="Parent ID", frozen=True, exclude=True
     )
-    system_modstamp: datetime = Field(..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True)
-    revision: Optional[int] = Field(..., alias="Revision", title="Revision", frozen=True, exclude=True)
+    type_: Optional[TypeEnum] = Field(
+        ..., alias="Type", title="Feed Item Type", frozen=True, exclude=True
+    )
+    created_by_id: str = Field(
+        ..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True
+    )
+    created_date: datetime = Field(
+        ..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True
+    )
+    is_deleted: bool = Field(
+        ..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True
+    )
+    last_modified_date: datetime = Field(
+        ...,
+        alias="LastModifiedDate",
+        title="Last Modified Date",
+        frozen=True,
+        exclude=True,
+    )
+    system_modstamp: datetime = Field(
+        ..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True
+    )
+    revision: Optional[int] = Field(
+        ..., alias="Revision", title="Revision", frozen=True, exclude=True
+    )
     last_edit_by_id: Optional[str] = Field(
         ..., alias="LastEditById", title="Last Edit By ID", frozen=True, exclude=True
     )
     last_edit_date: Optional[datetime] = Field(
         ..., alias="LastEditDate", title="Last Edit Date", frozen=True, exclude=True
     )
-    comment_count: int = Field(..., alias="CommentCount", title="Comment Count", frozen=True, exclude=True)
-    like_count: int = Field(..., alias="LikeCount", title="Like Count", frozen=True, exclude=True)
+    comment_count: int = Field(
+        ..., alias="CommentCount", title="Comment Count", frozen=True, exclude=True
+    )
+    like_count: int = Field(
+        ..., alias="LikeCount", title="Like Count", frozen=True, exclude=True
+    )
     title: Optional[str] = Field(..., alias="Title", title="Title")
     body: Optional[str] = Field(..., alias="Body", title="Body")
-    link_url: Optional[str] = Field(..., alias="LinkUrl", title="Link Url", frozen=True, exclude=True)
+    link_url: Optional[str] = Field(
+        ..., alias="LinkUrl", title="Link Url", frozen=True, exclude=True
+    )
     is_rich_text: bool = Field(..., alias="IsRichText", title="Is Rich Text")
     related_record_id: Optional[str] = Field(
-        ..., alias="RelatedRecordId", title="Related Record ID", frozen=True, exclude=True
+        ...,
+        alias="RelatedRecordId",
+        title="Related Record ID",
+        frozen=True,
+        exclude=True,
     )
-    inserted_by_id: str = Field(..., alias="InsertedById", title="InsertedBy ID", frozen=True, exclude=True)
+    inserted_by_id: str = Field(
+        ..., alias="InsertedById", title="InsertedBy ID", frozen=True, exclude=True
+    )
     network_scope: Optional[NetworkScopeEnum] = Field(
         ..., alias="NetworkScope", title="Network Scope", frozen=True, exclude=True
     )
-    visibility: Optional[VisibilityEnum] = Field(..., alias="Visibility", title="Visibility")
+    visibility: Optional[VisibilityEnum] = Field(
+        ..., alias="Visibility", title="Visibility"
+    )
     best_comment_id: Optional[str] = Field(
         ..., alias="BestCommentId", title="Best Comment ID", frozen=True, exclude=True
     )
-    has_content: bool = Field(..., alias="HasContent", title="Has Content", frozen=True, exclude=True)
-    has_link: bool = Field(..., alias="HasLink", title="Has Link", frozen=True, exclude=True)
+    has_content: bool = Field(
+        ..., alias="HasContent", title="Has Content", frozen=True, exclude=True
+    )
+    has_link: bool = Field(
+        ..., alias="HasLink", title="Has Link", frozen=True, exclude=True
+    )
     has_feed_entity: bool = Field(
-        ..., alias="HasFeedEntity", title="Has Feed Entity Attachment", frozen=True, exclude=True
+        ...,
+        alias="HasFeedEntity",
+        title="Has Feed Entity Attachment",
+        frozen=True,
+        exclude=True,
     )
     has_verified_comment: bool = Field(
-        ..., alias="HasVerifiedComment", title="Has Verified Comment", frozen=True, exclude=True
+        ...,
+        alias="HasVerifiedComment",
+        title="Has Verified Comment",
+        frozen=True,
+        exclude=True,
     )
-    is_closed: bool = Field(..., alias="IsClosed", title="Is Closed", frozen=True, exclude=True)
+    is_closed: bool = Field(
+        ..., alias="IsClosed", title="Is Closed", frozen=True, exclude=True
+    )
     status: Optional[StatusEnum] = Field(..., alias="Status", title="Status")
 
     @property
@@ -1010,11 +1056,15 @@ class FeedItem(SObjectBase, metaclass=SObjectType):
 
     @property
     def created_by_name(self):
-        return self._get_connected_object_name(["SelfServiceUser", "User"], self.created_by_id)
+        return self._get_connected_object_name(
+            ["SelfServiceUser", "User"], self.created_by_id
+        )
 
     @property
     def last_edit_by_name(self):
-        return self._get_connected_object_name(["SelfServiceUser", "User"], self.last_edit_by_id)
+        return self._get_connected_object_name(
+            ["SelfServiceUser", "User"], self.last_edit_by_id
+        )
 
     @property
     def related_record_name(self):
@@ -1024,7 +1074,9 @@ class FeedItem(SObjectBase, metaclass=SObjectType):
 
     @property
     def inserted_by_name(self):
-        return self._get_connected_object_name(["SelfServiceUser", "User"], self.inserted_by_id)
+        return self._get_connected_object_name(
+            ["SelfServiceUser", "User"], self.inserted_by_id
+        )
 
     @property
     def best_comment_name(self):
@@ -1079,12 +1131,16 @@ class FeedItem(SObjectBase, metaclass=SObjectType):
             https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/headers.htm
         """
 
-        updates = model.model_dump_json(by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True)
+        updates = model.model_dump_json(
+            by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True
+        )
         import json
 
         updates = json.loads(updates)  # TODO - better way to do this?
         if updates:
-            GUSClient.instance().sf.__getattr__("FeedItem").update(model.id_, updates, headers=headers)
+            GUSClient.instance().sf.__getattr__("FeedItem").update(
+                model.id_, updates, headers=headers
+            )
 
     @classmethod
     def soql_query(cls, where_clause: str) -> Generator[Self, None, None]:

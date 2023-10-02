@@ -126,11 +126,15 @@ class SObjectBase(BaseModel, ABC):
         if result["success"]:
             return cls.get_by_id(result["id"])
         else:
-            raise RuntimeError("Errors occurred during object creation\n" + "\n".join(result["errors"]))
+            raise RuntimeError(
+                "Errors occurred during object creation\n" + "\n".join(result["errors"])
+            )
 
     @classmethod
     @persist_to_file()
-    def _query_soql(cls, sobject_name: str, where_clause: str) -> Generator[dict, None, None]:
+    def _query_soql(
+        cls, sobject_name: str, where_clause: str
+    ) -> Generator[dict, None, None]:
         """
         Query API using SOQL.
 
@@ -139,21 +143,30 @@ class SObjectBase(BaseModel, ABC):
         :yields: objects from API
         """
         field_names = cls._get_field_names()
-        result = GUSClient.instance().sf.query(f"SELECT {','.join(field_names)} FROM {sobject_name} {where_clause}")
+        result = GUSClient.instance().sf.query(
+            f"SELECT {','.join(field_names)} FROM {sobject_name} {where_clause}"
+        )
         while True:
             for record in result["records"]:
                 del record["attributes"]
                 yield record
             if not result["done"]:
-                result = GUSClient.instance().sf.query_more(result["nextRecordsUrl"], identifier_is_url=True)
+                result = GUSClient.instance().sf.query_more(
+                    result["nextRecordsUrl"], identifier_is_url=True
+                )
             else:
                 break
 
     @persist_to_file()
     def _get_connected_object_name(self, sobject_names, id):
-        objs = [GUSClient.instance().sf.__getattr__(sobject).get(id) for sobject in sobject_names]
+        objs = [
+            GUSClient.instance().sf.__getattr__(sobject).get(id)
+            for sobject in sobject_names
+        ]
         if len(objs) > 1:
-            raise RuntimeError(f"Multiple reference objects found with id {id} in {sobject_names}")
+            raise RuntimeError(
+                f"Multiple reference objects found with id {id} in {sobject_names}"
+            )
         if len(objs) == 0:
             return None
         # find the names
@@ -204,4 +217,6 @@ class SObjectBase(BaseModel, ABC):
             "skipEntryCriteria": skip_entry_criteria,
         }
         request = {k: v for k, v in request.items() if v is not None}
-        GUSClient.instance().sf.restful("process/approvals/", method="POST", json={"requests": [request]})
+        GUSClient.instance().sf.restful(
+            "process/approvals/", method="POST", json={"requests": [request]}
+        )

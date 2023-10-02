@@ -73,7 +73,9 @@ class FlakyWorkflow:
         return job_name
 
     def _get_test_stacktrace(self, branch, build, repo_name):
-        broken_tests = self.jenki.get_failed_tests_stacktraces(f"{repo_name}/{branch}", build)
+        broken_tests = self.jenki.get_failed_tests_stacktraces(
+            f"{repo_name}/{branch}", build
+        )
         if not broken_tests:
             test = self.asker("No broken tests found. Please tell me the test name:")
             stack_trace = "TODO: Add stack trace here"
@@ -88,9 +90,7 @@ class FlakyWorkflow:
 
     def _create_flaky_tickets(self, test, stack_trace, build, ticket_types: list[str]):
         rem_subject = f"[Flaky Test] - Disable test: {test}"
-        rem_description = (
-            f"Test {test} is flaky in build https://jenkins.devergage.com/job/evergage-product/job/master/{build}/."
-        )
+        rem_description = f"Test {test} is flaky in build https://jenkins.devergage.com/job/evergage-product/job/master/{build}/."
         fix_subject = f"[Flaky Test] - Fix {test}"
         fix_description = self._get_fix_description_template().safe_substitute(
             test=test, build=build, stack_trace=stack_trace
@@ -140,7 +140,9 @@ class FlakyWorkflow:
             job = jb["job"]
             builds = jb["builds"]
             count = {}
-            if "PR" in job["fullName"]:  # TODO: add flags for what type? Mind, as a name match, it's not perfect
+            if (
+                "PR" in job["fullName"]
+            ):  # TODO: add flags for what type? Mind, as a name match, it's not perfect
                 continue
             for build in builds:
                 result = build["result"]
@@ -150,10 +152,16 @@ class FlakyWorkflow:
         return all_results_count, job_result_count
 
     def get_flaky_tagged_tests(self):
-        func_regex = re.compile('\\s*(public)?\\s*void "?([^"]*)"?\\s*\\(.*\\)\\s*(throws .*)?\\s*{')
+        func_regex = re.compile(
+            '\\s*(public)?\\s*void "?([^"]*)"?\\s*\\(.*\\)\\s*(throws .*)?\\s*{'
+        )
         test_anno_re = re.compile("\\s*@Test\\(?.*\\)?")
-        known_flaky_re = re.compile("\\s*@KnownFlaky\\(workItems = [\"']([^)]+)[\"']\\)")
-        multi_known_flaky_re = re.compile("\\s*@KnownFlaky\\(workItems = \\[([^]]+)]\\)")
+        known_flaky_re = re.compile(
+            "\\s*@KnownFlaky\\(workItems = [\"']([^)]+)[\"']\\)"
+        )
+        multi_known_flaky_re = re.compile(
+            "\\s*@KnownFlaky\\(workItems = \\[([^]]+)]\\)"
+        )
         package_re = re.compile("^package\\s+(\\S+);?$")
         space_re = re.compile("^\\s*$")
         suppress_re = re.compile("\\s*@SuppressWarnings")

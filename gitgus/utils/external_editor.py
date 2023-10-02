@@ -5,7 +5,9 @@ import tempfile
 class ExternalEditor:
     def __init__(self, editor):
         if not editor:
-            raise Exception("No editor provided. By default this is an environment variable called EDITOR.")
+            raise Exception(
+                "No editor provided. By default this is an environment variable called EDITOR."
+            )
         self.editor = editor
 
     def edit(self, text):

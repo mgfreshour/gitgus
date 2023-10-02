@@ -276,124 +276,266 @@ class Work(SObjectBase, metaclass=SObjectType):
 
     id_: str = Field(..., alias="Id", title="Record ID", frozen=True, exclude=True)
     owner_id: str = Field(..., alias="OwnerId", title="Owner ID")
-    is_deleted: bool = Field(..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True)
+    is_deleted: bool = Field(
+        ..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True
+    )
     name: str = Field(..., alias="Name", title="Work ID", frozen=True, exclude=True)
-    currency_iso_code: Optional[CurrencyIsoCodeEnum] = Field(..., alias="CurrencyIsoCode", title="Currency ISO Code")
-    record_type_id: Optional[str] = Field(..., alias="RecordTypeId", title="Record Type ID")
-    created_date: datetime = Field(..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True)
-    created_by_id: str = Field(..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True)
+    currency_iso_code: Optional[CurrencyIsoCodeEnum] = Field(
+        ..., alias="CurrencyIsoCode", title="Currency ISO Code"
+    )
+    record_type_id: Optional[str] = Field(
+        ..., alias="RecordTypeId", title="Record Type ID"
+    )
+    created_date: datetime = Field(
+        ..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True
+    )
+    created_by_id: str = Field(
+        ..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True
+    )
     last_modified_date: datetime = Field(
-        ..., alias="LastModifiedDate", title="Last Modified Date", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedDate",
+        title="Last Modified Date",
+        frozen=True,
+        exclude=True,
     )
     last_modified_by_id: str = Field(
-        ..., alias="LastModifiedById", title="Last Modified By ID", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedById",
+        title="Last Modified By ID",
+        frozen=True,
+        exclude=True,
     )
-    system_modstamp: datetime = Field(..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True)
+    system_modstamp: datetime = Field(
+        ..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True
+    )
     last_activity_date: Optional[date] = Field(
-        ..., alias="LastActivityDate", title="Last Activity Date", frozen=True, exclude=True
+        ...,
+        alias="LastActivityDate",
+        title="Last Activity Date",
+        frozen=True,
+        exclude=True,
     )
-    may_edit: bool = Field(..., alias="MayEdit", title="May Edit", frozen=True, exclude=True)
-    is_locked: bool = Field(..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True)
+    may_edit: bool = Field(
+        ..., alias="MayEdit", title="May Edit", frozen=True, exclude=True
+    )
+    is_locked: bool = Field(
+        ..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True
+    )
     last_viewed_date: Optional[datetime] = Field(
         ..., alias="LastViewedDate", title="Last Viewed Date", frozen=True, exclude=True
     )
     last_referenced_date: Optional[datetime] = Field(
-        ..., alias="LastReferencedDate", title="Last Referenced Date", frozen=True, exclude=True
+        ...,
+        alias="LastReferencedDate",
+        title="Last Referenced Date",
+        frozen=True,
+        exclude=True,
     )
-    assigned_on: Optional[date] = Field(..., alias="Assigned_On__c", title="Assigned On", frozen=True, exclude=True)
+    assigned_on: Optional[date] = Field(
+        ..., alias="Assigned_On__c", title="Assigned On", frozen=True, exclude=True
+    )
     assignee: Optional[str] = Field(..., alias="Assignee__c", title="Assigned To")
     bug_number: Optional[str] = Field(..., alias="Bug_Number__c", title="Bugforce #")
     visual_link_num_of_test_failures: Optional[str] = Field(
-        ..., alias="visual_link_num_of_Test_Failures__c", title="Test Failures", frozen=True, exclude=True
+        ...,
+        alias="visual_link_num_of_Test_Failures__c",
+        title="Test Failures",
+        frozen=True,
+        exclude=True,
     )
     child_id: Optional[str] = Field(..., alias="Child_ID__c", title="Child_ID")
     customer: Optional[str] = Field(..., alias="Customer__c", title="Customer")
     description: Optional[str] = Field(..., alias="Description__c", title="Comment")
     external_id: Optional[str] = Field(..., alias="External_ID__c", title="External ID")
-    found_in_build: Optional[str] = Field(..., alias="Found_in_Build__c", title="Found in Build")
+    found_in_build: Optional[str] = Field(
+        ..., alias="Found_in_Build__c", title="Found in Build"
+    )
     help_status: Optional[str] = Field(..., alias="Help_Status__c", title="Doc Status")
-    major_func_area: Optional[str] = Field(..., alias="Major_Func_Area__c", title="Major Func Area")
-    minor_func_area: Optional[str] = Field(..., alias="Minor_Func_Area__c", title="Minor Func Area")
+    major_func_area: Optional[str] = Field(
+        ..., alias="Major_Func_Area__c", title="Major Func Area"
+    )
+    minor_func_area: Optional[str] = Field(
+        ..., alias="Minor_Func_Area__c", title="Minor Func Area"
+    )
     perforce_status: Optional[str] = Field(
-        ..., alias="Perforce_Status__c", title="Source Control Status", frozen=True, exclude=True
+        ...,
+        alias="Perforce_Status__c",
+        title="Source Control Status",
+        frozen=True,
+        exclude=True,
     )
     priority: Optional[str] = Field(..., alias="Priority__c", title="Priority")
-    product_area: Optional[str] = Field(..., alias="Product_Area__c", title="Product Area")
-    product_child: Optional[str] = Field(..., alias="Product_Child__c", title="Product Child")
-    product_owner: Optional[str] = Field(..., alias="Product_Owner__c", title="Product Owner")
+    product_area: Optional[str] = Field(
+        ..., alias="Product_Area__c", title="Product Area"
+    )
+    product_child: Optional[str] = Field(
+        ..., alias="Product_Child__c", title="Product Child"
+    )
+    product_owner: Optional[str] = Field(
+        ..., alias="Product_Owner__c", title="Product Owner"
+    )
     qa_engineer: Optional[str] = Field(..., alias="QA_Engineer__c", title="QA Engineer")
-    regressed: Optional[bool] = Field(..., alias="Regressed__c", title="Regressed TO BE DEPRECATED")
+    regressed: Optional[bool] = Field(
+        ..., alias="Regressed__c", title="Regressed TO BE DEPRECATED"
+    )
     related_url: Optional[str] = Field(..., alias="Related_URL__c", title="Related URL")
     number_of_change_lists: Optional[float] = Field(
-        ..., alias="Number_of_Change_Lists__c", title="Number of Change Lists", frozen=True, exclude=True
+        ...,
+        alias="Number_of_Change_Lists__c",
+        title="Number of Change Lists",
+        frozen=True,
+        exclude=True,
     )
-    root_cause_analysis_2: Optional[str] = Field(..., alias="Root_Cause_Analysis_2__c", title="Root Cause Analysis")
+    root_cause_analysis_2: Optional[str] = Field(
+        ..., alias="Root_Cause_Analysis_2__c", title="Root Cause Analysis"
+    )
     ue_engineer: Optional[str] = Field(..., alias="UE_Engineer__c", title="Designer")
-    scheduled_build: Optional[str] = Field(..., alias="Scheduled_Build__c", title="Scheduled Build")
-    schema_: Optional[bool] = Field(..., alias="Schema__c", title="Requires Schema Change")
+    scheduled_build: Optional[str] = Field(
+        ..., alias="Scheduled_Build__c", title="Scheduled Build"
+    )
+    schema_: Optional[bool] = Field(
+        ..., alias="Schema__c", title="Requires Schema Change"
+    )
     scrum_team: Optional[str] = Field(..., alias="Scrum_Team__c", title="Team")
-    security: Optional[bool] = Field(..., alias="Security__c", title="Security Triaged", frozen=True, exclude=True)
+    security: Optional[bool] = Field(
+        ..., alias="Security__c", title="Security Triaged", frozen=True, exclude=True
+    )
     severity: Optional[SeverityEnum] = Field(..., alias="Severity__c", title="Severity")
     status: Optional[str] = Field(..., alias="Status__c", title="Status")
     subject: Optional[str] = Field(..., alias="Subject__c", title="Subject")
-    system_test_engineer: Optional[str] = Field(..., alias="System_Test_Engineer__c", title="Performance Engineer")
+    system_test_engineer: Optional[str] = Field(
+        ..., alias="System_Test_Engineer__c", title="Performance Engineer"
+    )
     tech_writer: Optional[str] = Field(..., alias="Tech_Writer__c", title="Tech Writer")
     type_: Optional[str] = Field(..., alias="Type__c", title="Type")
     ftest: Optional[str] = Field(..., alias="ftest__c", title="Test")
-    found_in_build_copy: Optional[str] = Field(..., alias="Found_In_Build_Copy__c", title="Found In Build Copy")
-    created_on_import: Optional[datetime] = Field(..., alias="Created_On_import__c", title="Created On (import)")
-    created_by_import: Optional[str] = Field(
-        ..., alias="Created_By_import__c", title="Created By (import)", frozen=True, exclude=True
+    found_in_build_copy: Optional[str] = Field(
+        ..., alias="Found_In_Build_Copy__c", title="Found In Build Copy"
     )
-    closed: Optional[float] = Field(..., alias="Closed__c", title="Closed", frozen=True, exclude=True)
-    resolved: Optional[float] = Field(..., alias="Resolved__c", title="Resolved", frozen=True, exclude=True)
-    closed_on: Optional[datetime] = Field(..., alias="Closed_On__c", title="Closed On", frozen=True, exclude=True)
-    resolved_on: Optional[datetime] = Field(..., alias="Resolved_On__c", title="Resolved On", frozen=True, exclude=True)
-    vulnerability_article: Optional[str] = Field(..., alias="Vulnerability_Article__c", title="Vulnerability Article")
-    template_description: Optional[str] = Field(..., alias="Template_Description__c", title="Template Description")
-    template_name: Optional[str] = Field(..., alias="Template_Name__c", title="Template Name")
-    api_connector: Optional[str] = Field(..., alias="API_Connector__c", title="API Connector")
+    created_on_import: Optional[datetime] = Field(
+        ..., alias="Created_On_import__c", title="Created On (import)"
+    )
+    created_by_import: Optional[str] = Field(
+        ...,
+        alias="Created_By_import__c",
+        title="Created By (import)",
+        frozen=True,
+        exclude=True,
+    )
+    closed: Optional[float] = Field(
+        ..., alias="Closed__c", title="Closed", frozen=True, exclude=True
+    )
+    resolved: Optional[float] = Field(
+        ..., alias="Resolved__c", title="Resolved", frozen=True, exclude=True
+    )
+    closed_on: Optional[datetime] = Field(
+        ..., alias="Closed_On__c", title="Closed On", frozen=True, exclude=True
+    )
+    resolved_on: Optional[datetime] = Field(
+        ..., alias="Resolved_On__c", title="Resolved On", frozen=True, exclude=True
+    )
+    vulnerability_article: Optional[str] = Field(
+        ..., alias="Vulnerability_Article__c", title="Vulnerability Article"
+    )
+    template_description: Optional[str] = Field(
+        ..., alias="Template_Description__c", title="Template Description"
+    )
+    template_name: Optional[str] = Field(
+        ..., alias="Template_Name__c", title="Template Name"
+    )
+    api_connector: Optional[str] = Field(
+        ..., alias="API_Connector__c", title="API Connector"
+    )
     complete_by: Optional[str] = Field(..., alias="Complete_By__c", title="Complete By")
     parent_id: Optional[str] = Field(..., alias="Parent_ID__c", title="Add Parent ID")
     team_notes: Optional[str] = Field(..., alias="Team_Notes__c", title="Team Notes")
-    age: Optional[float] = Field(..., alias="Age__c", title="Age", frozen=True, exclude=True)
-    number_of_cases: Optional[float] = Field(..., alias="Number_of_Cases__c", title="Cases")
-    scheduled_build_copy: Optional[str] = Field(..., alias="Scheduled_Build_Copy__c", title="Scheduled Build Copy")
-    record_type: Optional[str] = Field(
-        ..., alias="Record_Type__c", title="Record Type (formula)", frozen=True, exclude=True
+    age: Optional[float] = Field(
+        ..., alias="Age__c", title="Age", frozen=True, exclude=True
     )
-    last_modified_by: Optional[str] = Field(..., alias="Last_Modified_By__c", title="Last Modified By")
+    number_of_cases: Optional[float] = Field(
+        ..., alias="Number_of_Cases__c", title="Cases"
+    )
+    scheduled_build_copy: Optional[str] = Field(
+        ..., alias="Scheduled_Build_Copy__c", title="Scheduled Build Copy"
+    )
+    record_type: Optional[str] = Field(
+        ...,
+        alias="Record_Type__c",
+        title="Record Type (formula)",
+        frozen=True,
+        exclude=True,
+    )
+    last_modified_by: Optional[str] = Field(
+        ..., alias="Last_Modified_By__c", title="Last Modified By"
+    )
     log_bug_from_template: Optional[str] = Field(
-        ..., alias="Log_Bug_From_Template__c", title="Log Bug From Template", frozen=True, exclude=True
+        ...,
+        alias="Log_Bug_From_Template__c",
+        title="Log Bug From Template",
+        frozen=True,
+        exclude=True,
     )
     frequency: Optional[str] = Field(..., alias="Frequency__c", title="Frequency")
     impact: Optional[str] = Field(..., alias="Impact__c", title="Impact")
     origin: Optional[str] = Field(..., alias="Origin__c", title="Origin")
-    priority_default: Optional[str] = Field(..., alias="Priority_Default__c", title="Priority (default)")
-    priority_override_explanation: Optional[str] = Field(
-        ..., alias="Priority_Override_Explanation__c", title="Priority Override Explanation"
+    priority_default: Optional[str] = Field(
+        ..., alias="Priority_Default__c", title="Priority (default)"
     )
-    additional_details: Optional[str] = Field(..., alias="Additional_Details__c", title="Additional Details")
+    priority_override_explanation: Optional[str] = Field(
+        ...,
+        alias="Priority_Override_Explanation__c",
+        title="Priority Override Explanation",
+    )
+    additional_details: Optional[str] = Field(
+        ..., alias="Additional_Details__c", title="Additional Details"
+    )
     lightning_desktop_impact_rate_month: Optional[float] = Field(
-        ..., alias="Lightning_Desktop_ImpactRate_Month__c", title="Gack Lightning Desktop Impact Rate Month"
+        ...,
+        alias="Lightning_Desktop_ImpactRate_Month__c",
+        title="Gack Lightning Desktop Impact Rate Month",
     )
     budget_id: Optional[str] = Field(..., alias="Budget_ID__c", title="Budget ID")
     closed_story_points: Optional[float] = Field(
-        ..., alias="Closed_Story_Points__c", title="Closed Story Points", frozen=True, exclude=True
+        ...,
+        alias="Closed_Story_Points__c",
+        title="Closed Story Points",
+        frozen=True,
+        exclude=True,
     )
-    dependencies: Optional[float] = Field(..., alias="Dependencies__c", title="Dependencies")
+    dependencies: Optional[float] = Field(
+        ..., alias="Dependencies__c", title="Dependencies"
+    )
     dependents: Optional[float] = Field(..., alias="Dependents__c", title="Dependents")
-    detailed: Optional[bool] = Field(..., alias="Detailed__c", title="Exclude from Prioritize View")
-    has_story_points: Optional[str] = Field(
-        ..., alias="Has_Story_Points__c", title="Has Story Points?", frozen=True, exclude=True
+    detailed: Optional[bool] = Field(
+        ..., alias="Detailed__c", title="Exclude from Prioritize View"
     )
-    priority_rank: Optional[float] = Field(..., alias="Priority_Rank__c", title="Backlog Rank")
-    scrumforce_id: Optional[str] = Field(..., alias="Scrumforce_ID__c", title="Scrumforce ID")
-    solution_overview: Optional[str] = Field(..., alias="Solution_Overview__c", title="Solution Overview")
+    has_story_points: Optional[str] = Field(
+        ...,
+        alias="Has_Story_Points__c",
+        title="Has Story Points?",
+        frozen=True,
+        exclude=True,
+    )
+    priority_rank: Optional[float] = Field(
+        ..., alias="Priority_Rank__c", title="Backlog Rank"
+    )
+    scrumforce_id: Optional[str] = Field(
+        ..., alias="Scrumforce_ID__c", title="Scrumforce ID"
+    )
+    solution_overview: Optional[str] = Field(
+        ..., alias="Solution_Overview__c", title="Solution Overview"
+    )
     sprint: Optional[str] = Field(..., alias="Sprint__c", title="Sprint")
-    story_points: Optional[float] = Field(..., alias="Story_Points__c", title="Story Points")
-    use_prioritizer: Optional[bool] = Field(..., alias="Use_Prioritizer__c", title="Include in Prioritize View")
-    num_of_prod_occ: Optional[float] = Field(..., alias="Num_Of_Prod_Occ__c", title="Gack Occurrences - Today")
+    story_points: Optional[float] = Field(
+        ..., alias="Story_Points__c", title="Story Points"
+    )
+    use_prioritizer: Optional[bool] = Field(
+        ..., alias="Use_Prioritizer__c", title="Include in Prioritize View"
+    )
+    num_of_prod_occ: Optional[float] = Field(
+        ..., alias="Num_Of_Prod_Occ__c", title="Gack Occurrences - Today"
+    )
     age_with_scrum_team_when_closed: Optional[float] = Field(
         ...,
         alias="Age_With_Scrum_Team_When_Closed__c",
@@ -402,108 +544,224 @@ class Work(SObjectBase, metaclass=SObjectType):
         exclude=True,
     )
     was_ever_returned_to_support: Optional[bool] = Field(
-        ..., alias="Was_Ever_Returned_to_Support__c", title="Was Ever Returned to Support"
+        ...,
+        alias="Was_Ever_Returned_to_Support__c",
+        title="Was Ever Returned to Support",
     )
     lightning_mobile_impact_rate_month: Optional[float] = Field(
-        ..., alias="Lightning_Mobile_ImpactRate_Month__c", title="Gack Lightning Mobile Impact Rate Month"
+        ...,
+        alias="Lightning_Mobile_ImpactRate_Month__c",
+        title="Gack Lightning Mobile Impact Rate Month",
     )
     age_with_scrum_team: Optional[float] = Field(
-        ..., alias="Age_With_Scrum_Team__c", title="Age With Scrum Team", frozen=True, exclude=True
+        ...,
+        alias="Age_With_Scrum_Team__c",
+        title="Age With Scrum Team",
+        frozen=True,
+        exclude=True,
     )
     scrum_team_last_modified: Optional[datetime] = Field(
         ..., alias="Scrum_Team_Last_Modified__c", title="Scrum Team Last Modified"
     )
     server_desktop_impact_rate_month: Optional[float] = Field(
-        ..., alias="Server_Desktop_ImpactRate_Month__c", title="Gack Server Desktop Impact Rate Month"
+        ...,
+        alias="Server_Desktop_ImpactRate_Month__c",
+        title="Gack Server Desktop Impact Rate Month",
     )
-    cs_contact: Optional[str] = Field(..., alias="CS_Contact__c", title="Support Contact")
-    closed_by: Optional[str] = Field(..., alias="Closed_By__c", title="Closed By", frozen=True, exclude=True)
+    cs_contact: Optional[str] = Field(
+        ..., alias="CS_Contact__c", title="Support Contact"
+    )
+    closed_by: Optional[str] = Field(
+        ..., alias="Closed_By__c", title="Closed By", frozen=True, exclude=True
+    )
     critical_crm_feature: Optional[bool] = Field(
-        ..., alias="Critical_CRM_Feature__c", title="Critical CRM Feature or Org Inaccessible"
+        ...,
+        alias="Critical_CRM_Feature__c",
+        title="Critical CRM Feature or Org Inaccessible",
     )
-    deal_at_risk: Optional[str] = Field(..., alias="Deal_at_Risk__c", title="Deal at Risk")
+    deal_at_risk: Optional[str] = Field(
+        ..., alias="Deal_at_Risk__c", title="Deal at Risk"
+    )
     estimated_financial_impact: Optional[float] = Field(
         ..., alias="Estimated_Financial_Impact__c", title="Estimated Financial Impact"
     )
-    executive_involved: Optional[bool] = Field(..., alias="Executive_Involved__c", title="Executive Involved")
-    red_account: Optional[bool] = Field(..., alias="Red_Account__c", title="Red Account")
+    executive_involved: Optional[bool] = Field(
+        ..., alias="Executive_Involved__c", title="Executive Involved"
+    )
+    red_account: Optional[bool] = Field(
+        ..., alias="Red_Account__c", title="Red Account"
+    )
     request_rd_mgr_review: Optional[bool] = Field(
         ..., alias="Request_RD_Mgr_Review__c", title="Request Senior Mgr Review"
     )
-    resolved_by: Optional[str] = Field(..., alias="Resolved_By__c", title="Resolved By", frozen=True, exclude=True)
-    senior_management_poc: Optional[str] = Field(..., alias="Senior_Management_POC__c", title="Senior Management POC")
-    severity_level: Optional[SeverityLevelEnum] = Field(..., alias="Severity_Level__c", title="Severity Level")
-    steps_to_reproduce: Optional[str] = Field(..., alias="Steps_to_Reproduce__c", title="Steps to Reproduce")
+    resolved_by: Optional[str] = Field(
+        ..., alias="Resolved_By__c", title="Resolved By", frozen=True, exclude=True
+    )
+    senior_management_poc: Optional[str] = Field(
+        ..., alias="Senior_Management_POC__c", title="Senior Management POC"
+    )
+    severity_level: Optional[SeverityLevelEnum] = Field(
+        ..., alias="Severity_Level__c", title="Severity Level"
+    )
+    steps_to_reproduce: Optional[str] = Field(
+        ..., alias="Steps_to_Reproduce__c", title="Steps to Reproduce"
+    )
     attributes: Optional[str] = Field(..., alias="Attributes__c", title="Attributes")
-    of_test_failures: Optional[float] = Field(..., alias="of_Test_Failures__c", title="Test Failures Count")
+    of_test_failures: Optional[float] = Field(
+        ..., alias="of_Test_Failures__c", title="Test Failures Count"
+    )
     details_and_steps_to_reproduce: Optional[str] = Field(
-        ..., alias="Details_and_Steps_to_Reproduce__c", title="Details and Steps to Reproduce"
+        ...,
+        alias="Details_and_Steps_to_Reproduce__c",
+        title="Details and Steps to Reproduce",
     )
     found_in_build_name: Optional[str] = Field(
-        ..., alias="Found_In_Build_Name__c", title="Found In Build Name", frozen=True, exclude=True
+        ...,
+        alias="Found_In_Build_Name__c",
+        title="Found In Build Name",
+        frozen=True,
+        exclude=True,
     )
-    impact_name: Optional[str] = Field(..., alias="Impact_Name__c", title="Impact Name", frozen=True, exclude=True)
+    impact_name: Optional[str] = Field(
+        ..., alias="Impact_Name__c", title="Impact Name", frozen=True, exclude=True
+    )
     scheduled_build_name: Optional[str] = Field(
-        ..., alias="Scheduled_Build_Name__c", title="Scheduled Build Name", frozen=True, exclude=True
+        ...,
+        alias="Scheduled_Build_Name__c",
+        title="Scheduled Build Name",
+        frozen=True,
+        exclude=True,
     )
     scrum_team_name: Optional[str] = Field(
-        ..., alias="Scrum_Team_Name__c", title="Scrum Team Name", frozen=True, exclude=True
+        ...,
+        alias="Scrum_Team_Name__c",
+        title="Scrum Team Name",
+        frozen=True,
+        exclude=True,
     )
-    sprint_name: Optional[str] = Field(..., alias="Sprint_Name__c", title="Sprint Name", frozen=True, exclude=True)
+    sprint_name: Optional[str] = Field(
+        ..., alias="Sprint_Name__c", title="Sprint Name", frozen=True, exclude=True
+    )
     user_profile_of_the_creator: Optional[str] = Field(
-        ..., alias="User_Profile_of_the_Creator__c", title="User Profile of the Creator", frozen=True, exclude=True
+        ...,
+        alias="User_Profile_of_the_Creator__c",
+        title="User Profile of the Creator",
+        frozen=True,
+        exclude=True,
     )
     test_plan: Optional[str] = Field(..., alias="Test_Plan__c", title="Test Plan")
     details: Optional[str] = Field(..., alias="Details__c", title="Description")
     total_age_when_closed: Optional[float] = Field(
-        ..., alias="Total_Age_When_Closed__c", title="Total Age When Closed", frozen=True, exclude=True
+        ...,
+        alias="Total_Age_When_Closed__c",
+        title="Total Age When Closed",
+        frozen=True,
+        exclude=True,
     )
-    regression: Optional[RegressionEnum] = Field(..., alias="Regression__c", title="Regression")
+    regression: Optional[RegressionEnum] = Field(
+        ..., alias="Regression__c", title="Regression"
+    )
     related_url_link: Optional[str] = Field(
-        ..., alias="Related_URL_Link__c", title="Related URL Link", frozen=True, exclude=True
+        ...,
+        alias="Related_URL_Link__c",
+        title="Related URL Link",
+        frozen=True,
+        exclude=True,
     )
-    reliability_gap: Optional[str] = Field(..., alias="Reliability_Gap__c", title="Reliability Gap")
-    creation_origin: Optional[str] = Field(..., alias="Creation_Origin__c", title="Creation Origin")
-    assignees: Optional[str] = Field(..., alias="Assignees__c", title="transfer Assignees")
-    other_recipients: Optional[str] = Field(..., alias="Other_Recipients__c", title="transfer Other Recipients")
-    previous_comments: Optional[str] = Field(..., alias="Previous_Comments__c", title="transfer Previous Comments")
+    reliability_gap: Optional[str] = Field(
+        ..., alias="Reliability_Gap__c", title="Reliability Gap"
+    )
+    creation_origin: Optional[str] = Field(
+        ..., alias="Creation_Origin__c", title="Creation Origin"
+    )
+    assignees: Optional[str] = Field(
+        ..., alias="Assignees__c", title="transfer Assignees"
+    )
+    other_recipients: Optional[str] = Field(
+        ..., alias="Other_Recipients__c", title="transfer Other Recipients"
+    )
+    previous_comments: Optional[str] = Field(
+        ..., alias="Previous_Comments__c", title="transfer Previous Comments"
+    )
     product_tag_name: Optional[str] = Field(
-        ..., alias="Product_Tag_Name__c", title="Product Tag Name", frozen=True, exclude=True
+        ...,
+        alias="Product_Tag_Name__c",
+        title="Product Tag Name",
+        frozen=True,
+        exclude=True,
     )
     product_tag: Optional[str] = Field(..., alias="Product_Tag__c", title="Product Tag")
-    sprint_rank: Optional[float] = Field(..., alias="Sprint_Rank__c", title="Rank of this work item in a sprint")
-    test_failure_status: Optional[str] = Field(
-        ..., alias="Test_Failure_Status__c", title="Test Failure Status", frozen=True, exclude=True
+    sprint_rank: Optional[float] = Field(
+        ..., alias="Sprint_Rank__c", title="Rank of this work item in a sprint"
     )
-    feature_rank: Optional[float] = Field(..., alias="Feature_Rank__c", title="Feature Rank")
+    test_failure_status: Optional[str] = Field(
+        ...,
+        alias="Test_Failure_Status__c",
+        title="Test Failure Status",
+        frozen=True,
+        exclude=True,
+    )
+    feature_rank: Optional[float] = Field(
+        ..., alias="Feature_Rank__c", title="Feature Rank"
+    )
     scheduled_build_rank: Optional[float] = Field(
         ..., alias="Scheduled_Build_Rank__c", title="Rank in a scheduled build for team"
     )
-    theme_rank: Optional[float] = Field(..., alias="Theme_Rank__c", title="Rank of work item for team in a theme")
-    trust_rank: Optional[float] = Field(..., alias="Trust_Rank__c", title="Rank of work item for trust")
-    readme_notes: Optional[str] = Field(..., alias="Readme_Notes__c", title="Readme Notes")
-    sprint_timeframe: Optional[str] = Field(
-        ..., alias="Sprint_Timeframe__c", title="Sprint Timeframe YYYY.MMx", frozen=True, exclude=True
+    theme_rank: Optional[float] = Field(
+        ..., alias="Theme_Rank__c", title="Rank of work item for team in a theme"
     )
-    known_issue_id: Optional[str] = Field(..., alias="Known_Issue_ID__c", title="Known Issue ID")
+    trust_rank: Optional[float] = Field(
+        ..., alias="Trust_Rank__c", title="Rank of work item for trust"
+    )
+    readme_notes: Optional[str] = Field(
+        ..., alias="Readme_Notes__c", title="Readme Notes"
+    )
+    sprint_timeframe: Optional[str] = Field(
+        ...,
+        alias="Sprint_Timeframe__c",
+        title="Sprint Timeframe YYYY.MMx",
+        frozen=True,
+        exclude=True,
+    )
+    known_issue_id: Optional[str] = Field(
+        ..., alias="Known_Issue_ID__c", title="Known Issue ID"
+    )
     known_issue_link: Optional[str] = Field(
-        ..., alias="Known_Issue_Link__c", title="Known Issue Link", frozen=True, exclude=True
+        ...,
+        alias="Known_Issue_Link__c",
+        title="Known Issue Link",
+        frozen=True,
+        exclude=True,
     )
     known_issue_num_reporting_customers: Optional[float] = Field(
-        ..., alias="Known_Issue_Num_Reporting_Customers__c", title="KI Reporting Customers"
+        ...,
+        alias="Known_Issue_Num_Reporting_Customers__c",
+        title="KI Reporting Customers",
     )
     completed_hours: Optional[float] = Field(
-        ..., alias="Completed_Hours__c", title="Completed Hours", frozen=True, exclude=True
+        ...,
+        alias="Completed_Hours__c",
+        title="Completed Hours",
+        frozen=True,
+        exclude=True,
     )
-    backburner_rank: Optional[float] = Field(..., alias="Backburner_Rank__c", title="Backburner Rank")
+    backburner_rank: Optional[float] = Field(
+        ..., alias="Backburner_Rank__c", title="Backburner Rank"
+    )
     epic: Optional[str] = Field(..., alias="Epic__c", title="Epic")
-    resolution: Optional[str] = Field(..., alias="Resolution__c", title="Test Resolution")
+    resolution: Optional[str] = Field(
+        ..., alias="Resolution__c", title="Test Resolution"
+    )
     auto_build: Optional[str] = Field(..., alias="Auto_Build__c", title="Auto Build")
     branch: Optional[str] = Field(..., alias="Branch__c", title="Branch")
     epic_rank: Optional[float] = Field(..., alias="Epic_Rank__c", title="Epic Rank")
-    column_rank: Optional[float] = Field(..., alias="Column_Rank__c", title="Column Rank")
+    column_rank: Optional[float] = Field(
+        ..., alias="Column_Rank__c", title="Column Rank"
+    )
     column: Optional[str] = Field(..., alias="Column__c", title="Kanban State")
-    cloud: Optional[str] = Field(..., alias="Cloud__c", title="Cloud", frozen=True, exclude=True)
+    cloud: Optional[str] = Field(
+        ..., alias="Cloud__c", title="Cloud", frozen=True, exclude=True
+    )
     due_date: Optional[datetime] = Field(..., alias="Due_Date__c", title="Due Date")
     color: Optional[str] = Field(..., alias="Color__c", title="Color")
     apex_hammer_compile_failure: Optional[bool] = Field(
@@ -513,24 +771,48 @@ class Work(SObjectBase, metaclass=SObjectType):
         ..., alias="Data_Silo_Test_Affected__c", title="Data Silo Test Affected"
     )
     environment: Optional[str] = Field(..., alias="Environment__c", title="Environment")
-    mobile_device_os: Optional[str] = Field(..., alias="Mobile_Device_OS__c", title="Mobile Device OS")
-    mobile_device: Optional[str] = Field(..., alias="Mobile_Device__c", title="Mobile Device")
-    mobile_network: Optional[str] = Field(..., alias="Mobile_Network__c", title="Mobile Network")
+    mobile_device_os: Optional[str] = Field(
+        ..., alias="Mobile_Device_OS__c", title="Mobile Device OS"
+    )
+    mobile_device: Optional[str] = Field(
+        ..., alias="Mobile_Device__c", title="Mobile Device"
+    )
+    mobile_network: Optional[str] = Field(
+        ..., alias="Mobile_Network__c", title="Mobile Network"
+    )
     number_of_orgs_affected: Optional[float] = Field(
         ..., alias="Number_of_Orgs_affected__c", title="Number of Orgs affected"
     )
     number_of_tests_classes_affected: Optional[float] = Field(
-        ..., alias="Number_of_Tests_Classes_affected__c", title="Number of Tests/Classes affected"
+        ...,
+        alias="Number_of_Tests_Classes_affected__c",
+        title="Number of Tests/Classes affected",
     )
-    s1_app_build_number: Optional[str] = Field(..., alias="S1_App_Build_Number__c", title="S1 App Build Number")
-    out_of_sla: Optional[bool] = Field(..., alias="Out_of_SLA__c", title="Out of SLA", frozen=True, exclude=True)
+    s1_app_build_number: Optional[str] = Field(
+        ..., alias="S1_App_Build_Number__c", title="S1 App Build Number"
+    )
+    out_of_sla: Optional[bool] = Field(
+        ..., alias="Out_of_SLA__c", title="Out of SLA", frozen=True, exclude=True
+    )
     number_of_sla_violations: Optional[float] = Field(
-        ..., alias="Number_of_SLA_Violations__c", title="Number of T&P SLA Violations", frozen=True, exclude=True
+        ...,
+        alias="Number_of_SLA_Violations__c",
+        title="Number of T&P SLA Violations",
+        frozen=True,
+        exclude=True,
     )
-    capacity_cost_impact: Optional[float] = Field(..., alias="Capacity_Cost_Impact__c", title="Capacity Cost Impact")
-    capacity_impact: Optional[str] = Field(..., alias="Capacity_Impact__c", title="Capacity Impact")
-    cost_of_effort: Optional[float] = Field(..., alias="Cost_of_Effort__c", title="Cost of Effort")
-    customer_impact: Optional[str] = Field(..., alias="Customer_Impact__c", title="Customer Impact")
+    capacity_cost_impact: Optional[float] = Field(
+        ..., alias="Capacity_Cost_Impact__c", title="Capacity Cost Impact"
+    )
+    capacity_impact: Optional[str] = Field(
+        ..., alias="Capacity_Impact__c", title="Capacity Impact"
+    )
+    cost_of_effort: Optional[float] = Field(
+        ..., alias="Cost_of_Effort__c", title="Cost of Effort"
+    )
+    customer_impact: Optional[str] = Field(
+        ..., alias="Customer_Impact__c", title="Customer Impact"
+    )
     object_: Optional[str] = Field(..., alias="Object__c", title="Object")
     page_type: Optional[str] = Field(..., alias="Page_Type__c", title="Page Type")
     platform: Optional[str] = Field(..., alias="Platform__c", title="Platform")
@@ -540,8 +822,12 @@ class Work(SObjectBase, metaclass=SObjectType):
     highlight: Optional[bool] = Field(..., alias="Highlight__c", title="Highlight")
     node: Optional[str] = Field(..., alias="Node__c", title="Node")
     pod: Optional[str] = Field(..., alias="POD__c", title="POD")
-    recurring_issue: Optional[bool] = Field(..., alias="Recurring_Issue__c", title="Recurring Issue")
-    remediation: Optional[RemediationEnum] = Field(..., alias="Remediation__c", title="Remediation")
+    recurring_issue: Optional[bool] = Field(
+        ..., alias="Recurring_Issue__c", title="Recurring Issue"
+    )
+    remediation: Optional[RemediationEnum] = Field(
+        ..., alias="Remediation__c", title="Remediation"
+    )
     estimation_remediation_date: Optional[date] = Field(
         ..., alias="Estimation_Remediation_Date__c", title="Estimated Remediation Date"
     )
@@ -551,102 +837,208 @@ class Work(SObjectBase, metaclass=SObjectType):
     original_detection_date: Optional[date] = Field(
         ..., alias="Original_Detection_Date__c", title="Original Detection Date"
     )
-    original_severity: Optional[str] = Field(..., alias="Original_Severity__c", title="Original Severity")
+    original_severity: Optional[str] = Field(
+        ..., alias="Original_Severity__c", title="Original Severity"
+    )
     risk_adjustment_rationale: Optional[str] = Field(
         ..., alias="Risk_Adjustment_Rationale__c", title="Risk Adjustment Rationale"
     )
     vulnerability_category: Optional[str] = Field(
         ..., alias="Vulnerability_Category__c", title="Vulnerability Category"
     )
-    vulnerability_id: Optional[str] = Field(..., alias="Vulnerability_ID__c", title="Vulnerability ID")
-    access_location: Optional[str] = Field(..., alias="Access_Location__c", title="Access Location")
-    component: Optional[str] = Field(..., alias="Component__c", title="Deployment Component/s")
-    deployment_type: Optional[DeploymentTypeEnum] = Field(..., alias="Deployment_Type__c", title="Deployment Type")
-    request_type: Optional[RequestTypeEnum] = Field(..., alias="Request_Type__c", title="Request Type")
-    database_name: Optional[str] = Field(..., alias="Database_Name__c", title="Database Name")
-    capex_enabled: Optional[bool] = Field(..., alias="Capex_Enabled__c", title="New Customer Facing Feature")
+    vulnerability_id: Optional[str] = Field(
+        ..., alias="Vulnerability_ID__c", title="Vulnerability ID"
+    )
+    access_location: Optional[str] = Field(
+        ..., alias="Access_Location__c", title="Access Location"
+    )
+    component: Optional[str] = Field(
+        ..., alias="Component__c", title="Deployment Component/s"
+    )
+    deployment_type: Optional[DeploymentTypeEnum] = Field(
+        ..., alias="Deployment_Type__c", title="Deployment Type"
+    )
+    request_type: Optional[RequestTypeEnum] = Field(
+        ..., alias="Request_Type__c", title="Request Type"
+    )
+    database_name: Optional[str] = Field(
+        ..., alias="Database_Name__c", title="Database Name"
+    )
+    capex_enabled: Optional[bool] = Field(
+        ..., alias="Capex_Enabled__c", title="New Customer Facing Feature"
+    )
     major_release: Optional[str] = Field(
         ..., alias="Major_Release__c", title="Major Release", frozen=True, exclude=True
     )
-    escalation_point: Optional[float] = Field(..., alias="Escalation_Point__c", title="Escalation Point")
+    escalation_point: Optional[float] = Field(
+        ..., alias="Escalation_Point__c", title="Escalation Point"
+    )
     work_id_and_subject: Optional[str] = Field(
-        ..., alias="WorkId_and_Subject__c", title="WorkId and Subject", frozen=True, exclude=True
+        ...,
+        alias="WorkId_and_Subject__c",
+        title="WorkId and Subject",
+        frozen=True,
+        exclude=True,
     )
-    associated_url: Optional[str] = Field(..., alias="Associated_URL__c", title="Associated URL")
-    epic_name: Optional[str] = Field(..., alias="Epic_Name__c", title="Epic Name", frozen=True, exclude=True)
-    gack_occurrences: Optional[float] = Field(..., alias="Gack_Occurrences__c", title="Gack Occurrences - 1 year")
+    associated_url: Optional[str] = Field(
+        ..., alias="Associated_URL__c", title="Associated URL"
+    )
+    epic_name: Optional[str] = Field(
+        ..., alias="Epic_Name__c", title="Epic Name", frozen=True, exclude=True
+    )
+    gack_occurrences: Optional[float] = Field(
+        ..., alias="Gack_Occurrences__c", title="Gack Occurrences - 1 year"
+    )
     stack_trace_link: Optional[str] = Field(
-        ..., alias="Stack_Trace_Link__c", title="Stack Trace Link", frozen=True, exclude=True
+        ...,
+        alias="Stack_Trace_Link__c",
+        title="Stack Trace Link",
+        frozen=True,
+        exclude=True,
     )
-    gack_stack_trace_id: Optional[float] = Field(..., alias="Gack_Stack_Trace_Id__c", title="Stack Trace Id")
-    gack_first_seen: Optional[datetime] = Field(..., alias="Gack_First_Seen__c", title="Gack First Seen")
+    gack_stack_trace_id: Optional[float] = Field(
+        ..., alias="Gack_Stack_Trace_Id__c", title="Stack Trace Id"
+    )
+    gack_first_seen: Optional[datetime] = Field(
+        ..., alias="Gack_First_Seen__c", title="Gack First Seen"
+    )
     sla_warning_notification_sent: Optional[bool] = Field(
-        ..., alias="SLA_Warning_Notification_Sent__c", title="SLA Warning Notification Sent"
+        ...,
+        alias="SLA_Warning_Notification_Sent__c",
+        title="SLA Warning Notification Sent",
     )
     apex_hammer_gack_affected_orgs: Optional[str] = Field(
-        ..., alias="Apex_Hammer_Gack_Affected_Orgs__c", title="Apex Hammer Gack Affected Orgs"
+        ...,
+        alias="Apex_Hammer_Gack_Affected_Orgs__c",
+        title="Apex Hammer Gack Affected Orgs",
     )
     modules: Optional[str] = Field(..., alias="Modules__c", title="Module(s)")
     security_assessment_required: Optional[bool] = Field(
-        ..., alias="Security_Assessment_Required__c", title="Security Assessment Required?"
+        ...,
+        alias="Security_Assessment_Required__c",
+        title="Security Assessment Required?",
     )
-    security_assessment: Optional[str] = Field(..., alias="Security_Assessment__c", title="Security Assessment")
-    power_of_one: Optional[float] = Field(..., alias="Power_Of_One__c", title="Power Of One", frozen=True, exclude=True)
-    package_version: Optional[str] = Field(..., alias="Package_Version__c", title="Package Version")
+    security_assessment: Optional[str] = Field(
+        ..., alias="Security_Assessment__c", title="Security Assessment"
+    )
+    power_of_one: Optional[float] = Field(
+        ..., alias="Power_Of_One__c", title="Power Of One", frozen=True, exclude=True
+    )
+    package_version: Optional[str] = Field(
+        ..., alias="Package_Version__c", title="Package Version"
+    )
     rest_creator_id: Optional[str] = Field(
-        ..., alias="REST_Creator_ID__c", title="REST Creator ID", frozen=True, exclude=True
+        ...,
+        alias="REST_Creator_ID__c",
+        title="REST Creator ID",
+        frozen=True,
+        exclude=True,
     )
     rest_creator_link: Optional[str] = Field(
-        ..., alias="REST_Creator_Link__c", title="REST Creator", frozen=True, exclude=True
+        ...,
+        alias="REST_Creator_Link__c",
+        title="REST Creator",
+        frozen=True,
+        exclude=True,
     )
     rest_creator_name: Optional[str] = Field(
-        ..., alias="REST_Creator_Name__c", title="REST Creator Name", frozen=True, exclude=True
+        ...,
+        alias="REST_Creator_Name__c",
+        title="REST Creator Name",
+        frozen=True,
+        exclude=True,
     )
     rest_initiation_org_url: Optional[str] = Field(
-        ..., alias="REST_Initiation_Org_URL__c", title="REST Initiation Org URL", frozen=True, exclude=True
+        ...,
+        alias="REST_Initiation_Org_URL__c",
+        title="REST Initiation Org URL",
+        frozen=True,
+        exclude=True,
     )
-    all_autobuilds: Optional[str] = Field(..., alias="All_Autobuilds__c", title="All Autobuilds")
+    all_autobuilds: Optional[str] = Field(
+        ..., alias="All_Autobuilds__c", title="All Autobuilds"
+    )
     all_test_failure_count: Optional[float] = Field(
         ..., alias="All_Test_Failure_Count__c", title="All Test Failure Count"
     )
     gdpr_data_attachment_flag: Optional[bool] = Field(
         ..., alias="GDPR_Data_Attachment_Flag__c", title="GDPR Data Attachment Flag"
     )
-    board_column_rank: Optional[float] = Field(..., alias="Board_Column_Rank__c", title="Board Column Rank")
-    board_column: Optional[str] = Field(..., alias="Board_Column__c", title="Board Column")
+    board_column_rank: Optional[float] = Field(
+        ..., alias="Board_Column_Rank__c", title="Board Column Rank"
+    )
+    board_column: Optional[str] = Field(
+        ..., alias="Board_Column__c", title="Board Column"
+    )
     contains_lockable_autobuilds: Optional[bool] = Field(
-        ..., alias="Contains_Lockable_Autobuilds__c", title="Contains Lockable Autobuilds"
+        ...,
+        alias="Contains_Lockable_Autobuilds__c",
+        title="Contains Lockable Autobuilds",
     )
     cycle_time: Optional[float] = Field(..., alias="CycleTime__c", title="Cycle Time")
     lead_time: Optional[float] = Field(..., alias="LeadTime__c", title="Lead Time")
-    absolute_age: Optional[float] = Field(..., alias="Absolute_Age__c", title="Absolute Age", frozen=True, exclude=True)
-    ui_text_status: Optional[UiTextStatusEnum] = Field(..., alias="UI_Text_Status__c", title="UI Text Status")
+    absolute_age: Optional[float] = Field(
+        ..., alias="Absolute_Age__c", title="Absolute Age", frozen=True, exclude=True
+    )
+    ui_text_status: Optional[UiTextStatusEnum] = Field(
+        ..., alias="UI_Text_Status__c", title="UI Text Status"
+    )
     wait_time: Optional[float] = Field(..., alias="WaitTime__c", title="Wait Time")
-    initiate_time: Optional[float] = Field(..., alias="InitiateTime__c", title="Initiate Time")
-    originated_from: Optional[OriginatedFromEnum] = Field(..., alias="Originated_From__c", title="Originated From")
+    initiate_time: Optional[float] = Field(
+        ..., alias="InitiateTime__c", title="Initiate Time"
+    )
+    originated_from: Optional[OriginatedFromEnum] = Field(
+        ..., alias="Originated_From__c", title="Originated From"
+    )
     occurrences_past_30_days: Optional[float] = Field(
         ..., alias="Occurrences_Past_30_Days__c", title="Gack Occurrences - 30 days"
     )
-    product_legal_request: Optional[str] = Field(..., alias="Product_Legal_Request__c", title="Product Legal Request")
-    age_in_hours: Optional[float] = Field(..., alias="Age_In_Hours__c", title="Age_In_Hours", frozen=True, exclude=True)
-    related_work: Optional[str] = Field(..., alias="Related_Work__c", title="New Related Work")
+    product_legal_request: Optional[str] = Field(
+        ..., alias="Product_Legal_Request__c", title="Product Legal Request"
+    )
+    age_in_hours: Optional[float] = Field(
+        ..., alias="Age_In_Hours__c", title="Age_In_Hours", frozen=True, exclude=True
+    )
+    related_work: Optional[str] = Field(
+        ..., alias="Related_Work__c", title="New Related Work"
+    )
     known_issue_url: Optional[str] = Field(
-        ..., alias="Known_Issue_URL__c", title="Known Issue URL", frozen=True, exclude=True
+        ...,
+        alias="Known_Issue_URL__c",
+        title="Known Issue URL",
+        frozen=True,
+        exclude=True,
     )
     performance_metrics: Optional[PerformanceMetricsEnum] = Field(
         ..., alias="Performance_Metrics__c", title="Performance Metrics"
     )
     story_utlization_percent_workday: Optional[float] = Field(
-        ..., alias="Story_Utlization_Percent_Workday__c", title="Story Allocation Percentage", frozen=True, exclude=True
+        ...,
+        alias="Story_Utlization_Percent_Workday__c",
+        title="Story Allocation Percentage",
+        frozen=True,
+        exclude=True,
     )
     age_since_last_modified: Optional[float] = Field(
-        ..., alias="Age_Since_Last_Modified__c", title="Age Since Last Modified", frozen=True, exclude=True
+        ...,
+        alias="Age_Since_Last_Modified__c",
+        title="Age Since Last Modified",
+        frozen=True,
+        exclude=True,
     )
     buffer_gets_number: Optional[float] = Field(
-        ..., alias="Buffer_Gets_Number__c", title="Buffer Gets Number", frozen=True, exclude=True
+        ...,
+        alias="Buffer_Gets_Number__c",
+        title="Buffer Gets Number",
+        frozen=True,
+        exclude=True,
     )
     cpu_savings_number: Optional[float] = Field(
-        ..., alias="CPU_Savings_Number__c", title="CPU Savings Number", frozen=True, exclude=True
+        ...,
+        alias="CPU_Savings_Number__c",
+        title="CPU Savings Number",
+        frozen=True,
+        exclude=True,
     )
     vulnerability_found_by: Optional[str] = Field(
         ..., alias="Vulnerability_Found_By__c", title="Vulnerability Found By"
@@ -664,17 +1056,31 @@ class Work(SObjectBase, metaclass=SObjectType):
         ..., alias="Support_Close_Loop__c", title="Support Close Loop"
     )
     number_of_days_in_p1_priority: Optional[float] = Field(
-        ..., alias="Number_of_Days_in_P1_Priority__c", title="Number of Days in P1 Priority", frozen=True, exclude=True
+        ...,
+        alias="Number_of_Days_in_P1_Priority__c",
+        title="Number of Days in P1 Priority",
+        frozen=True,
+        exclude=True,
     )
-    p1_priority_date: Optional[datetime] = Field(..., alias="P1_Priority_Date__c", title="P1 Priority Date")
-    initiated_feed: Optional[str] = Field(..., alias="Initiated_Feed__c", title="Initiated Feed")
+    p1_priority_date: Optional[datetime] = Field(
+        ..., alias="P1_Priority_Date__c", title="P1 Priority Date"
+    )
+    initiated_feed: Optional[str] = Field(
+        ..., alias="Initiated_Feed__c", title="Initiated Feed"
+    )
     case: Optional[str] = Field(..., alias="Case__c", title="Case")
     quip_url: Optional[str] = Field(..., alias="Quip_URL__c", title="Quip_URL")
     security_assessment_result_of: Optional[str] = Field(
-        ..., alias="Security_Assessment_Result_Of__c", title="Security Assessment Result (Deprecated)"
+        ...,
+        alias="Security_Assessment_Result_Of__c",
+        title="Security Assessment Result (Deprecated)",
     )
     pager_duty_link: Optional[str] = Field(
-        ..., alias="Pager_Duty_Link__c", title="Pager Duty Link", frozen=True, exclude=True
+        ...,
+        alias="Pager_Duty_Link__c",
+        title="Pager Duty Link",
+        frozen=True,
+        exclude=True,
     )
     pipeline: Optional[str] = Field(..., alias="Pipeline__c", title="Pipeline")
     sum_of_reported_customers_and_cases: Optional[float] = Field(
@@ -686,38 +1092,70 @@ class Work(SObjectBase, metaclass=SObjectType):
     )
     category: Optional[CategoryEnum] = Field(..., alias="Category__c", title="Category")
     column_team_id: Optional[str] = Field(
-        ..., alias="Column_Team_Id__c", title="Kanban Column Team Id", frozen=True, exclude=True
+        ...,
+        alias="Column_Team_Id__c",
+        title="Kanban Column Team Id",
+        frozen=True,
+        exclude=True,
     )
     pending_release_time: Optional[float] = Field(
-        ..., alias="PendingReleaseTime__c", title="Pending Release Time", frozen=True, exclude=True
+        ...,
+        alias="PendingReleaseTime__c",
+        title="Pending Release Time",
+        frozen=True,
+        exclude=True,
     )
-    release_time: Optional[float] = Field(..., alias="ReleaseTime__c", title="Release Time", frozen=True, exclude=True)
+    release_time: Optional[float] = Field(
+        ..., alias="ReleaseTime__c", title="Release Time", frozen=True, exclude=True
+    )
     bwc_verified_number_of_cases: Optional[float] = Field(
         ..., alias="BWC_verified_number_of_cases__c", title="Verified Number Of Cases"
     )
-    design_needed: Optional[DesignNeededEnum] = Field(..., alias="Design_Needed__c", title="Design Needed")
+    design_needed: Optional[DesignNeededEnum] = Field(
+        ..., alias="Design_Needed__c", title="Design Needed"
+    )
     gidx_idea: Optional[str] = Field(..., alias="GIDX_Idea__c", title="GIDX Idea")
     bug_lookup_key: Optional[str] = Field(
-        ..., alias="Bug_Lookup_Key__c", title="Bug Lookup Key", frozen=True, exclude=True
+        ...,
+        alias="Bug_Lookup_Key__c",
+        title="Bug Lookup Key",
+        frozen=True,
+        exclude=True,
     )
     number_of_is_vs_affected: Optional[float] = Field(
-        ..., alias="Number_of_ISVs_Affected__c", title="# of ISVs Affected", frozen=True, exclude=True
+        ...,
+        alias="Number_of_ISVs_Affected__c",
+        title="# of ISVs Affected",
+        frozen=True,
+        exclude=True,
     )
     security_vulnerability_category: Optional[str] = Field(
-        ..., alias="Security_Vulnerability_Category__c", title="Security Vulnerability Category"
+        ...,
+        alias="Security_Vulnerability_Category__c",
+        title="Security Vulnerability Category",
     )
     number_of_problems: Optional[float] = Field(
-        ..., alias="Number_of_Problems__c", title="Number of Problems", frozen=True, exclude=True
+        ...,
+        alias="Number_of_Problems__c",
+        title="Number of Problems",
+        frozen=True,
+        exclude=True,
     )
     product_lifecycle_phase: Optional[ProductLifecyclePhaseEnum] = Field(
         ..., alias="Product_Lifecycle_Phase__c", title="Product Lifecycle Phase"
     )
-    trust_activity: Optional[TrustActivityEnum] = Field(..., alias="Trust_Activity__c", title="Trust Activity")
+    trust_activity: Optional[TrustActivityEnum] = Field(
+        ..., alias="Trust_Activity__c", title="Trust Activity"
+    )
     first_time_in_progress: Optional[datetime] = Field(
         ..., alias="First_Time_In_Progress__c", title="First Time In Progress"
     )
     days_in_progress: Optional[float] = Field(
-        ..., alias="Days_In_Progress__c", title="Days In Progress", frozen=True, exclude=True
+        ...,
+        alias="Days_In_Progress__c",
+        title="Days In Progress",
+        frozen=True,
+        exclude=True,
     )
     security_engagement_group: Optional[str] = Field(
         ..., alias="Security_Engagement_Group__c", title="Security Engagement Group"
@@ -765,7 +1203,9 @@ class Work(SObjectBase, metaclass=SObjectType):
 
     @property
     def vulnerability_article_name(self):
-        return self._get_connected_object_name(["Knowledge__kav"], self.vulnerability_article)
+        return self._get_connected_object_name(
+            ["Knowledge__kav"], self.vulnerability_article
+        )
 
     @property
     def last_modified_by_name(self):
@@ -777,7 +1217,9 @@ class Work(SObjectBase, metaclass=SObjectType):
 
     @property
     def solution_overview_name(self):
-        return self._get_connected_object_name(["ADM_Solution_Overview__c"], self.solution_overview)
+        return self._get_connected_object_name(
+            ["ADM_Solution_Overview__c"], self.solution_overview
+        )
 
     @property
     def cs_contact_name(self):
@@ -793,7 +1235,9 @@ class Work(SObjectBase, metaclass=SObjectType):
 
     @property
     def reliability_gap_name(self):
-        return self._get_connected_object_name(["SM_Reliability_Gap__c"], self.reliability_gap)
+        return self._get_connected_object_name(
+            ["SM_Reliability_Gap__c"], self.reliability_gap
+        )
 
     @property
     def column_name(self):
@@ -805,7 +1249,9 @@ class Work(SObjectBase, metaclass=SObjectType):
 
     @property
     def security_assessment_name(self):
-        return self._get_connected_object_name(["ADM_Security_Assessment__c"], self.security_assessment)
+        return self._get_connected_object_name(
+            ["ADM_Security_Assessment__c"], self.security_assessment
+        )
 
     @property
     def board_column_name(self):
@@ -813,7 +1259,9 @@ class Work(SObjectBase, metaclass=SObjectType):
 
     @property
     def product_legal_request_name(self):
-        return self._get_connected_object_name(["PLR_Product_Legal_Request__c"], self.product_legal_request)
+        return self._get_connected_object_name(
+            ["PLR_Product_Legal_Request__c"], self.product_legal_request
+        )
 
     @property
     def related_work_name(self):
@@ -825,7 +1273,9 @@ class Work(SObjectBase, metaclass=SObjectType):
 
     @property
     def security_assessment_result_of_name(self):
-        return self._get_connected_object_name(["ADM_Security_Assessment__c"], self.security_assessment_result_of)
+        return self._get_connected_object_name(
+            ["ADM_Security_Assessment__c"], self.security_assessment_result_of
+        )
 
     @property
     def pipeline_name(self):
@@ -837,7 +1287,9 @@ class Work(SObjectBase, metaclass=SObjectType):
 
     @property
     def security_engagement_group_name(self):
-        return self._get_connected_object_name(["SAA_Engagement_Group_c__x"], self.security_engagement_group)
+        return self._get_connected_object_name(
+            ["SAA_Engagement_Group_c__x"], self.security_engagement_group
+        )
 
     def __init__(self, **kwargs: Any):
         """
@@ -888,12 +1340,16 @@ class Work(SObjectBase, metaclass=SObjectType):
             https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/headers.htm
         """
 
-        updates = model.model_dump_json(by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True)
+        updates = model.model_dump_json(
+            by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True
+        )
         import json
 
         updates = json.loads(updates)  # TODO - better way to do this?
         if updates:
-            GUSClient.instance().sf.__getattr__("ADM_Work__c").update(model.id_, updates, headers=headers)
+            GUSClient.instance().sf.__getattr__("ADM_Work__c").update(
+                model.id_, updates, headers=headers
+            )
 
     @classmethod
     def soql_query(cls, where_clause: str) -> Generator[Self, None, None]:

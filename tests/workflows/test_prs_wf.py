@@ -47,7 +47,9 @@ def _setup(monkeypatch):
     wi = create_wi("W-1234", WI_SUBJECT, WI_BODY)
     mock_workitems.get_work_item.return_value = wi
 
-    testee = PrWorkflow(mock_config, mock_gh, mock_git_repo, mock_workitems, mock_edit, mock_jenki)
+    testee = PrWorkflow(
+        mock_config, mock_gh, mock_git_repo, mock_workitems, mock_edit, mock_jenki
+    )
     monkeypatch.setattr(testee, "_read_body_template", lambda: "Bobobobob")
 
 
@@ -64,7 +66,10 @@ def test_create_marks_ticket_rfr_if_requested(monkeypatch):
         mock_workitems.get_work_item.return_value,
         {
             "status": "Ready for Review",
-            "details": "PR created: " + mock_gh.create_pr.return_value.html_url + "\n\n" + WI_BODY,
+            "details": "PR created: "
+            + mock_gh.create_pr.return_value.html_url
+            + "\n\n"
+            + WI_BODY,
             "details_and_steps_to_reproduce": "PR created: "
             + mock_gh.create_pr.return_value.html_url
             + "\n\n"
@@ -98,7 +103,9 @@ def test_create_passes_updated_body_to_editor(monkeypatch):
     gus_placeholder = "<!-- Link to GUS work item(s)-->"
     jenkins_placeholder = "<!-- Link to Jenkins build, if applicable-->"
     desc_placeholder = "<!-- A brief description of changes -->"
-    fake_body = f"gus:{gus_placeholder}\njenkins:{jenkins_placeholder}\ndesc:{desc_placeholder}"
+    fake_body = (
+        f"gus:{gus_placeholder}\njenkins:{jenkins_placeholder}\ndesc:{desc_placeholder}"
+    )
 
     monkeypatch.setattr(testee, "_read_body_template", lambda: fake_body)
     testee.create()
@@ -128,7 +135,9 @@ def test_create_reads_body_template_from_file(monkeypatch):
 def test_list_works(monkeypatch):
     mock_config._config = {
         "PRs": {
-            "queries": {"default": "repo:evergage/evergage-platform author:${username}"},
+            "queries": {
+                "default": "repo:evergage/evergage-platform author:${username}"
+            },
             "team_prefix": "myteam",
         }
     }
@@ -136,5 +145,7 @@ def test_list_works(monkeypatch):
     mock_gh.query_prs.return_value = ["pr1", "pr2"]
     actual = testee.list_prs("default")
 
-    mock_gh.query_prs.assert_called_once_with("repo:evergage/evergage-platform author:bobobobob")
+    mock_gh.query_prs.assert_called_once_with(
+        "repo:evergage/evergage-platform author:bobobobob"
+    )
     assert actual == ["pr1", "pr2"]

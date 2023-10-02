@@ -41,7 +41,9 @@ def my_pr_builds():
             color = "red"
 
         print(build["title"])
-        print(f"    [{color}]{build['pr']} | {build['status']} | {build['build_url']}[/]")
+        print(
+            f"    [{color}]{build['pr']} | {build['status']} | {build['build_url']}[/]"
+        )
         if build["failed_tests"]:
             print(f"    Failed tests: {len(build['failed_tests'])}")
             for failed_test in build["failed_tests"][0:5]:
@@ -52,8 +54,15 @@ def my_pr_builds():
 @pr_app.command()
 def create(
     draft: bool = typer.Option(False, "--draft", "-d", help="Create a draft PR"),
-    rfr: bool = typer.Option(True, "--rfr/--no-rfr", "-r/-R", help="Create a PR and mark ticket as ready for review"),
-    assign: bool = typer.Option(True, "--assign/--no-assign", "-a/-A", help="Assign reviewers to PR"),
+    rfr: bool = typer.Option(
+        True,
+        "--rfr/--no-rfr",
+        "-r/-R",
+        help="Create a PR and mark ticket as ready for review",
+    ),
+    assign: bool = typer.Option(
+        True, "--assign/--no-assign", "-a/-A", help="Assign reviewers to PR"
+    ),
 ):
     """Create a PR."""
     pr, wi = prs.create(draft=draft, rfr=rfr, assign=assign)
@@ -72,7 +81,9 @@ def list_prs():
 @pr_app.command()
 def query(
     query_name: str = typer.Argument(..., help="The name of the query to run"),
-    slack_chan: str = typer.Option(None, "--slack", "-s", help="Slack channel to post to"),
+    slack_chan: str = typer.Option(
+        None, "--slack", "-s", help="Slack channel to post to"
+    ),
 ):
     """Use configured query for PRs."""
     pr_list = prs.list_prs(query_name)

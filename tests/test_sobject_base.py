@@ -40,7 +40,9 @@ def test_sobject_find_by_like(monkeypatch):
     monkeypatch.setattr(Work, "soql_query", MagicMock())
     Work.find_by(name="hello", owner_id=Like("world"))
     Work.soql_query.assert_called_once()
-    Work.soql_query.assert_called_with("WHERE Name = 'hello' AND OwnerId LIKE '%world%'")
+    Work.soql_query.assert_called_with(
+        "WHERE Name = 'hello' AND OwnerId LIKE '%world%'"
+    )
 
 
 def test_sobject_find_by_object_value(monkeypatch):

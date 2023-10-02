@@ -10,7 +10,9 @@ from .command_dev import dev_app
 
 app = typer.Typer(no_args_is_help=True, pretty_exceptions_show_locals=False)
 
-app.add_typer(dev_app, name="dev", help="Commands for developing gitgus.", no_args_is_help=True)
+app.add_typer(
+    dev_app, name="dev", help="Commands for developing gitgus.", no_args_is_help=True
+)
 app.add_typer(
     flaky_app,
     name="flaky",
@@ -30,7 +32,9 @@ app.add_typer(
     no_args_is_help=True,
     hidden=True,
 )
-app.add_typer(gus_app, name="gus", help="Commands for working with GUS.", no_args_is_help=True)
+app.add_typer(
+    gus_app, name="gus", help="Commands for working with GUS.", no_args_is_help=True
+)
 app.add_typer(
     config_app,
     name="config",
@@ -47,13 +51,22 @@ app.add_typer(
 
 # Shortcut for most used commands. TODO - figure out how to do this without duplicating.
 @app.command()
-def checkout(mark_ip: bool = typer.Option(True, "--ip/--no-ip", "-m/-M", help="Mark ticket as in progress")):
+def checkout(
+    mark_ip: bool = typer.Option(
+        True, "--ip/--no-ip", "-m/-M", help="Mark ticket as in progress"
+    )
+):
     """Checkout a branch for a ticket. Alias: co"""
     _checkout(mark_ip)
 
 
 @app.command()
-def co(mark_ip: bool = typer.Option(True, "--ip/--no-ip", "-m/-M", help="Mark ticket as in progress"), hidden=True):
+def co(
+    mark_ip: bool = typer.Option(
+        True, "--ip/--no-ip", "-m/-M", help="Mark ticket as in progress"
+    ),
+    hidden=True,
+):
     """Checkout a branch for a ticket."""
     _checkout(mark_ip)
 

@@ -457,7 +457,11 @@ class SObjectDescription(Base):
         :returns: list of active fields
         """
         return list(
-            {x.name_snakecase: x for x in self.fields if x.soap_type not in {"urn:address", "urn:location"}}.values()
+            {
+                x.name_snakecase: x
+                for x in self.fields
+                if x.soap_type not in {"urn:address", "urn:location"}
+            }.values()
         )
 
     @property
@@ -507,7 +511,9 @@ class SObjectDescription(Base):
             self.name,
             f"{self.label}.",
             self.fields_all,
-            required=[x.name for x in self.fields_all if not x.nillable and not x.custom],
+            required=[
+                x.name for x in self.fields_all if not x.nillable and not x.custom
+            ],
         )
 
 

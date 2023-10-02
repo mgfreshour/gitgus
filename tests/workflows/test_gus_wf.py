@@ -57,7 +57,10 @@ def test_list():
     )
     actual = testee.query("default")
     assert actual == ["hello", "world"]
-    assert Work.soql_query.call_args[0][0] == "WHERE Assignee__c = 'mario' AND (NOT Status__c  LIKE 'Closed%')"
+    assert (
+        Work.soql_query.call_args[0][0]
+        == "WHERE Assignee__c = 'mario' AND (NOT Status__c  LIKE 'Closed%')"
+    )
 
 
 def test_set_status():
@@ -80,7 +83,9 @@ def test_checkout_creates_new_branch():
     mock_prompt = MagicMock()
     mock_prompt.return_value = 0
     testee.checkout(mock_prompt)
-    mock_git_repo.checkout.assert_called_once_with("myteam/@W-1234@-Hello-World", create=True)
+    mock_git_repo.checkout.assert_called_once_with(
+        "myteam/@W-1234@-Hello-World", create=True
+    )
 
 
 def test_checkout_checks_out_existing_branch():
@@ -90,7 +95,9 @@ def test_checkout_checks_out_existing_branch():
     ]
     mock_prompt = MagicMock()
     mock_prompt.return_value = 0
-    mock_git_repo.get_branches.return_value = [_create_branch("myteam/@W-1234@-Work-in-progress")]
+    mock_git_repo.get_branches.return_value = [
+        _create_branch("myteam/@W-1234@-Work-in-progress")
+    ]
     testee.checkout(mock_prompt)
     mock_git_repo.checkout.assert_called_once_with("myteam/@W-1234@-Work-in-progress")
 
@@ -108,7 +115,9 @@ def test_checkout_mark_as_in_progress():
     Work.soql_query.return_value = [wi]
     mock_prompt = MagicMock()
     mock_prompt.return_value = 0
-    mock_git_repo.get_branches.return_value = [_create_branch("myteam/@W-1234@-Work-in-progress")]
+    mock_git_repo.get_branches.return_value = [
+        _create_branch("myteam/@W-1234@-Work-in-progress")
+    ]
     testee.checkout(mock_prompt, mark_as_in_progress=True)
     mock_git_repo.checkout.assert_called_once_with("myteam/@W-1234@-Work-in-progress")
     mock_workitems.update.assert_called_once_with(ANY, {"status": "In Progress"})

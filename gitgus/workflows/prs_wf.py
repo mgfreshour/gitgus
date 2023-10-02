@@ -69,7 +69,10 @@ class PrWorkflow:
             for event in events:
                 if event.event == "review_dismissed":
                     times_approval_dismissed += 1
-                if event.event == "review_requested" and days_till_first_review_requested is None:
+                if (
+                    event.event == "review_requested"
+                    and days_till_first_review_requested is None
+                ):
                     days_till_first_review_requested = event.created_at - created
 
             reviewers = []
@@ -106,14 +109,18 @@ class PrWorkflow:
                 "days_till_merged": days_till_merge,
                 "times_approval_dismissed": times_approval_dismissed,
                 "merged_by": pr.merged_by.login if pr.merged_by else None,
-                "requested_reviewers": ", ".join([rr.login for rr in pr.requested_reviewers]),
+                "requested_reviewers": ", ".join(
+                    [rr.login for rr in pr.requested_reviewers]
+                ),
                 "actual_reviewers": ", ".join(reviewers),
                 "approvers": ", ".join(approvers),
             }
             out.append(pr_stat)
         return out
 
-    def create(self, draft: bool = False, rfr: bool = False, assign: bool = False) -> [PullRequest, Work]:
+    def create(
+        self, draft: bool = False, rfr: bool = False, assign: bool = False
+    ) -> [PullRequest, Work]:
         """Create a PR."""
         self.git_repo.push()
         branch_name = self.git_repo.get_branch_name()
@@ -123,7 +130,9 @@ class PrWorkflow:
         body = self._get_body(wi_id, branch_name, wi.subject)
 
         subject = f"@{wi_id}@ {wi.subject}"
-        pr = self.gh.create_pr(repo_name=repo, title=subject, body=body, head=branch_name, draft=draft)
+        pr = self.gh.create_pr(
+            repo_name=repo, title=subject, body=body, head=branch_name, draft=draft
+        )
         if rfr:
             if wi.details_and_steps_to_reproduce:
                 body = wi.details_and_steps_to_reproduce + wi.details
@@ -131,7 +140,12 @@ class PrWorkflow:
                 body = wi.details
             body = "PR created: " + pr.html_url + "\n\n" + body
             self.work_items.update(
-                wi, {"status": "Ready for Review", "details": body, "details_and_steps_to_reproduce": body}
+                wi,
+                {
+                    "status": "Ready for Review",
+                    "details": body,
+                    "details_and_steps_to_reproduce": body,
+                },
             )
             self.work_items.add_feed_post(wi, "PR created: " + pr.html_url)
 
@@ -162,11 +176,13 @@ class PrWorkflow:
 
         body = body.replace(
             gus_placeholder,
-            "https://gus.my.salesforce.com/apex/ADM_WorkLocator?bugorworknumber=" + wi_id,
+            "https://gus.my.salesforce.com/apex/ADM_WorkLocator?bugorworknumber="
+            + wi_id,
         )
         body = body.replace(
             jenkins_placeholder,
-            "https://jenkins.devergage.com/job/evergage-product/job/" + branch_name.replace("/", "%252F"),
+            "https://jenkins.devergage.com/job/evergage-product/job/"
+            + branch_name.replace("/", "%252F"),
         )
         body = body.replace(desc_placeholder, description)
 
@@ -200,10 +216,22 @@ class PrWorkflow:
         for pr in prs:
             branch_name = pr.head.ref.replace("/", "%252F")
             job = self.jenki.get_branch_job(job_name, branch_name)
-            last_build = job["lastCompletedBuild"]["number"] if job["lastCompletedBuild"] else 0
-            last_success = job["lastSuccessfulBuild"]["number"] if job["lastSuccessfulBuild"] else 0
-            last_unstable = job["lastUnstableBuild"]["number"] if job["lastUnstableBuild"] else 0
-            last_failure = job["lastUnsuccessfulBuild"]["number"] if job["lastUnsuccessfulBuild"] else 0
+            last_build = (
+                job["lastCompletedBuild"]["number"] if job["lastCompletedBuild"] else 0
+            )
+            last_success = (
+                job["lastSuccessfulBuild"]["number"]
+                if job["lastSuccessfulBuild"]
+                else 0
+            )
+            last_unstable = (
+                job["lastUnstableBuild"]["number"] if job["lastUnstableBuild"] else 0
+            )
+            last_failure = (
+                job["lastUnsuccessfulBuild"]["number"]
+                if job["lastUnsuccessfulBuild"]
+                else 0
+            )
             if last_build == 0:
                 status = "NO BUILDS"
             elif last_build == last_unstable:
@@ -215,7 +243,9 @@ class PrWorkflow:
             else:
                 status = "UNKNOWN"
 
-            test_report = self.jenki.get_build_test_report(f"{job_name}/{branch_name}", last_build)
+            test_report = self.jenki.get_build_test_report(
+                f"{job_name}/{branch_name}", last_build
+            )
             failed_tests = []
             if test_report and test_report["failCount"] > 0:
                 for suite in test_report["suites"]:

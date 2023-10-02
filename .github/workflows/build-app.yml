@@ -31,4 +31,3 @@ jobs:
         with:
           name: gitgus
           path: dist/gitgus.tar
-

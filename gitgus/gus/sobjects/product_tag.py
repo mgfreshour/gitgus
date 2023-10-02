@@ -55,47 +55,97 @@ class ProductTag(SObjectBase, metaclass=SObjectType):
 
     id_: str = Field(..., alias="Id", title="Record ID", frozen=True, exclude=True)
     owner_id: str = Field(..., alias="OwnerId", title="Owner ID")
-    is_deleted: bool = Field(..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True)
+    is_deleted: bool = Field(
+        ..., alias="IsDeleted", title="Deleted", frozen=True, exclude=True
+    )
     name: Optional[str] = Field(..., alias="Name", title="Product Tag Name")
-    currency_iso_code: Optional[CurrencyIsoCodeEnum] = Field(..., alias="CurrencyIsoCode", title="Currency ISO Code")
-    created_date: datetime = Field(..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True)
-    created_by_id: str = Field(..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True)
+    currency_iso_code: Optional[CurrencyIsoCodeEnum] = Field(
+        ..., alias="CurrencyIsoCode", title="Currency ISO Code"
+    )
+    created_date: datetime = Field(
+        ..., alias="CreatedDate", title="Created Date", frozen=True, exclude=True
+    )
+    created_by_id: str = Field(
+        ..., alias="CreatedById", title="Created By ID", frozen=True, exclude=True
+    )
     last_modified_date: datetime = Field(
-        ..., alias="LastModifiedDate", title="Last Modified Date", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedDate",
+        title="Last Modified Date",
+        frozen=True,
+        exclude=True,
     )
     last_modified_by_id: str = Field(
-        ..., alias="LastModifiedById", title="Last Modified By ID", frozen=True, exclude=True
+        ...,
+        alias="LastModifiedById",
+        title="Last Modified By ID",
+        frozen=True,
+        exclude=True,
     )
-    system_modstamp: datetime = Field(..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True)
-    may_edit: bool = Field(..., alias="MayEdit", title="May Edit", frozen=True, exclude=True)
-    is_locked: bool = Field(..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True)
+    system_modstamp: datetime = Field(
+        ..., alias="SystemModstamp", title="System Modstamp", frozen=True, exclude=True
+    )
+    may_edit: bool = Field(
+        ..., alias="MayEdit", title="May Edit", frozen=True, exclude=True
+    )
+    is_locked: bool = Field(
+        ..., alias="IsLocked", title="Is Locked", frozen=True, exclude=True
+    )
     last_viewed_date: Optional[datetime] = Field(
         ..., alias="LastViewedDate", title="Last Viewed Date", frozen=True, exclude=True
     )
     last_referenced_date: Optional[datetime] = Field(
-        ..., alias="LastReferencedDate", title="Last Referenced Date", frozen=True, exclude=True
+        ...,
+        alias="LastReferencedDate",
+        title="Last Referenced Date",
+        frozen=True,
+        exclude=True,
     )
-    team_tag_key: Optional[str] = Field(..., alias="Team_Tag_Key__c", title="Team Tag Key")
+    team_tag_key: Optional[str] = Field(
+        ..., alias="Team_Tag_Key__c", title="Team Tag Key"
+    )
     team: Optional[str] = Field(..., alias="Team__c", title="Team")
     use_for_automated_tools: Optional[bool] = Field(
         ..., alias="Use_for_Automated_Tools__c", title="Use for Automated Tools"
     )
     active: Optional[bool] = Field(..., alias="Active__c", title="Active")
-    migration_mfa: Optional[str] = Field(..., alias="Migration_MFA__c", title="Migration Major Functional Area")
-    migration_pa: Optional[str] = Field(..., alias="Migration_PA__c", title="Migration Product Area")
+    migration_mfa: Optional[str] = Field(
+        ..., alias="Migration_MFA__c", title="Migration Major Functional Area"
+    )
+    migration_pa: Optional[str] = Field(
+        ..., alias="Migration_PA__c", title="Migration Product Area"
+    )
     description: Optional[str] = Field(..., alias="Description__c", title="Description")
     aof_area_of_focus: Optional[str] = Field(
-        ..., alias="AOF_Area_of_Focus__c", title="Area of Focus", frozen=True, exclude=True
+        ...,
+        alias="AOF_Area_of_Focus__c",
+        title="Area of Focus",
+        frozen=True,
+        exclude=True,
     )
     assignment_rule: Optional[str] = Field(
-        ..., alias="Assignment_Rule__c", title="Assignment Rule", frozen=True, exclude=True
+        ...,
+        alias="Assignment_Rule__c",
+        title="Assignment Rule",
+        frozen=True,
+        exclude=True,
     )
-    associated_url: Optional[str] = Field(..., alias="Associated_URL__c", title="Associated URL")
+    associated_url: Optional[str] = Field(
+        ..., alias="Associated_URL__c", title="Associated URL"
+    )
     service: Optional[str] = Field(..., alias="Service__c", title="Service")
-    default_category: Optional[DefaultCategoryEnum] = Field(..., alias="Default_Category__c", title="Default Category")
-    indexed_team_name: Optional[str] = Field(..., alias="Indexed_Team_Name__c", title="Indexed Team Name")
+    default_category: Optional[DefaultCategoryEnum] = Field(
+        ..., alias="Default_Category__c", title="Default Category"
+    )
+    indexed_team_name: Optional[str] = Field(
+        ..., alias="Indexed_Team_Name__c", title="Indexed Team Name"
+    )
     adm_task_subject_values: Optional[str] = Field(
-        ..., alias="ADM_Task_Subject_Values__c", title="Task Template Values", frozen=True, exclude=True
+        ...,
+        alias="ADM_Task_Subject_Values__c",
+        title="Task Template Values",
+        frozen=True,
+        exclude=True,
     )
 
     @property
@@ -116,11 +166,15 @@ class ProductTag(SObjectBase, metaclass=SObjectType):
 
     @property
     def aof_area_of_focus_name(self):
-        return self._get_connected_object_name(["AOF_Area_of_Focus__c"], self.aof_area_of_focus)
+        return self._get_connected_object_name(
+            ["AOF_Area_of_Focus__c"], self.aof_area_of_focus
+        )
 
     @property
     def assignment_rule_name(self):
-        return self._get_connected_object_name(["ADM_Assignment_Rule__c"], self.assignment_rule)
+        return self._get_connected_object_name(
+            ["ADM_Assignment_Rule__c"], self.assignment_rule
+        )
 
     @property
     def service_name(self):
@@ -175,12 +229,16 @@ class ProductTag(SObjectBase, metaclass=SObjectType):
             https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/headers.htm
         """
 
-        updates = model.model_dump_json(by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True)
+        updates = model.model_dump_json(
+            by_alias=True, exclude_unset=True, exclude_defaults=True, exclude_none=True
+        )
         import json
 
         updates = json.loads(updates)  # TODO - better way to do this?
         if updates:
-            GUSClient.instance().sf.__getattr__("ADM_Product_Tag__c").update(model.id_, updates, headers=headers)
+            GUSClient.instance().sf.__getattr__("ADM_Product_Tag__c").update(
+                model.id_, updates, headers=headers
+            )
 
     @classmethod
     def soql_query(cls, where_clause: str) -> Generator[Self, None, None]:

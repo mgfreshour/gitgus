@@ -12,7 +12,10 @@ global_cache_enabled = True
 
 def persist_to_file():
     def decorator(original_func):
-        file_name = os.path.join(DEFAULT_CACHE_PATH, original_func.__module__ + original_func.__name__ + ".pkl")
+        file_name = os.path.join(
+            DEFAULT_CACHE_PATH,
+            original_func.__module__ + original_func.__name__ + ".pkl",
+        )
         cache = {}
 
         # Is the cache file older too old?

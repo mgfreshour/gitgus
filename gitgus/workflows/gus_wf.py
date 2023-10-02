@@ -84,7 +84,9 @@ class GusWorkflow:
                 return branch.name
         subject = re.sub(r"[^a-zA-Z0-9- ]", "", wi.subject)
         subject = subject.replace(" ", "-").replace("/", "-")[0:36]
-        branch_name = Template(self.config.get("GUS.branch_name_template")).safe_substitute(
+        branch_name = Template(
+            self.config.get("GUS.branch_name_template")
+        ).safe_substitute(
             me=self.work_items.user_id(),
             team_prefix=self.config.get("PRs.team_prefix"),
             work_id=wi.name,
@@ -111,14 +113,22 @@ class GusWorkflow:
         details = wi.details
         details_and_steps_to_reproduce = wi.details_and_steps_to_reproduce
         self.work_items.update(
-            wi, {"details_and_steps_to_reproduce": details, "details": details_and_steps_to_reproduce}
+            wi,
+            {
+                "details_and_steps_to_reproduce": details,
+                "details": details_and_steps_to_reproduce,
+            },
         )
         return wi
 
-    def sort_tickets(self, team_name: str, planned_release_name: str, dry_run: bool) -> list[dict]:
+    def sort_tickets(
+        self, team_name: str, planned_release_name: str, dry_run: bool
+    ) -> list[dict]:
         """Sort tickets."""
         team = Team.get_by_name_like(team_name)
-        base_query = f"Status__c IN ('New', 'Triaged') " f"AND Scrum_Team__c = '{team.id_}'"
+        base_query = (
+            f"Status__c IN ('New', 'Triaged') " f"AND Scrum_Team__c = '{team.id_}'"
+        )
         # Move all P0 & P1 to the very top.
         # Then P2s if we've decided a customer needs us to work on this now.
         # Next is all planned epic work.
@@ -149,7 +159,9 @@ class GusWorkflow:
         # )
 
         # Find all the tickets tied to epics in the current planned release
-        planned_release = PlannedRelease.get_by_team_and_name_like(team, planned_release_name)
+        planned_release = PlannedRelease.get_by_team_and_name_like(
+            team, planned_release_name
+        )
         epics = self.work_items.get_epics_work(team, planned_release)
         epic_tickets = []
         # sort epics by priority

@@ -29,11 +29,21 @@ def get_github_token() -> str:
     def get_code(code, url):
         print(f"Go to {url} and enter code {code}")
 
-    return get_auth_token_device(device_uri, token_url, "0df336fe16abeebc0aa7", ["repo", "project", "user"], get_code)
+    return get_auth_token_device(
+        device_uri,
+        token_url,
+        "0df336fe16abeebc0aa7",
+        ["repo", "project", "user"],
+        get_code,
+    )
 
 
 @config_app.command()
-def init(location: ConfigLocation = typer.Argument(..., help="Initialize a local or global config file?")):
+def init(
+    location: ConfigLocation = typer.Argument(
+        ..., help="Initialize a local or global config file?"
+    )
+):
     """Initialize the config file."""
     local = location == ConfigLocation.local
     init_config = Config()
@@ -58,17 +68,22 @@ def init(location: ConfigLocation = typer.Argument(..., help="Initialize a local
             default=config.get("GUS.default_product_tag"),
         )
         if product_tag:
-            init_config.set("GUS.default_product_tag", (product_tag.name, product_tag.id_))
+            init_config.set(
+                "GUS.default_product_tag", (product_tag.name, product_tag.id_)
+            )
 
         # Github config
         team_prefix = Prompt.ask(
-            "What is your GitHub team prefix? eg. gears, ops, accel", default=config.get("PRs.team_prefix")
+            "What is your GitHub team prefix? eg. gears, ops, accel",
+            default=config.get("PRs.team_prefix"),
         )
         if team_prefix:
             init_config.set("PRs.team_prefix", team_prefix)
 
     gh_yn = Prompt.ask(
-        f"Do you wish to setup a GitHub token? ({config.get('github.token')})", choices=["Y", "N"], default="Y"
+        f"Do you wish to setup a GitHub token? ({config.get('github.token')})",
+        choices=["Y", "N"],
+        default="Y",
     )
     if gh_yn == "Y":
         gh_token = get_github_token()
@@ -82,8 +97,12 @@ def init(location: ConfigLocation = typer.Argument(..., help="Initialize a local
         default="Y",
     )
     if jenkins_yn == "Y":
-        jenkins_url = Prompt.ask("What is your Jenkins URL?", default=current_jenkins_url)
-        jenkins_user = Prompt.ask("What is your Jenkins username?", default=current_jenkins_user)
+        jenkins_url = Prompt.ask(
+            "What is your Jenkins URL?", default=current_jenkins_url
+        )
+        jenkins_user = Prompt.ask(
+            "What is your Jenkins username?", default=current_jenkins_user
+        )
         jenkins_password = Prompt.ask(
             "What is your Jenkins API Token? (go to Jenkins -> Your Name -> Configure -> Configure -> API Token",
             default=config.get("jenkins.password"),

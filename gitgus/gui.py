@@ -29,11 +29,7 @@ def write_csv(data, headers):
     file_name = get_file_name()
     if not file_name:
         return
-    print_wi_csv(
-        file_name,
-        data,
-        headers
-    )
+    print_wi_csv(file_name, data, headers)
 
 
 def working_dlg(is_done: Callable[[], bool]):
@@ -78,8 +74,22 @@ def sort_tickets_dlg():
                 dry_run,
             )
             for ticket in tickets:
-                ticket["url"] = "https://gus.my.salesforce.com/apex/ADM_WorkLocator?bugorworknumber=" + ticket["name"]
-            write_csv(tickets, ["work_id_and_subject", "status", "priority", "epic", "priority_rank", "old_rank", "url"])
+                ticket["url"] = (
+                    "https://gus.my.salesforce.com/apex/ADM_WorkLocator?bugorworknumber="
+                    + ticket["name"]
+                )
+            write_csv(
+                tickets,
+                [
+                    "work_id_and_subject",
+                    "status",
+                    "priority",
+                    "epic",
+                    "priority_rank",
+                    "old_rank",
+                    "url",
+                ],
+            )
             window.close()
             break
 
@@ -89,11 +99,36 @@ def report_all_builds_dlg():
     start_of_last_month = end_of_last_month.replace(day=1)
     layout = [
         [gui.Text("Report on Builds")],
-        [gui.Text("Job Name Like"), gui.InputText(key="job_name_like", default_text="evergage-product")],
-        [gui.Text("Start Date"), gui.InputText(key="start_date", default_text=start_of_last_month.strftime("%Y-%m-%d")),
-         gui.CalendarButton("📅", close_when_date_chosen=True, target="start_date", format='%Y-%m-%d', size=(10,1))],
-        [gui.Text("End Date"), gui.InputText(key="end_date", default_text=end_of_last_month.strftime("%Y-%m-%d")),
-         gui.CalendarButton("📅", close_when_date_chosen=True, target="end_date", format='%Y-%m-%d', size=(10,1))],
+        [
+            gui.Text("Job Name Like"),
+            gui.InputText(key="job_name_like", default_text="evergage-product"),
+        ],
+        [
+            gui.Text("Start Date"),
+            gui.InputText(
+                key="start_date", default_text=start_of_last_month.strftime("%Y-%m-%d")
+            ),
+            gui.CalendarButton(
+                "📅",
+                close_when_date_chosen=True,
+                target="start_date",
+                format="%Y-%m-%d",
+                size=(10, 1),
+            ),
+        ],
+        [
+            gui.Text("End Date"),
+            gui.InputText(
+                key="end_date", default_text=end_of_last_month.strftime("%Y-%m-%d")
+            ),
+            gui.CalendarButton(
+                "📅",
+                close_when_date_chosen=True,
+                target="end_date",
+                format="%Y-%m-%d",
+                size=(10, 1),
+            ),
+        ],
         [gui.Button("Do It"), gui.Button("Cancel")],
     ]
     window = gui.Window("Report on Builds", layout)
@@ -109,7 +144,9 @@ def report_all_builds_dlg():
 
             is_done = False
             working_dlg(lambda: is_done)
-            all_results_count, job_result_count = flaky_wf.build_report(job_name_like, start_date, end_date)
+            all_results_count, job_result_count = flaky_wf.build_report(
+                job_name_like, start_date, end_date
+            )
             is_done = True
 
             file_name = get_file_name()
@@ -134,16 +171,34 @@ def app():
             gui.Frame(
                 "What do you want to do?",
                 layout=[
-                    [gui.Column(layout=[
-                        [gui.Text("Sort the team's tickets priorities to (hopefully) match our desired priorities")],
-                        [gui.Text("Get a report on how all the recent builds have gone, noting failures and successes")],
-                        [gui.Text("Get a report on flakies from the recent past.")],
-                    ]),
-                    gui.Column(layout=[
-                        [gui.Button("Sort Tickets")],
-                        [gui.Button("Report on Builds")],
-                        [gui.Button("Report on Flakies")],
-                    ])]
+                    [
+                        gui.Column(
+                            layout=[
+                                [
+                                    gui.Text(
+                                        "Sort the team's tickets priorities to (hopefully) match our desired priorities"
+                                    )
+                                ],
+                                [
+                                    gui.Text(
+                                        "Get a report on how all the recent builds have gone, noting failures and successes"
+                                    )
+                                ],
+                                [
+                                    gui.Text(
+                                        "Get a report on flakies from the recent past."
+                                    )
+                                ],
+                            ]
+                        ),
+                        gui.Column(
+                            layout=[
+                                [gui.Button("Sort Tickets")],
+                                [gui.Button("Report on Builds")],
+                                [gui.Button("Report on Flakies")],
+                            ]
+                        ),
+                    ]
                 ],
             )
         ],

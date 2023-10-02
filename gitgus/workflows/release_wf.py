@@ -18,7 +18,14 @@ HASH_LENGTH = 7
 
 
 class ReleaseWorkflow:
-    def __init__(self, config: Config, gh: GH, git_repo: GitRepo, work_items: WorkItems, builds: Builds):
+    def __init__(
+        self,
+        config: Config,
+        gh: GH,
+        git_repo: GitRepo,
+        work_items: WorkItems,
+        builds: Builds,
+    ):
         self.config = config
         self.gh = gh
         self.git_repo = git_repo
@@ -34,12 +41,18 @@ class ReleaseWorkflow:
         build = Build.get_by_name(gus_build)
         if not build:
             raise UsageError(f"Could not find build {gus_build}")
-        commits = self._get_commits_between_tags(repo_name, start_tag_name, end_tag_name)
+        commits = self._get_commits_between_tags(
+            repo_name, start_tag_name, end_tag_name
+        )
         if not commits:
-            raise UsageError(f"No commits found between {start_tag_name} and {end_tag_name}")
+            raise UsageError(
+                f"No commits found between {start_tag_name} and {end_tag_name}"
+            )
         prs = self._get_prs_with_merge_commits(repo_name, commits)
         if not prs:
-            raise UsageError(f"No PRs found for commits between {start_tag_name} and {end_tag_name}")
+            raise UsageError(
+                f"No PRs found for commits between {start_tag_name} and {end_tag_name}"
+            )
 
         stats = {
             "total": len(prs),
@@ -55,8 +68,12 @@ class ReleaseWorkflow:
             work_item = self._get_gus_work_item(pr.title + " " + pr.head.label)
             results.append([work_item, pr])
             if work_item:
-                stats["total_bugs"] += 1 if work_item.record_type_id == RECORD_TYPES["Bug"] else 0
-                stats["total_user_stories"] += 1 if work_item.record_type_id == RECORD_TYPES["User Story"] else 0
+                stats["total_bugs"] += (
+                    1 if work_item.record_type_id == RECORD_TYPES["Bug"] else 0
+                )
+                stats["total_user_stories"] += (
+                    1 if work_item.record_type_id == RECORD_TYPES["User Story"] else 0
+                )
                 if work_item.scheduled_build is not None:
                     stats["already_has_build"] += 1
 
@@ -83,7 +100,9 @@ class ReleaseWorkflow:
 
     def _update_ticket_build(self, work_item, build):
         if work_item.scheduled_build == build.id_:
-            print(f"Skipping update of {work_item.name}, build already set to {build.name}")
+            print(
+                f"Skipping update of {work_item.name}, build already set to {build.name}"
+            )
         if self.dry_run:
             print(f"Updating {work_item.name} with build to {build.name}")
         else:
@@ -91,12 +110,16 @@ class ReleaseWorkflow:
             try:
                 Work.update(work_item)
             except Exception as e:
-                print(f"Error updating {work_item.name} with build to {build.name}: {e}")
+                print(
+                    f"Error updating {work_item.name} with build to {build.name}: {e}"
+                )
 
     def list_released(self, start_tag_name: str, end_tag_name: str):
         """List the released PRs."""
         repo_name = self.git_repo.get_repo_name()
-        commits = self._get_commits_between_tags(repo_name, start_tag_name, end_tag_name)
+        commits = self._get_commits_between_tags(
+            repo_name, start_tag_name, end_tag_name
+        )
 
         prs = self._get_prs_with_merge_commits(repo_name, commits)
         results = []
@@ -155,7 +178,9 @@ class ReleaseWorkflow:
             try:
                 return Work.get_by_name(work_item_id)
             except SalesforceResourceNotFound as e:
-                print(f"Could not find a GUS work item in the PR title: '{work_item_id}' - ${e}")
+                print(
+                    f"Could not find a GUS work item in the PR title: '{work_item_id}' - ${e}"
+                )
                 return None
         else:
             print(f"Could not find a GUS work item in the PR title: {title}")
