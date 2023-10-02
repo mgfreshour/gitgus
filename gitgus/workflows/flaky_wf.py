@@ -133,7 +133,21 @@ class FlakyWorkflow:
         return self.jenki.get_all_flaky_tests(build_name_like, start_date, end_date)
 
     def build_report(self, job_name_like, start_date, end_date):
-        return self.jenki.get_all_builds(job_name_like, start_date, end_date)
+        job_builds = self.jenki.get_all_builds(job_name_like, start_date, end_date)
+        all_results_count = {}
+        job_result_count = {}
+        for jb in job_builds:
+            job = jb["job"]
+            builds = jb["builds"]
+            count = {}
+            if "PR" in job["fullName"]:  # TODO: add flags for what type? Mind, as a name match, it's not perfect
+                continue
+            for build in builds:
+                result = build["result"]
+                all_results_count[result] = all_results_count.get(result, 0) + 1
+                count[result] = count.get(result, 0) + 1
+            job_result_count[job["fullName"]] = count
+        return all_results_count, job_result_count
 
     def get_flaky_tagged_tests(self):
         func_regex = re.compile('\\s*(public)?\\s*void "?([^"]*)"?\\s*\\(.*\\)\\s*(throws .*)?\\s*{')

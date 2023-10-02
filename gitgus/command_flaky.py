@@ -23,20 +23,7 @@ def report_all_builds(
     end_date = datetime(end_date.year, end_date.month, end_date.day) + timedelta(days=1) - timedelta(seconds=1)
     start_date = datetime(start_date.year, start_date.month, start_date.day)
 
-    job_builds = flaky.build_report(job_name_like, start_date, end_date)
-    all_results_count = {}
-    job_result_count = {}
-    for jb in job_builds:
-        job = jb["job"]
-        builds = jb["builds"]
-        count = {}
-        if "PR" in job["fullName"]:  # TODO: add flags for what type? Mind, as a name match, it's not perfect
-            continue
-        for build in builds:
-            result = build["result"]
-            all_results_count[result] = all_results_count.get(result, 0) + 1
-            count[result] = count.get(result, 0) + 1
-        job_result_count[job["fullName"]] = count
+    all_results_count, job_result_count = flaky.build_report(job_name_like, start_date, end_date)
 
     print(f"Results between {start_date} and {end_date}")
     total = sum(all_results_count.values())

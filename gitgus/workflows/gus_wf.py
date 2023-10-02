@@ -153,7 +153,7 @@ class GusWorkflow:
         epics = self.work_items.get_epics_work(team, planned_release)
         epic_tickets = []
         # sort epics by priority
-        epics.sort(key=lambda x: x[0].priority or 10000, reverse=True)
+        epics.sort(key=lambda x: x[0].priority or 10000)
         for epic, wis in epics:
             print(f"epic {epic.name} has {len(wis)} tickets")
             wis = [wi for wi in wis if "New" in wi.status or "Triaged" in wi.status]

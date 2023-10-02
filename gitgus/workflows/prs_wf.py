@@ -119,13 +119,16 @@ class PrWorkflow:
         branch_name = self.git_repo.get_branch_name()
         repo = self.git_repo.get_repo_name()
         wi_id = self._extract_wi_id(branch_name)
-        wi = self.work_items.get_work_item(wi_id)
+        wi = Work.get_by_name(wi_id)
         body = self._get_body(wi_id, branch_name, wi.subject)
 
         subject = f"@{wi_id}@ {wi.subject}"
         pr = self.gh.create_pr(repo_name=repo, title=subject, body=body, head=branch_name, draft=draft)
         if rfr:
-            body = wi.details_and_steps_to_reproduce + wi.details
+            if wi.details_and_steps_to_reproduce:
+                body = wi.details_and_steps_to_reproduce + wi.details
+            else:
+                body = wi.details
             body = "PR created: " + pr.html_url + "\n\n" + body
             self.work_items.update(
                 wi, {"status": "Ready for Review", "details": body, "details_and_steps_to_reproduce": body}
