@@ -20,10 +20,10 @@ flaky = FlakyWorkflow(config, work_items, jenki, git_repo)
 @flaky_app.command(help="Find all the builds with a flaky test in them")
 def report_all_builds(
     job_name_like: str = typer.Argument(
-        "evergage-product", help="Partial name of the jobs to report on"
+        "evergage-product-trunk", help="Partial name of the jobs to report on"
     ),
     start_date: datetime = typer.Option(
-        default=datetime.now() - timedelta(days=60), help="Start date"
+        default=datetime.now() - timedelta(days=30), help="Start date"
     ),
     end_date: datetime = typer.Option(default=datetime.now(), help="End date"),
 ):
@@ -55,10 +55,10 @@ def report_all_builds(
 @flaky_app.command()
 def report_failed_builds(
     job_name_like: str = typer.Argument(
-        "evergage-product", help="Partial name of the jobs to report on"
+        "evergage-product-trunk", help="Partial name of the jobs to report on"
     ),
     start_date: datetime = typer.Option(
-        default=datetime.now() - timedelta(days=60), help="Start date"
+        default=datetime.now() - timedelta(days=30), help="Start date"
     ),
     end_date: datetime = typer.Option(default=datetime.now(), help="End date"),
 ):
