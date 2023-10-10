@@ -66,6 +66,9 @@ def create(
 ):
     """Create a PR."""
     pr, wi = prs.create(draft=draft, rfr=rfr, assign=assign)
+    if not pr:
+        print("No PR created. Are there commits to push?")
+        return
     print(f"Created PR {pr.html_url}")
     if rfr:
         print("Ticket marked as ready for review: ")

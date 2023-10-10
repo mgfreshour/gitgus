@@ -1,3 +1,4 @@
+import os
 import re
 from datetime import datetime, timedelta
 
@@ -122,6 +123,8 @@ class PrWorkflow:
         self, draft: bool = False, rfr: bool = False, assign: bool = False
     ) -> [PullRequest, Work]:
         """Create a PR."""
+        if not self._has_commits_against_master():
+            return None, None
         self.git_repo.push()
         branch_name = self.git_repo.get_branch_name()
         repo = self.git_repo.get_repo_name()
@@ -191,6 +194,10 @@ class PrWorkflow:
         return body
 
     def _read_body_template(self):
+        if not self.config.get("PRs.body_template") or not os.path.exists(
+            self.config.get("PRs.body_template")
+        ):
+            return ""
         with open(self.config.get("PRs.body_template")) as f:
             body = f.read()
         return body
@@ -278,3 +285,12 @@ class PrWorkflow:
         pr = self.gh.get_pr(repo_name, pr.number)
 
         return [pr]
+
+    def _has_commits_against_master(self):
+        """Check if there are any commits against master."""
+        branch_name = self.git_repo.get_branch_name()
+        repo_name = self.git_repo.get_repo_name()
+        repo = self.gh.get_repo(repo_name)
+        default_branch = repo.default_branch
+        commits = repo.compare(default_branch, branch_name).commits
+        return len(commits) > 0
