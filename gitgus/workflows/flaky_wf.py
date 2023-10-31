@@ -132,7 +132,7 @@ class FlakyWorkflow:
     def report(self, build_name_like: str, start_date: datetime, end_date: datetime):
         return self.jenki.get_all_flaky_tests(build_name_like, start_date, end_date)
 
-    def build_report(self, job_name_like, start_date, end_date):
+    def build_report(self, job_name_like, start_date, end_date) -> tuple[dict, dict]:
         job_builds = self.jenki.get_all_builds(job_name_like, start_date, end_date)
         all_results_count = {}
         job_result_count = {}

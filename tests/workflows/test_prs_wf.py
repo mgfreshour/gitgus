@@ -1,3 +1,4 @@
+import os
 from typing import Any
 from unittest.mock import MagicMock
 
@@ -127,15 +128,21 @@ def test_create_passes_updated_body_to_editor(monkeypatch):
     mock_edit.edit.assert_called_once_with(expected)
 
 
-def test_create_reads_body_template_from_file(monkeypatch):
+def test_create_reads_body_template_from_default_file(monkeypatch):
     monkeypatch.delattr(testee, "_read_body_template")  # use the real one
     mopen = mock_open(read_data="Bobobobob")
     monkeypatch.setattr(builtins, "open", mopen)
-    testee.create()
 
+    testee.create()
     mopen.assert_called_once_with(".github/PULL_REQUEST_TEMPLATE.md")
 
-    # And again with a different file
+
+def test_create_reads_body_template_from_custom_file(monkeypatch):
+    monkeypatch.delattr(testee, "_read_body_template")  # use the real one
+    mopen = mock_open(read_data="Bobobobob")
+    monkeypatch.setattr(builtins, "open", mopen)
+    monkeypatch.setattr(os.path, "exists", lambda x: True)
+
     mock_config._config = {"PRs": {"body_template": ".github/OTHER_TEMPLATE.md"}}
     testee.create()
     mopen.assert_called_with(".github/OTHER_TEMPLATE.md")

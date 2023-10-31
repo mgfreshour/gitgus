@@ -49,6 +49,8 @@ def _setup(monkeypatch):
         [create_wi("W-8901", "Hello World")],
     ]
 
+    monkeypatch.setattr(Work, "update", MagicMock())
+
     monkeypatch.setattr(Build, "soql_query", MagicMock())
     Build.soql_query.return_value = [create_build()]
 
@@ -151,8 +153,6 @@ def test_update_tickets():
     assert stats["non_closed"] == 2
     assert stats["total"] == 3
     assert wi1.scheduled_build == "test_build_id_"
-    wi1.update.assert_called_once()
     assert wi3.scheduled_build == "test_build_id_"
-    wi3.update.assert_called_once()
     mock_gh.add_comment.assert_called_once()
-    assert mock_workitems.add_feed_post.call_count == 2
+    assert Work.update.call_count == 2

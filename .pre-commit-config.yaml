@@ -24,4 +24,3 @@ repos:
     language: script
     name: Run tests
     entry: ./scripts/run_tests.sh
-    stage: [commit]

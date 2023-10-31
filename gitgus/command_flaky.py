@@ -39,7 +39,7 @@ def report_all_builds(
         job_name_like, start_date, end_date
     )
 
-    print(f"Results between {start_date} and {end_date}")
+    print(f"Results between {str(start_date)} and {str(end_date)}")
     total = sum(all_results_count.values())
     print(f"Total builds: {total}")
     for k, v in all_results_count.items():

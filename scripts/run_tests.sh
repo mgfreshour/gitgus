@@ -1,2 +1,2 @@
 #!/bin/bash
-poetry run python -m pytest tests
+poetry run python -m pytest -q tests

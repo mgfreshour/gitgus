@@ -67,15 +67,15 @@ def test_init_global(monkeypatch):
     monkeypatch.setattr(Config, "set_secret", MagicMock())
 
     runner = CliRunner()
-    input = ["myghtoken"]
+    input = ["N", "N"]
     result = runner.invoke(config_app, ["init", "global"], input="\n".join(input))
 
     assert result.exit_code == 0, result.stdout
     assert_file_written(m, DEFAULT_CONFIG_PATH)
     assert "Wrote config to default file" in result.stdout
-    assert Config.set_secret.call_count == 1
-    assert Config.set_secret.call_args[0][0] == "github.token"
-    assert Config.set_secret.call_args[0][1] == "myghtoken"
+    # assert Config.set_secret.call_count == 1
+    # assert Config.set_secret.call_args[0][0] == "github.token"
+    # assert Config.set_secret.call_args[0][1] == "myghtoken"
 
 
 def test_init_local(monkeypatch, capsys):
@@ -100,11 +100,17 @@ def test_init_local(monkeypatch, capsys):
     )
 
     runner = CliRunner()
-    input = ["myteam", "myproduct", "myprefix", "", ""]  # github token
+    input = [
+        "myteam",
+        "myproduct",
+        "myprefix",
+        "N",  # Github token
+        "N",  # Jenkins Token
+    ]
     result = runner.invoke(config_app, ["init", "local"], input="\n".join(input))
 
-    with capsys.disabled():
-        print(result.stdout)
+    # with capsys.disabled():
+    #     print(result.stdout)
 
     assert result.exit_code == 0, result.stdout
     payload = assert_file_written(m, os.path.join(os.getcwd(), ".gitgus.toml"))

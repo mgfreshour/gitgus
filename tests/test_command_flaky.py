@@ -76,6 +76,7 @@ def test_report_all_builds(monkeypatch):
     monkeypatch.setattr(
         "gitgus.workflows.flaky_wf.FlakyWorkflow.build_report", mock_report
     )
+    mock_report.return_value = ({}, {})
     runner = CliRunner()
     result = runner.invoke(
         flaky_app,
@@ -88,7 +89,7 @@ def test_report_all_builds(monkeypatch):
             "2021-01-02",
         ],
     )
-    assert result.exit_code == 0, result.stdout
+    assert result.exit_code == 0, result.stdout + result.stderr
     # Assert inclusive dates
     mock_report.assert_called_once_with(
         "bobo/jobs", datetime(2021, 1, 1, 0, 0), datetime(2021, 1, 2, 23, 59, 59)
