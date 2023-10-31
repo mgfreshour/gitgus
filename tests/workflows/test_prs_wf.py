@@ -8,6 +8,7 @@ import pytest
 
 from gitgus.config import Config
 from gitgus.workflows.prs_wf import PrWorkflow
+from gitgus.gus.sobjects.work import Work
 from tests.testing_utils import create_wi
 
 EDIT_RETURN = "Descriptions"
@@ -47,16 +48,24 @@ def _setup(monkeypatch):
     wi = create_wi("W-1234", WI_SUBJECT, WI_BODY)
     mock_workitems.get_work_item.return_value = wi
 
+    monkeypatch.setattr(Work, "get_by_name", lambda x: wi)
+
     testee = PrWorkflow(
         mock_config, mock_gh, mock_git_repo, mock_workitems, mock_edit, mock_jenki
     )
     monkeypatch.setattr(testee, "_read_body_template", lambda: "Bobobobob")
+    monkeypatch.setattr(testee, "_has_commits_against_master", lambda: True)
 
 
 def test_create_pushes_first(monkeypatch):
     testee.create()
-
     mock_git_repo.push.assert_called_once_with()
+
+
+def test_create_shorts_out_if_no_commits(monkeypatch):
+    monkeypatch.setattr(testee, "_has_commits_against_master", lambda: False)
+    testee.create()
+    mock_git_repo.push.assert_not_called()
 
 
 def test_create_marks_ticket_rfr_if_requested(monkeypatch):

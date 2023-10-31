@@ -17,3 +17,11 @@ repos:
   hooks:
   - id: flakeheaven
     args: [lint]
+
+- repo: local
+  hooks:
+  - id: run_tests
+    language: script
+    name: Run tests
+    entry: ./scripts/run_tests.sh
+    stage: [commit]
