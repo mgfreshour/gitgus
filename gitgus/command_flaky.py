@@ -26,6 +26,9 @@ def report_all_builds(
         default=datetime.now() - timedelta(days=30), help="Start date"
     ),
     end_date: datetime = typer.Option(default=datetime.now(), help="End date"),
+    file_name: str = typer.Option(
+        default=None, help="File to write to. Defaults to stdout"
+    ),
 ):
     # date range to be inclusive
     end_date = (
@@ -39,17 +42,23 @@ def report_all_builds(
         job_name_like, start_date, end_date
     )
 
-    print(f"Results between {str(start_date)} and {str(end_date)}")
+    out = f"Results between {str(start_date)} and {str(end_date)}"
     total = sum(all_results_count.values())
-    print(f"Total builds: {total}")
+    out += f"\nTotal builds: {total}"
     for k, v in all_results_count.items():
-        print(f"{k}: {v} %{round(v/total*100, 2)}")
+        out += f"\n{k}: {v} %{round(v/total*100, 2)}"
 
     for job, counts in job_result_count.items():
-        print(f"\n{job}")
+        out += f"\n{job}"
         total = sum(counts.values())
         for k, v in counts.items():
-            print(f"{k}: {v} %{round(v/total*100, 2)}")
+            out += f"{k}: {v} %{round(v/total*100, 2)}"
+
+    if file_name:
+        with open(file_name, "w") as f:
+            f.write(out)
+    else:
+        print(out)
 
 
 @flaky_app.command()
@@ -61,6 +70,9 @@ def report_failed_builds(
         default=datetime.now() - timedelta(days=30), help="Start date"
     ),
     end_date: datetime = typer.Option(default=datetime.now(), help="End date"),
+    file_name: str = typer.Option(
+        default=None, help="File to write to. Defaults to stdout"
+    ),
 ):
     # date range to be inclusive
     end_date = (
@@ -88,13 +100,22 @@ def report_failed_builds(
         k: v
         for k, v in sorted(per_count.items(), key=lambda item: item[1], reverse=True)
     }
-    print(f"Total builds: {total_builds}")
-    print(f"Oldest build: {oldest_build}")
+    out = f"Total builds: {total_builds}"
+    out += f"\nTotal test cases: {len(all_testcases)}"
+    out += f"\nTotal unique test cases: {len(results)}"
+    out += f"\nOldest build: {oldest_build}"
+
     for k, v in results.items():
         tickets = ["No Tickets Found"]
         if k in function_tickets:
             tickets = function_tickets[k]
-        print(f"{v},{k},{'; '.join(tickets)}")
+        out += f"\n{v},{k},{'; '.join(tickets)}"
+
+    if file_name:
+        with open(file_name, "w") as f:
+            f.write(out)
+    else:
+        print(out)
 
 
 @flaky_app.command()
