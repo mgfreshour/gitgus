@@ -60,8 +60,8 @@ class SlackWriter:
         created_text = "Today" if created_days <= 0 else f"{created_days} Day"
         title = pr.title
         title = "".join([c for c in title if c.isalnum() or c in [" ", "-", "_", "."]])
-        if len(title) > 50:
-            title = title[:30] + "..." + title[-17:]
+        if len(title) > 70:
+            title = title[:50] + "..." + title[-17:]
         return (
             f"{icon} [{title}]({pr.html_url})\n"
             f"\t:update_pd: {updated_text}\t\t:date-1: {created_text}\t\t:person: {pr.user.login}\n"

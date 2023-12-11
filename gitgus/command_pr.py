@@ -61,7 +61,7 @@ def create(
         help="Create a PR and mark ticket as ready for review",
     ),
     assign: bool = typer.Option(
-        True, "--assign/--no-assign", "-a/-A", help="Assign reviewers to PR"
+        False, "--assign/--no-assign", "-a/-A", help="Assign reviewers to PR"
     ),
 ):
     """Create a PR."""

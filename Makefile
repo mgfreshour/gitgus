@@ -32,7 +32,7 @@ build/gui: build ## Builds the GUI
 
 install: build ## Installs the CLI app with pipx
 	pipx uninstall gitgus
-	pipx install dist/gitgus-0.1.0-py3-none-any.whl
+	pipx install dist/gitgus-0.2.1-py3-none-any.whl
 
 DEMOS = $(shell ls demos/*.tape | sed 's/demos\///' | sed 's/.tape//')
 demos: install ## Creates the demos

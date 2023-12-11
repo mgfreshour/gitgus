@@ -123,9 +123,9 @@ class PrWorkflow:
         self, draft: bool = False, rfr: bool = False, assign: bool = False
     ) -> [PullRequest, Work]:
         """Create a PR."""
+        self.git_repo.push()
         if not self._has_commits_against_master():
             return None, None
-        self.git_repo.push()
         branch_name = self.git_repo.get_branch_name()
         repo = self.git_repo.get_repo_name()
         wi_id = self._extract_wi_id(branch_name)
@@ -138,7 +138,9 @@ class PrWorkflow:
         )
         if rfr:
             if wi.details_and_steps_to_reproduce:
-                body = wi.details_and_steps_to_reproduce + wi.details
+                body = wi.details_and_steps_to_reproduce
+                if wi.details:
+                    body += "\n\n" + wi.details
             else:
                 body = wi.details
             body = "PR created: " + pr.html_url + "\n\n" + body
