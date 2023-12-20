@@ -26,9 +26,9 @@ def get_session_token(instance: str, max_age_hours: int = 8) -> str:
         token = get_auth_token(
             auth_url, token_url, "PlatformCLI", ["refresh_token api web"]
         )
-        cache = {
-            "time_collected": datetime.utcnow().isoformat(),
-            "access_token": token,
-        }
-        set_secret("sfdx-cache", instance, dumps(cache))
+        # cache = {
+        #     "time_collected": datetime.utcnow().isoformat(),
+        #     "access_token": token,
+        # }
+        # set_secret("sfdx-cache", instance, dumps(cache))
         return token
